@@ -1,12 +1,12 @@
 package ga.selectors;
 
-import ga.Genome;
+import ga.Chromossome;
 import ga.RandomUtil;
 import ga.Selector;
 
 public class RoulleteSelector extends Selector {
 	@Override
-	public Genome getGenome() {
+	public Chromossome getChromossome() {
 		int i;
 		double aux = 0;
 		double limit = RandomUtil.getRandom().nextGaussian() * getPopulation().getFitnessSum();

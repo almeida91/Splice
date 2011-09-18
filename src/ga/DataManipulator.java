@@ -1,6 +1,6 @@
 package ga;
 
 public abstract class DataManipulator {
-	public abstract void appendData(GenerationData data);
-	public abstract void saveData();
+	public abstract void appendData(GenerationData data) throws Exception;
+	public abstract void saveData() throws Exception;
 }

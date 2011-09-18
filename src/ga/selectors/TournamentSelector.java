@@ -1,6 +1,6 @@
 package ga.selectors;
 
-import ga.Genome;
+import ga.Chromossome;
 import ga.Selector;
 
 public class TournamentSelector extends Selector {
@@ -11,16 +11,16 @@ public class TournamentSelector extends Selector {
 	}
 
 	@Override
-	public Genome getGenome() {
-		Genome genome = getPopulation().getRandom(), temp;
-		double fitness = genome.getFitness();
+	public Chromossome getChromossome() {
+		Chromossome chromossome = getPopulation().getRandom(), temp;
+		double fitness = chromossome.getFitness();
 
 		for (int i = 0; i < k; i++) {
 			temp = getPopulation().getRandom();
 			if (temp.getFitness() > fitness)
-				genome = temp;
+				chromossome = temp;
 		}
 
-		return genome;
+		return chromossome;
 	}
 }

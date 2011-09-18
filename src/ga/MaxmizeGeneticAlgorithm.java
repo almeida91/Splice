@@ -3,21 +3,21 @@ package ga;
 import java.util.ArrayList;
 
 public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
-	public MaxmizeGeneticAlgorithm(GenomeFactory factory,
+	public MaxmizeGeneticAlgorithm(ChromossomeFactory factory,
 			PopulationAllocator allocator, Selector selector) {
 		super(factory, allocator, selector);
 	}
 
 	@Override
-	protected ArrayList<Genome> doGeneneration() {
-		ArrayList<Genome> newPopulation = new ArrayList<Genome>();
-		Genome a, b, c;
+	protected ArrayList<Chromossome> doGeneneration() {
+		ArrayList<Chromossome> newPopulation = new ArrayList<Chromossome>();
+		Chromossome a, b, c;
 
 		getPopulation().sort();
 
 		for (int i = 0; i < getPopulationSize(); i++) {
-			a = getGenome();
-			b = getGenome();
+			a = getChromossome();
+			b = getChromossome();
 			c = a.crossover(b);
 			mutate(c);
 			newPopulation.add(c);
@@ -34,29 +34,29 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 	}
 
 	@Override
-	public Genome getBest() {
+	public Chromossome getBest() {
 		double fitness = 0;
-		Genome genome = null;
-		for (Genome g : getPopulation().getGenomes()) {
-			if (g.calculateFitness() >= fitness) {
+		Chromossome chromossome = null;
+		for (Chromossome g : getPopulation().getChromossomes()) {
+			if (g.getFitness() >= fitness) {
 				fitness = g.getFitness();
-				genome = g;
+				chromossome = g;
 			}
 		}
-		return genome;
+		return chromossome;
 	}
 
 	@Override
-	public Genome getWorst() {
-		Genome genome = getPopulation().getRandom();
-		double fitness = genome.getFitness();
-		for (Genome g : getPopulation().getGenomes()) {
+	public Chromossome getWorst() {
+		Chromossome chromossome = getPopulation().getRandom();
+		double fitness = chromossome.getFitness();
+		for (Chromossome g : getPopulation().getChromossomes()) {
 			if (g.getFitness() <= fitness) {
 				fitness = g.getFitness();
-				genome = g;
+				chromossome = g;
 			}
 		}
-		return genome;
+		return chromossome;
 	}
 
 }

@@ -6,7 +6,7 @@ import ga.selectors.TournamentSelector;
 public class Test {
 	public static void main(String[] args) {
 		GeneticAlgorithm ga = new MaxmizeGeneticAlgorithm(
-				new TestGenomeFactory(),
+				new TestChromossomeFactory(),
 				new ReplaceAllocator(), 
 				new TournamentSelector(3));
 		ga.execute();

@@ -4,39 +4,39 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Population {
-	private ArrayList<Genome> genomes;
+	private ArrayList<Chromossome> chromossomes;
 	private double fitnessSum;
 	private double fitnessAverage;
 	private int size;
-	private GenomeFactory factory;
+	private ChromossomeFactory factory;
 
-	public Population(int size, GenomeFactory factory) {
+	public Population(int size, ChromossomeFactory factory) {
 		this.size = size;
 		this.factory = factory;
 	}
 
 	public void calculateFitnessSum() {
 		fitnessSum = 1E0;
-		for (int i = 0; i < genomes.size(); i++) {
-			fitnessSum += genomes.get(i).calculateFitness();
+		for (int i = 0; i < chromossomes.size(); i++) {
+			fitnessSum += chromossomes.get(i).calculateFitness();
 		}
-		fitnessAverage = fitnessSum / genomes.size();
+		fitnessAverage = fitnessSum / chromossomes.size();
 	}
 
 	public void initializePopulation() {
-		genomes = new ArrayList<Genome>(size);
+		chromossomes = new ArrayList<Chromossome>(size);
 
 		for (int i = 0; i < size; i++) {
-			genomes.add(factory.getRandomGenome());
+			chromossomes.add(factory.getRandomChromossome());
 		}
 	}
 
 	public void sort() {
-		Collections.sort(genomes, factory.getRandomGenome().getComparator());
+		Collections.sort(chromossomes, factory.getRandomChromossome().getComparator());
 	}
 
-	public ArrayList<Genome> getGenomes() {
-		return genomes;
+	public ArrayList<Chromossome> getChromossomes() {
+		return chromossomes;
 	}
 
 	public double getFitnessSum() {
@@ -49,14 +49,14 @@ public class Population {
 	}
 
 	public int getSize() {
-		return genomes.size();
+		return chromossomes.size();
 	}
 
-	public Genome get(int i) {
-		return genomes.get(i);
+	public Chromossome get(int i) {
+		return chromossomes.get(i);
 	}
 	
-	public Genome getRandom() {
+	public Chromossome getRandom() {
 		return this.get(RandomUtil.getRandom().nextInt(getSize()));
 	}
 }

@@ -1,6 +1,6 @@
 package ga.allocators;
 
-import ga.Genome;
+import ga.Chromossome;
 import ga.PopulationAllocator;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class ElitismAllocator extends PopulationAllocator {
 	}
 
 	@Override
-	public void alocate(ArrayList<Genome> newPopulation) {
+	public void alocate(ArrayList<Chromossome> newPopulation) {
 		getPopulation().sort();
 		int n = (int)(getPopulation().getSize() * rate);
 		for (int i = 1; i < n; i++) {

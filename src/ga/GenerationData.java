@@ -1,25 +1,25 @@
 package ga;
 
 public class GenerationData {
-	private Genome bestGenome, worstGenome;
+	private Chromossome bestChromossome, worstChromossome;
 	private Population population;
 	private double fitnessAverage;
 	private int generation;
 
-	public Genome getBestGenome() {
-		return bestGenome;
+	public Chromossome getBestChromossome() {
+		return bestChromossome;
 	}
 
-	public void setBestGenome(Genome bestGenome) {
-		this.bestGenome = bestGenome;
+	public void setBestChromossome(Chromossome bestChromossome) {
+		this.bestChromossome = bestChromossome;
 	}
 
-	public Genome getWorstGenome() {
-		return worstGenome;
+	public Chromossome getWorstChromossome() {
+		return worstChromossome;
 	}
 
-	public void setWorstGenome(Genome worstGenome) {
-		this.worstGenome = worstGenome;
+	public void setWorstChromossome(Chromossome worstChromossome) {
+		this.worstChromossome = worstChromossome;
 	}
 
 	public Population getPopulation() {

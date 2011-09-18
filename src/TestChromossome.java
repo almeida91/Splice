@@ -1,33 +1,32 @@
-import ga.Genome;
+import ga.Chromossome;
 import ga.RandomUtil;
 
-public class TestGenome extends Genome {
+public class TestChromossome extends Chromossome {
 	long a, b;
 
-	public TestGenome(long a, long b) {
+	public TestChromossome(long a, long b) {
 		this.a = a;
 		this.b = b;
 	}
 	
-	public TestGenome() {
+	public TestChromossome() {
 		this(0,0);
 	}
 
-	public TestGenome(int a, int b) {
+	public TestChromossome(int a, int b) {
 		this((long) a, (long) b);
 	}
 
 	@Override
-	public double calculateFitness() {
+	protected double fitness() {
 		double dist = Math.abs(Math.abs(a) - Math.abs(b));
-		fitness = 1 / (dist + 1);
-		return fitness;
+		return 1 / (dist + 1);
 	}
 
 	@Override
-	public Genome crossover(Genome genome) {
-		TestGenome otherGenome = (TestGenome) genome;
-		TestGenome newGenome = new TestGenome();
+	public Chromossome crossover(Chromossome genome) {
+		TestChromossome otherGenome = (TestChromossome) genome;
+		TestChromossome newGenome = new TestChromossome();
 
 		long r1, r2, l1, l2;
 
@@ -63,6 +62,6 @@ public class TestGenome extends Genome {
 
 	@Override
 	public String toString() {
-		return "a = " + a + "\nb = " + b + "\nfitness = " + calculateFitness();
+		return "a = " + a + "\nb = " + b + "\nfitness = " + fitness();
 	}
 }

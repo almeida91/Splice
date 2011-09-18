@@ -1,17 +1,17 @@
-import ga.Genome;
+import ga.Chromossome;
 import ga.RandomUtil;
 
-public class SinGenome extends Genome {
+public class SinChromossome extends Chromossome {
 	private double x, y;
 
-	public SinGenome(double x, double y) {
+	public SinChromossome(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 
 	@Override
-	public double calculateFitness() {
-		return fitness = Math.sin(Math.toRadians(x + y));
+	protected double fitness() {
+		return Math.sin(Math.toRadians(x + y));
 	}
 
 	@Override
@@ -28,8 +28,8 @@ public class SinGenome extends Genome {
 	}
 
 	@Override
-	public Genome crossover(Genome genome) {
-		return new SinGenome(x, ((SinGenome) genome).y);
+	public Chromossome crossover(Chromossome genome) {
+		return new SinChromossome(x, ((SinChromossome) genome).y);
 	}
 
 	@Override

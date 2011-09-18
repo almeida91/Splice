@@ -2,6 +2,7 @@ package ga;
 
 import ga.dataManipulators.ConsoleOutput;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public abstract class GeneticAlgorithm {
@@ -16,25 +17,27 @@ public abstract class GeneticAlgorithm {
 
 	private Selector selector;
 	private PopulationAllocator allocator;
-	
-	private GenomeFactory factory;
-	
-	private DataManipulator manipulator = new ConsoleOutput();
 
-	public GeneticAlgorithm(GenomeFactory factory, PopulationAllocator allocator, Selector selector) {
+	private ChromossomeFactory factory;
+
+	private DataManipulator manipulator = new ConsoleOutput();
+	
+	private PrintStream errorStream = System.err;
+
+	public GeneticAlgorithm(ChromossomeFactory factory,
+			PopulationAllocator allocator, Selector selector) {
 		this.allocator = allocator;
 		this.selector = selector;
 		this.factory = factory;
 	}
 
-
 	/**
 	 * 
 	 * @return the new genomes to be added to the population
 	 */
-	protected abstract ArrayList<Genome> doGeneneration();
-	public abstract Genome getBest();
-	public abstract Genome getWorst();
+	protected abstract ArrayList<Chromossome> doGeneneration();
+	public abstract Chromossome getBest();
+	public abstract Chromossome getWorst();
 
 	/**
 	 * executes the genetic algorithm
@@ -42,25 +45,30 @@ public abstract class GeneticAlgorithm {
 	public void execute() {
 		population = new Population(gSize, factory);
 		population.initializePopulation();
-		
+
 		GenerationData data = new GenerationData();
 
-		for (int i = 0; i < gSize; i++) {
-			allocator.setPopulation(population);
-			selector.setPopulation(population);
-			
-			population.calculateFitnessSum();
-			allocator.alocate(doGeneneration());
-			
-			data.setPopulation(population);
-			data.setBestGenome(getBest());
-			data.setWorstGenome(getWorst());
-			data.setGeneration(i);
-			data.setFitnessAverage(population.getFitnessAverage());
-			
-			manipulator.appendData(data);
+		try {
+			for (int i = 0; i < gSize; i++) {
+				allocator.setPopulation(population);
+				selector.setPopulation(population);
+
+				population.calculateFitnessSum();
+				allocator.alocate(doGeneneration());
+
+				data.setPopulation(population);
+				data.setBestChromossome(getBest());
+				data.setWorstChromossome(getWorst());
+				data.setGeneration(i);
+				data.setFitnessAverage(population.getFitnessAverage());
+
+				manipulator.appendData(data);
+			}
+			manipulator.saveData();
+		} catch (Exception ex) {
+			errorStream.println("Some errors have ocurred that prevented the execution");
+			ex.printStackTrace(errorStream);
 		}
-		manipulator.saveData();
 	}
 
 	public int getPopulationSize() {
@@ -95,31 +103,39 @@ public abstract class GeneticAlgorithm {
 		this.population = population;
 	}
 
-	protected Genome getGenome() {
-		return selector.getGenome();
+	protected Chromossome getChromossome() {
+		return selector.getChromossome();
 	}
-	
-	protected void mutate(Genome g) {
+
+	protected void mutate(Chromossome g) {
 		g.mutate(mRate);
 	}
-	
+
 	public void setGenerationSize(int size) {
 		gSize = size;
 	}
-	
+
 	public void setPopulationSize(int size) {
 		pSize = size;
 	}
-	
+
 	public void setMutationRate(double rate) {
 		mRate = rate;
 	}
-	
+
 	public void setCrossoverRate(double rate) {
 		cRate = rate;
 	}
 
 	public void setDataManipulator(DataManipulator dataManipulator) {
 		manipulator = dataManipulator;
+	}
+
+	public PrintStream getErrorStream() {
+		return errorStream;
+	}
+
+	public void setErrorStream(PrintStream errorStream) {
+		this.errorStream = errorStream;
 	}
 }
