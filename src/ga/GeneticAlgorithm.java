@@ -19,8 +19,8 @@ public abstract class GeneticAlgorithm {
 	private PopulationAllocator allocator;
 
 	private ChromossomeFactory factory;
-
 	private DataManipulator manipulator = new ConsoleOutput();
+	private StopCondition stopCondition = new GenerationsCondition(2000);
 	
 	private PrintStream errorStream = System.err;
 
@@ -49,7 +49,8 @@ public abstract class GeneticAlgorithm {
 		GenerationData data = new GenerationData();
 
 		try {
-			for (int i = 0; i < gSize; i++) {
+			int i = 0;
+			while (!stopCondition.stop(data)) {
 				allocator.setPopulation(population);
 				selector.setPopulation(population);
 
@@ -63,6 +64,7 @@ public abstract class GeneticAlgorithm {
 				data.setFitnessAverage(population.getFitnessAverage());
 
 				manipulator.appendData(data);
+				i++;
 			}
 			manipulator.saveData();
 		} catch (Exception ex) {
@@ -113,6 +115,7 @@ public abstract class GeneticAlgorithm {
 
 	public void setGenerationSize(int size) {
 		gSize = size;
+		stopCondition = new GenerationsCondition(size);
 	}
 
 	public void setPopulationSize(int size) {
@@ -137,5 +140,13 @@ public abstract class GeneticAlgorithm {
 
 	public void setErrorStream(PrintStream errorStream) {
 		this.errorStream = errorStream;
+	}
+
+	public StopCondition getStopCondition() {
+		return stopCondition;
+	}
+
+	public void setStopCondition(StopCondition stopCondition) {
+		this.stopCondition = stopCondition;
 	}
 }
