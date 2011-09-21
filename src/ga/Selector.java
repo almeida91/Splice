@@ -1,5 +1,15 @@
 package ga;
 
+/**
+ * Selects chromossome's candidates for crossover
+ * 
+ * @author igor
+ * 
+ */
 public abstract class Selector extends PopulationManipulator {
-	public abstract Chromossome getChromossome(); 
+	/**
+	 * The selection logic
+	 * @return a chromosome for crossover
+	 */
+	public abstract Chromosome getChromosome();
 }

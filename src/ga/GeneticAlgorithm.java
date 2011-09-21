@@ -1,10 +1,16 @@
 package ga;
 
 import ga.dataManipulators.ConsoleOutput;
+import ga.stopConditions.GenerationsCondition;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+/**
+ * Base class for a genetic algorithm
+ * @author igor
+ *
+ */
 public abstract class GeneticAlgorithm {
 	private int pSize = 100;
 	private int gSize = 2000;
@@ -18,13 +24,19 @@ public abstract class GeneticAlgorithm {
 	private Selector selector;
 	private PopulationAllocator allocator;
 
-	private ChromossomeFactory factory;
+	private ChromosomeFactory factory;
 	private DataManipulator manipulator = new ConsoleOutput();
 	private StopCondition stopCondition = new GenerationsCondition(2000);
 	
 	private PrintStream errorStream = System.err;
 
-	public GeneticAlgorithm(ChromossomeFactory factory,
+	/**
+	 * Default constructor
+	 * @param factory the factory from the initial chromosomes will come
+	 * @param allocator the new population allocator
+	 * @param selector the crossover candidates selector
+	 */
+	public GeneticAlgorithm(ChromosomeFactory factory,
 			PopulationAllocator allocator, Selector selector) {
 		this.allocator = allocator;
 		this.selector = selector;
@@ -32,12 +44,18 @@ public abstract class GeneticAlgorithm {
 	}
 
 	/**
-	 * 
+	 * Executes a single generation logic
 	 * @return the new genomes to be added to the population
 	 */
-	protected abstract ArrayList<Chromossome> doGeneneration();
-	public abstract Chromossome getBest();
-	public abstract Chromossome getWorst();
+	protected abstract ArrayList<Chromosome> doGeneneration();
+	/**
+	 * @return the population's best chromosome
+	 */
+	public abstract Chromosome getBest();
+	/**
+	 * @return the population's worst chromosome
+	 */
+	public abstract Chromosome getWorst();
 
 	/**
 	 * executes the genetic algorithm
@@ -55,11 +73,11 @@ public abstract class GeneticAlgorithm {
 				selector.setPopulation(population);
 
 				population.calculateFitnessSum();
-				allocator.alocate(doGeneneration());
+				allocator.allocate(doGeneneration());
 
 				data.setPopulation(population);
-				data.setBestChromossome(getBest());
-				data.setWorstChromossome(getWorst());
+				data.setBestChromosome(getBest());
+				data.setWorstChromosome(getWorst());
 				data.setGeneration(i);
 				data.setFitnessAverage(population.getFitnessAverage());
 
@@ -105,11 +123,11 @@ public abstract class GeneticAlgorithm {
 		this.population = population;
 	}
 
-	protected Chromossome getChromossome() {
-		return selector.getChromossome();
+	protected Chromosome getChromosome() {
+		return selector.getChromosome();
 	}
 
-	protected void mutate(Chromossome g) {
+	protected void mutate(Chromosome g) {
 		g.mutate(mRate);
 	}
 

@@ -1,10 +1,10 @@
-import ga.Chromossome;
+import ga.Chromosome;
 import ga.RandomUtil;
 
-public class SinChromossome extends Chromossome {
+public class SinChromosome extends Chromosome {
 	private double x, y;
 
-	public SinChromossome(double x, double y) {
+	public SinChromosome(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -28,8 +28,8 @@ public class SinChromossome extends Chromossome {
 	}
 
 	@Override
-	public Chromossome crossover(Chromossome genome) {
-		return new SinChromossome(x, ((SinChromossome) genome).y);
+	public Chromosome crossover(Chromosome chromossome) {
+		return new SinChromosome(x, ((SinChromosome) chromossome).y);
 	}
 
 	@Override

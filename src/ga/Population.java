@@ -3,40 +3,74 @@ package ga;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * The chromosome's collection
+ * @author igor
+ *
+ */
 public class Population {
-	private ArrayList<Chromossome> chromossomes;
+	/**
+	 * this contains all the chromosomes
+	 */
+	private ArrayList<Chromosome> chromosomes;
+	/**
+	 * the sum of all fitnesses it's used in roullette selection and in the average calculation
+	 */
 	private double fitnessSum;
+	/**
+	 * population's average fitness
+	 */
 	private double fitnessAverage;
+	/**
+	 * population's size
+	 */
 	private int size;
-	private ChromossomeFactory factory;
+	private ChromosomeFactory factory;
 
-	public Population(int size, ChromossomeFactory factory) {
+	/**
+	 * Defaul constructor
+	 * @param size the size to initialize the population
+	 * @param factory the factory to fill the initial population
+	 */
+	public Population(int size, ChromosomeFactory factory) {
 		this.size = size;
 		this.factory = factory;
 	}
 
+	/**
+	 * Calculates the chromosome's fitness as well their averages
+	 */
 	public void calculateFitnessSum() {
 		fitnessSum = 1E0;
-		for (int i = 0; i < chromossomes.size(); i++) {
-			fitnessSum += chromossomes.get(i).calculateFitness();
+		for (int i = 0; i < chromosomes.size(); i++) {
+			fitnessSum += chromosomes.get(i).calculateFitness();
 		}
-		fitnessAverage = fitnessSum / chromossomes.size();
+		fitnessAverage = fitnessSum / chromosomes.size();
 	}
 
+	/**
+	 * 
+	 */
 	public void initializePopulation() {
-		chromossomes = new ArrayList<Chromossome>(size);
+		chromosomes = new ArrayList<Chromosome>(size);
 
 		for (int i = 0; i < size; i++) {
-			chromossomes.add(factory.getRandomChromossome());
+			chromosomes.add(factory.getRandomChromosome());
 		}
 	}
-
+	
+	/**
+	 * Sorts the population based on the chromosome's comparator
+	 */
 	public void sort() {
-		Collections.sort(chromossomes, factory.getRandomChromossome().getComparator());
+		Collections.sort(chromosomes, factory.getRandomChromosome().getComparator());
 	}
 
-	public ArrayList<Chromossome> getChromossomes() {
-		return chromossomes;
+	/**
+	 * @return the chromosome's collection
+	 */
+	public ArrayList<Chromosome> getChromosomes() {
+		return chromosomes;
 	}
 
 	public double getFitnessSum() {
@@ -49,14 +83,14 @@ public class Population {
 	}
 
 	public int getSize() {
-		return chromossomes.size();
+		return chromosomes.size();
 	}
 
-	public Chromossome get(int i) {
-		return chromossomes.get(i);
+	public Chromosome get(int i) {
+		return chromosomes.get(i);
 	}
 	
-	public Chromossome getRandom() {
+	public Chromosome getRandom() {
 		return this.get(RandomUtil.getRandom().nextInt(getSize()));
 	}
 }

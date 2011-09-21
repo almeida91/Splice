@@ -1,5 +1,13 @@
-package ga;
+package ga.stopConditions;
 
+import ga.GenerationData;
+import ga.StopCondition;
+
+/**
+ * Stops the execution when a number of genrations is achieved
+ * @author igor
+ *
+ */
 public class GenerationsCondition extends StopCondition {
 	private int generations;
 

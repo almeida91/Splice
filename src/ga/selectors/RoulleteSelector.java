@@ -1,12 +1,17 @@
 package ga.selectors;
 
-import ga.Chromossome;
+import ga.Chromosome;
 import ga.RandomUtil;
 import ga.Selector;
 
+/**
+ * Selects a chromosome based on the roullete
+ * @author igor
+ *
+ */
 public class RoulleteSelector extends Selector {
 	@Override
-	public Chromossome getChromossome() {
+	public Chromosome getChromosome() {
 		int i;
 		double aux = 0;
 		double limit = RandomUtil.getRandom().nextGaussian() * getPopulation().getFitnessSum();

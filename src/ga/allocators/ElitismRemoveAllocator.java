@@ -1,9 +1,14 @@
 package ga.allocators;
 
-import ga.Chromossome;
+import ga.Chromosome;
 
 import java.util.ArrayList;
 
+/**
+ * The same logic of the elitism but removing the old ones that don't have the minimum fitness
+ * @author igor
+ *
+ */
 public class ElitismRemoveAllocator extends ElitismAllocator {
 	private double mFitness;
 	
@@ -14,7 +19,7 @@ public class ElitismRemoveAllocator extends ElitismAllocator {
 	
 
 	@Override
-	public void alocate(ArrayList<Chromossome> newPopulation) {
+	public void allocate(ArrayList<Chromosome> newPopulation) {
 		getPopulation().sort();
 		int n = (int) (getPopulation().getSize() * getRate());
 		for (int i = 1; i < n; i++) {

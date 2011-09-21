@@ -1,11 +1,16 @@
 package ga.selectors;
 
-import ga.Chromossome;
+import ga.Chromosome;
 import ga.Selector;
 
+/**
+ * Select a random chromosome
+ * @author igor
+ *
+ */
 public class RandomSelector extends Selector {
 	@Override
-	public Chromossome getChromossome() {
+	public Chromosome getChromosome() {
 		return getPopulation().getRandom();
 	}
 }

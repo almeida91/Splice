@@ -2,22 +2,27 @@ package ga;
 
 import java.util.ArrayList;
 
+/**
+ * This genetic algorithm maximizes the a fitness function 
+ * @author igor
+ *
+ */
 public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
-	public MaxmizeGeneticAlgorithm(ChromossomeFactory factory,
+	public MaxmizeGeneticAlgorithm(ChromosomeFactory factory,
 			PopulationAllocator allocator, Selector selector) {
 		super(factory, allocator, selector);
 	}
 
 	@Override
-	protected ArrayList<Chromossome> doGeneneration() {
-		ArrayList<Chromossome> newPopulation = new ArrayList<Chromossome>();
-		Chromossome a, b, c;
+	protected ArrayList<Chromosome> doGeneneration() {
+		ArrayList<Chromosome> newPopulation = new ArrayList<Chromosome>();
+		Chromosome a, b, c;
 
 		getPopulation().sort();
 
 		for (int i = 0; i < getPopulationSize(); i++) {
-			a = getChromossome();
-			b = getChromossome();
+			a = getChromosome();
+			b = getChromosome();
 			c = a.crossover(b);
 			mutate(c);
 			newPopulation.add(c);
@@ -34,29 +39,29 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 	}
 
 	@Override
-	public Chromossome getBest() {
+	public Chromosome getBest() {
 		double fitness = 0;
-		Chromossome chromossome = null;
-		for (Chromossome g : getPopulation().getChromossomes()) {
+		Chromosome chromosome = null;
+		for (Chromosome g : getPopulation().getChromosomes()) {
 			if (g.getFitness() >= fitness) {
 				fitness = g.getFitness();
-				chromossome = g;
+				chromosome = g;
 			}
 		}
-		return chromossome;
+		return chromosome;
 	}
 
 	@Override
-	public Chromossome getWorst() {
-		Chromossome chromossome = getPopulation().getRandom();
-		double fitness = chromossome.getFitness();
-		for (Chromossome g : getPopulation().getChromossomes()) {
+	public Chromosome getWorst() {
+		Chromosome chromosome = getPopulation().getRandom();
+		double fitness = chromosome.getFitness();
+		for (Chromosome g : getPopulation().getChromosomes()) {
 			if (g.getFitness() <= fitness) {
 				fitness = g.getFitness();
-				chromossome = g;
+				chromosome = g;
 			}
 		}
-		return chromossome;
+		return chromosome;
 	}
 
 }

@@ -6,6 +6,11 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Saves the generation data into a txt file
+ * @author igor
+ *
+ */
 public class TxtOutput extends ConsoleOutput {
 	BufferedWriter writer;
 
@@ -17,7 +22,7 @@ public class TxtOutput extends ConsoleOutput {
 	public void appendData(GenerationData data) throws Exception {
 		super.appendData(data);
 		writer.append(data.getFitnessAverage() + " "
-				+ data.getBestChromossome().getFitness() + " "
-				+ data.getWorstChromossome().getFitness() + "\n");
+				+ data.getBestChromosome().getFitness() + " "
+				+ data.getWorstChromosome().getFitness() + "\n");
 	}
 }

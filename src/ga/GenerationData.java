@@ -1,25 +1,30 @@
 package ga;
 
+/**
+ * The information produced in a single generation
+ * @author igor
+ *
+ */
 public class GenerationData {
-	private Chromossome bestChromossome, worstChromossome;
+	private Chromosome bestChromosome, worstChromosome;
 	private Population population;
 	private double fitnessAverage;
 	private int generation;
 
-	public Chromossome getBestChromossome() {
-		return bestChromossome;
+	public Chromosome getBestChromosome() {
+		return bestChromosome;
 	}
 
-	public void setBestChromossome(Chromossome bestChromossome) {
-		this.bestChromossome = bestChromossome;
+	public void setBestChromosome(Chromosome bestChromosome) {
+		this.bestChromosome = bestChromosome;
 	}
 
-	public Chromossome getWorstChromossome() {
-		return worstChromossome;
+	public Chromosome getWorstChromosome() {
+		return worstChromosome;
 	}
 
-	public void setWorstChromossome(Chromossome worstChromossome) {
-		this.worstChromossome = worstChromossome;
+	public void setWorstChromosome(Chromosome worstChromosome) {
+		this.worstChromosome = worstChromosome;
 	}
 
 	public Population getPopulation() {

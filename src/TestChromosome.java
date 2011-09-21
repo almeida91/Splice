@@ -1,19 +1,19 @@
-import ga.Chromossome;
+import ga.Chromosome;
 import ga.RandomUtil;
 
-public class TestChromossome extends Chromossome {
+public class TestChromosome extends Chromosome {
 	long a, b;
 
-	public TestChromossome(long a, long b) {
+	public TestChromosome(long a, long b) {
 		this.a = a;
 		this.b = b;
 	}
 	
-	public TestChromossome() {
+	public TestChromosome() {
 		this(0,0);
 	}
 
-	public TestChromossome(int a, int b) {
+	public TestChromosome(int a, int b) {
 		this((long) a, (long) b);
 	}
 
@@ -24,9 +24,9 @@ public class TestChromossome extends Chromossome {
 	}
 
 	@Override
-	public Chromossome crossover(Chromossome genome) {
-		TestChromossome otherGenome = (TestChromossome) genome;
-		TestChromossome newGenome = new TestChromossome();
+	public Chromosome crossover(Chromosome chromossome) {
+		TestChromosome otherGenome = (TestChromosome) chromossome;
+		TestChromosome newGenome = new TestChromosome();
 
 		long r1, r2, l1, l2;
 
