@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public abstract class GeneticAlgorithm {
 	private int pSize = 100;
-	private int gSize = 2000;
 	private double mRate = 0.2;
 	private double cRate = 0.8;
 
@@ -61,7 +60,7 @@ public abstract class GeneticAlgorithm {
 	 * executes the genetic algorithm
 	 */
 	public void execute() {
-		population = new Population(gSize, factory);
+		population = new Population(pSize, factory);
 		population.initializePopulation();
 
 		GenerationData data = new GenerationData();
@@ -95,10 +94,6 @@ public abstract class GeneticAlgorithm {
 		return pSize;
 	}
 
-	public int getGenerationSize() {
-		return gSize;
-	}
-
 	public double getMutationRate() {
 		return mRate;
 	}
@@ -129,11 +124,6 @@ public abstract class GeneticAlgorithm {
 
 	protected void mutate(Chromosome g) {
 		g.mutate(mRate);
-	}
-
-	public void setGenerationSize(int size) {
-		gSize = size;
-		stopCondition = new GenerationsCondition(size);
 	}
 
 	public void setPopulationSize(int size) {
