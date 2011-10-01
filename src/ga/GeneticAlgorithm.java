@@ -67,7 +67,7 @@ public abstract class GeneticAlgorithm {
 
 		try {
 			int i = 0;
-			while (!stopCondition.stop(data)) {
+			do {
 				allocator.setPopulation(population);
 				selector.setPopulation(population);
 
@@ -82,7 +82,7 @@ public abstract class GeneticAlgorithm {
 
 				manipulator.appendData(data);
 				i++;
-			}
+			} while (!stopCondition.stop(data));
 			manipulator.saveData();
 		} catch (Exception ex) {
 			errorStream.println("Some errors have ocurred that prevented the execution");
