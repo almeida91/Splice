@@ -5,7 +5,7 @@ import ga.RandomUtil;
 import ga.Selector;
 
 /**
- * Selects a chromosome based on the roullete
+ * Selects a chromosome based on the roullete selection
  * @author igor
  *
  */

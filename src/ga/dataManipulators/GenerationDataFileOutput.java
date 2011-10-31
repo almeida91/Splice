@@ -13,7 +13,7 @@ import java.io.IOException;
  *
  */
 public class GenerationDataFileOutput extends DataManipulator {
-	BufferedWriter writer;
+	protected BufferedWriter writer;
 
 	public GenerationDataFileOutput(String path) throws IOException {
 		writer = new BufferedWriter(new FileWriter(path));

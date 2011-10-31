@@ -1,3 +1,4 @@
+package samples;
 import ga.GeneticAlgorithm;
 import ga.MaxmizeGeneticAlgorithm;
 import ga.allocators.ReplaceAllocator;
