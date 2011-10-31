@@ -1,5 +1,6 @@
 package ga.dataManipulators;
 
+import ga.DataManipulator;
 import ga.GenerationData;
 
 import java.io.BufferedWriter;
@@ -11,18 +12,22 @@ import java.io.IOException;
  * @author igor
  *
  */
-public class TxtOutput extends ConsoleOutput {
+public class GenerationDataFileOutput extends DataManipulator {
 	BufferedWriter writer;
 
-	public TxtOutput(String path) throws IOException {
+	public GenerationDataFileOutput(String path) throws IOException {
 		writer = new BufferedWriter(new FileWriter(path));
 	}
 
 	@Override
 	public void appendData(GenerationData data) throws Exception {
-		super.appendData(data);
 		writer.append(data.getFitnessAverage() + " "
 				+ data.getBestChromosome().getFitness() + " "
 				+ data.getWorstChromosome().getFitness() + "\n");
+	}
+
+	@Override
+	public void saveData() throws Exception {
+		writer.close();
 	}
 }
