@@ -11,7 +11,7 @@ import ga.GenerationData;
  *
  */
 public class GenerationPopulationOutput extends GenerationDataFileOutput {
-	private int step, counter = -1;
+	private int step, counter;
 	
 	/**
 	 * @param step defines at which number of generations it will save the population data
@@ -20,6 +20,7 @@ public class GenerationPopulationOutput extends GenerationDataFileOutput {
 	public GenerationPopulationOutput(String path, int step) throws IOException {
 		super(path);
 		this.step = step;
+		this.counter = -1;
 	}
 	
 	public GenerationPopulationOutput(String path) throws IOException {
