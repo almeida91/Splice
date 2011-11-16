@@ -41,7 +41,7 @@ public class Population {
 	 * Calculates the chromosome's fitness as well their averages
 	 */
 	public void calculateFitnessSum() {
-		fitnessSum = 1E0;
+		fitnessSum = 0;
 		for (int i = 0; i < chromosomes.size(); i++) {
 			fitnessSum += chromosomes.get(i).calculateFitness();
 		}
@@ -78,7 +78,6 @@ public class Population {
 	}
 
 	public double getFitnessAverage() {
-		calculateFitnessSum();
 		return fitnessAverage;
 	}
 

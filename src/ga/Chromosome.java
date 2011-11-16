@@ -62,7 +62,7 @@ public abstract class Chromosome implements Comparable<Chromosome> {
 
 			@Override
 			public boolean equals(Object obj) {
-				if (obj.getClass() != Chromosome.class)
+				if (!(obj instanceof Chromosome))
 					return false;
 				return ((Chromosome) obj).getFitness() == fitness;
 			}
