@@ -1,4 +1,4 @@
-package samples;
+
 import ga.Chromosome;
 import ga.RandomUtil;
 
