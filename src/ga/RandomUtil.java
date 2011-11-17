@@ -10,6 +10,7 @@ import java.util.Random;
  * 
  */
 public final class RandomUtil {
+	// TODO: can't use multithread as there will be concurrency issues on the singleton architecture
 	private static Random random;
 
 	public static Random getRandom() {
