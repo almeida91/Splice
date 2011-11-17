@@ -1,6 +1,7 @@
 package ga.stopConditions;
 
 import static org.junit.Assert.*;
+
 import ga.Chromosome;
 import ga.GenerationData;
 
@@ -22,6 +23,8 @@ public class MinimumBestFitnessConditionTest {
 		data = new GenerationData();
 		bestStop = new TestChromosome(MINIMUM_FITNESS + STEP);
 		bestContinue = new TestChromosome(MINIMUM_FITNESS - STEP); 
+		bestStop.calculateFitness();
+		bestContinue.calculateFitness();
 	}
 
 	@Test
