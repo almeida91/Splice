@@ -4,14 +4,14 @@ import ga.dataManipulators.ConsoleOutput;
 import ga.stopConditions.GenerationsCondition;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Base class for a genetic algorithm
  * @author igor
  *
  */
-public abstract class GeneticAlgorithm {
+public abstract class GeneticAlgorithm implements RandomComponent {
 	private int pSize = 100;
 	private double mRate = 0.2;
 	private double cRate = 0.8;
@@ -28,6 +28,8 @@ public abstract class GeneticAlgorithm {
 	private StopCondition stopCondition = new GenerationsCondition(2000);
 	
 	private PrintStream errorStream = System.err;
+	
+	private Random random = new Random();
 
 	/**
 	 * Default constructor
@@ -46,7 +48,7 @@ public abstract class GeneticAlgorithm {
 	 * Executes a single generation logic
 	 * @return the new genomes to be added to the population
 	 */
-	protected abstract ArrayList<Chromosome> doGeneneration();
+	protected abstract void doGeneneration();
 	/**
 	 * @return the population's best chromosome
 	 */
@@ -60,19 +62,28 @@ public abstract class GeneticAlgorithm {
 	 * executes the genetic algorithm
 	 */
 	public void execute() {
+		setRandomGenerator(selector);
+		setRandomGenerator(allocator);
+		setRandomGenerator(factory);
+		
+		factory.initialize();
+		
 		population = new Population(pSize, factory);
+		setRandomGenerator(population);
 		population.initializePopulation();
 
 		GenerationData data = new GenerationData();
-
+		
+		allocator.setPopulation(population);
+		selector.setPopulation(population);
+		
 		try {
 			int i = 0;
 			do {
-				allocator.setPopulation(population);
-				selector.setPopulation(population);
-
+				allocator.reset();
 				population.calculateFitnessSum();
-				allocator.allocate(doGeneneration());
+				doGeneneration();
+				allocator.allocate();
 
 				data.setPopulation(population);
 				data.setBestChromosome(getBest());
@@ -88,6 +99,10 @@ public abstract class GeneticAlgorithm {
 			errorStream.println("Some errors have ocurred that prevented the execution");
 			ex.printStackTrace(errorStream);
 		}
+	}
+
+	private void setRandomGenerator(RandomComponent component) {
+		component.setRandom(random);
 	}
 
 	public int getPopulationSize() {
@@ -156,5 +171,17 @@ public abstract class GeneticAlgorithm {
 
 	public void setStopCondition(StopCondition stopCondition) {
 		this.stopCondition = stopCondition;
+	}
+
+	public PopulationAllocator getAllocator() {
+		return allocator;
+	}
+
+	public Random getRandom() {
+		return random;
+	}
+
+	public void setRandom(Random random) {
+		this.random = random;
 	}
 }

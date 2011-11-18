@@ -20,11 +20,11 @@ public class TournamentSelector extends Selector {
 
 	@Override
 	public Chromosome getChromosome() {
-		Chromosome chromosome = getPopulation().getRandom(), temp;
+		Chromosome chromosome = getPopulation().getRandomChromosome(), temp;
 		double fitness = chromosome.getFitness();
 
 		for (int i = 0; i < k; i++) {
-			temp = getPopulation().getRandom();
+			temp = getPopulation().getRandomChromosome();
 			if (temp.getFitness() > fitness)
 				chromosome = temp;
 		}

@@ -1,9 +1,6 @@
 package ga.allocators;
 
-import ga.Chromosome;
 import ga.PopulationAllocator;
-
-import java.util.ArrayList;
 
 /**
  * Allocates the new set base on the elistism concept
@@ -18,17 +15,18 @@ public class ElitismAllocator extends PopulationAllocator {
 	 * @param rate the percentage of the old population to be kept
 	 */
 	public ElitismAllocator(double rate) {
+		super();
 		this.rate = rate;
 	}
 
 	@Override
-	public void allocate(ArrayList<Chromosome> newPopulation) {
+	public void allocate() {
 		getPopulation().sort();
 		int n = (int)(getPopulation().getSize() * rate);
 		for (int i = 1; i < n; i++) {
-			newPopulation.add(getPopulation().get(getPopulation().getSize() - i));
+			getNewPopulation().add(getPopulation().get(getPopulation().getSize() - i));
 		}
-		setPopulation(newPopulation);
+		setPopulation(getNewPopulation());
 	}
 
 	public double getRate() {

@@ -11,6 +11,6 @@ import ga.Selector;
 public class RandomSelector extends Selector {
 	@Override
 	public Chromosome getChromosome() {
-		return getPopulation().getRandom();
+		return getPopulation().getRandomChromosome();
 	}
 }

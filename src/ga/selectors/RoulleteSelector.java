@@ -1,7 +1,6 @@
 package ga.selectors;
 
 import ga.Chromosome;
-import ga.RandomUtil;
 import ga.Selector;
 
 /**
@@ -14,7 +13,7 @@ public class RoulleteSelector extends Selector {
 	public Chromosome getChromosome() {
 		int i;
 		double aux = 0;
-		double limit = RandomUtil.getRandom().nextGaussian() * getPopulation().getFitnessSum();
+		double limit = getRandom().nextGaussian() * getPopulation().getFitnessSum();
 
 		for (i = 0; i < getPopulation().getSize() & aux < limit; ++i) {
 			aux += getPopulation().get(i).getFitness();

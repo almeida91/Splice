@@ -14,8 +14,7 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 	}
 
 	@Override
-	protected ArrayList<Chromosome> doGeneneration() {
-		ArrayList<Chromosome> newPopulation = new ArrayList<Chromosome>();
+	protected void doGeneneration() {
 		Chromosome a, b, c;
 
 		getPopulation().sort();
@@ -25,17 +24,15 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 			b = getChromosome();
 			c = a.crossover(b);
 			mutate(c);
-			newPopulation.add(c);
+			getAllocator().append(c);
 
-			if (RandomUtil.getRandom().nextDouble() < getCrossoverRate()) {
+			if (getRandom().nextDouble() < getCrossoverRate()) {
 				c = b.crossover(a);
 				mutate(c);
-				newPopulation.add(c);
+				getAllocator().append(c);
 				i++;
 			}
 		}
-
-		return newPopulation;
 	}
 
 	@Override
@@ -53,7 +50,7 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 
 	@Override
 	public Chromosome getWorst() {
-		Chromosome chromosome = getPopulation().getRandom();
+		Chromosome chromosome = getPopulation().getRandomChromosome();
 		double fitness = chromosome.getFitness();
 		for (Chromosome g : getPopulation().getChromosomes()) {
 			if (g.getFitness() <= fitness) {

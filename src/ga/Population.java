@@ -2,13 +2,14 @@ package ga;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * The chromosome's collection
  * @author igor
  *
  */
-public class Population {
+public class Population implements RandomComponent {
 	/**
 	 * this contains all the chromosomes
 	 */
@@ -26,6 +27,7 @@ public class Population {
 	 */
 	private int size;
 	private ChromosomeFactory factory;
+	private Random random;
 
 	/**
 	 * Defaul constructor
@@ -36,7 +38,7 @@ public class Population {
 		this.size = size;
 		this.factory = factory;
 	}
-
+	
 	/**
 	 * Calculates the chromosome's fitness as well their averages
 	 */
@@ -89,7 +91,15 @@ public class Population {
 		return chromosomes.get(i);
 	}
 	
-	public Chromosome getRandom() {
-		return this.get(RandomUtil.getRandom().nextInt(getSize()));
+	public Chromosome getRandomChromosome() {
+		return this.get(getRandom().nextInt(getSize()));
+	}
+	
+	public Random getRandom() {
+		return random;
+	}
+	
+	public void setRandom(Random random) {
+		this.random = random;
 	}
 }

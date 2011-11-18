@@ -40,7 +40,7 @@ public class PopulationTest {
 	@Test
 	public void testGetRandom() {
 		testInitializePopulation();
-		assertNotNull("no random chromosome", population.getRandom());
+		assertNotNull("no random chromosome", population.getRandomChromosome());
 	}
 
 }

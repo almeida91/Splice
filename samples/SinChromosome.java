@@ -1,6 +1,5 @@
 
 import ga.Chromosome;
-import ga.RandomUtil;
 
 public class SinChromosome extends Chromosome {
 	private double x, y;
@@ -17,12 +16,12 @@ public class SinChromosome extends Chromosome {
 
 	@Override
 	protected void mutate() {
-		if (RandomUtil.getRandom().nextBoolean())
-			if (RandomUtil.getRandom().nextBoolean())
+		if (getRandom().nextBoolean())
+			if (getRandom().nextBoolean())
 				y -= 0.1;
 			else
 				y += 0.1;
-		else if (RandomUtil.getRandom().nextBoolean())
+		else if (getRandom().nextBoolean())
 			x -= 0.1;
 		else
 			x += 0.1;

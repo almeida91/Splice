@@ -1,6 +1,5 @@
 
 import ga.Chromosome;
-import ga.RandomUtil;
 
 public class TestChromosome extends Chromosome {
 	long a, b;
@@ -50,12 +49,12 @@ public class TestChromosome extends Chromosome {
 
 	@Override
 	public void mutate() {
-		if (RandomUtil.getRandom().nextBoolean())
-			if (RandomUtil.getRandom().nextBoolean())
+		if (getRandom().nextBoolean())
+			if (getRandom().nextBoolean())
 				a += 1;
 			else
 				a -= 1;
-		else if (RandomUtil.getRandom().nextBoolean())
+		else if (getRandom().nextBoolean())
 			b += 1;
 		else
 			b -= 1;

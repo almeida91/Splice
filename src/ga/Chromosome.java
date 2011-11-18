@@ -1,6 +1,7 @@
 package ga;
 
 import java.util.Comparator;
+import java.util.Random;
 
 /**
  * Base class for chromosomes
@@ -8,8 +9,9 @@ import java.util.Comparator;
  * @author Igor Almeida
  * 
  */
-public abstract class Chromosome implements Comparable<Chromosome> {
+public abstract class Chromosome implements Comparable<Chromosome>, RandomComponent {
 	private double fitness;
+	private Random random;
 
 	/**
 	 * Implementation of the fitness function
@@ -74,7 +76,19 @@ public abstract class Chromosome implements Comparable<Chromosome> {
 	 * @param chance the probability of mutation
 	 */
 	public void mutate(double chance) {
-		if (RandomUtil.getRandom().nextGaussian() < chance)
+		if (getRandom().nextGaussian() < chance)
 			mutate();
 	}
+
+	@Override
+	public void setRandom(Random random) {
+		this.random = random;
+	}
+
+	@Override
+	public Random getRandom() {
+		return random;
+	}
+	
+	
 }
