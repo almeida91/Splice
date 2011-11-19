@@ -2,6 +2,8 @@ package ga;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,10 +13,13 @@ public class PopulationTest {
 	Population population;
 	final int CHROMOSOMES = 300;
 	final double FITNESS = 1;
+	Random random;
 	
 	@Before
 	public void setUp() throws Exception {
 		population = new Population(CHROMOSOMES, new TestChromosomeFactory(FITNESS));
+		random = new Random();
+		population.setRandom(random);
 	}
 	
 	@Test

@@ -1,7 +1,5 @@
 package ga;
 
-import java.util.ArrayList;
-
 /**
  * This genetic algorithm maximizes the a fitness function 
  * @author igor
@@ -22,12 +20,12 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 		for (int i = 0; i < getPopulationSize(); i++) {
 			a = getChromosome();
 			b = getChromosome();
-			c = a.crossover(b);
+			c = crossover(a, b);
 			mutate(c);
 			getAllocator().append(c);
 
 			if (getRandom().nextDouble() < getCrossoverRate()) {
-				c = b.crossover(a);
+				c = crossover(a, b);
 				mutate(c);
 				getAllocator().append(c);
 				i++;

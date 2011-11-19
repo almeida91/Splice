@@ -54,10 +54,13 @@ public class Population implements RandomComponent {
 	 * 
 	 */
 	public void initializePopulation() {
+		Chromosome chromosome;
 		chromosomes = new ArrayList<Chromosome>(size);
 
 		for (int i = 0; i < size; i++) {
-			chromosomes.add(factory.getRandomChromosome());
+			chromosome = factory.getRandomChromosome();
+			chromosome.setRandom(random);
+			chromosomes.add(chromosome);
 		}
 	}
 	

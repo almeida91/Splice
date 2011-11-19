@@ -80,21 +80,24 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		try {
 			int i = 0;
 			do {
-				allocator.reset();
 				population.calculateFitnessSum();
-				doGeneneration();
-				allocator.allocate();
-
+				
 				data.setPopulation(population);
 				data.setBestChromosome(getBest());
 				data.setWorstChromosome(getWorst());
 				data.setGeneration(i);
 				data.setFitnessAverage(population.getFitnessAverage());
 
+				allocator.reset();
+				doGeneneration();
+				allocator.allocate();
+				
 				manipulator.appendData(data);
+				
 				i++;
 			} while (!stopCondition.stop(data));
 			manipulator.saveData();
+			population.calculateFitnessSum();
 		} catch (Exception ex) {
 			errorStream.println("Some errors have ocurred that prevented the execution");
 			ex.printStackTrace(errorStream);
@@ -139,6 +142,12 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 
 	protected void mutate(Chromosome g) {
 		g.mutate(mRate);
+	}
+	
+	protected Chromosome crossover(Chromosome a, Chromosome b) {
+		Chromosome c = a.crossover(b);
+		c.setRandom(random);
+		return c;
 	}
 
 	public void setPopulationSize(int size) {
