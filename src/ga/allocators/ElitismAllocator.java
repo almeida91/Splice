@@ -23,9 +23,7 @@ public class ElitismAllocator extends PopulationAllocator {
 	public void allocate() {
 		getPopulation().sort();
 		int n = (int)(getPopulation().getSize() * rate);
-		for (int i = 1; i < n; i++) {
-			getNewPopulation().add(getPopulation().get(getPopulation().getSize() - i));
-		}
+		getNewPopulation().addAll(getPopulation().getChromosomes().subList(getPopulation().getSize() - n, getPopulation().getSize()));
 		setPopulation(getNewPopulation());
 	}
 
