@@ -2,7 +2,7 @@ package ga.dataManipulators;
 
 import java.io.IOException;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.GenerationData;
 
 /**
@@ -31,7 +31,7 @@ public class GenerationPopulationOutput extends GenerationDataFileOutput {
 	public void appendData(GenerationData data) throws Exception {
 		counter += 1;
 		if (counter % step == 0) {
-			for (Chromosome chromosome : data.getPopulation().getChromosomes()) {
+			for (BasicChromosome chromosome : data.getPopulation().getChromosomes()) {
 				writer.append(chromosome.getFitness() + " ");
 			}
 			writer.append('\n');

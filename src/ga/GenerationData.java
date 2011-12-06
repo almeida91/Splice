@@ -6,24 +6,24 @@ package ga;
  *
  */
 public class GenerationData {
-	private Chromosome bestChromosome, worstChromosome;
+	private BasicChromosome bestChromosome, worstChromosome;
 	private Population population;
 	private double fitnessAverage;
 	private int generation;
 
-	public Chromosome getBestChromosome() {
+	public BasicChromosome getBestChromosome() {
 		return bestChromosome;
 	}
 
-	public void setBestChromosome(Chromosome bestChromosome) {
+	public void setBestChromosome(BasicChromosome bestChromosome) {
 		this.bestChromosome = bestChromosome;
 	}
 
-	public Chromosome getWorstChromosome() {
+	public BasicChromosome getWorstChromosome() {
 		return worstChromosome;
 	}
 
-	public void setWorstChromosome(Chromosome worstChromosome) {
+	public void setWorstChromosome(BasicChromosome worstChromosome) {
 		this.worstChromosome = worstChromosome;
 	}
 

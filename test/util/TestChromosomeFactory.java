@@ -1,6 +1,6 @@
 package util;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.ChromosomeFactory;
 
 public class TestChromosomeFactory extends ChromosomeFactory {
@@ -11,7 +11,7 @@ public class TestChromosomeFactory extends ChromosomeFactory {
 	}
 	
 	@Override
-	public Chromosome getRandomChromosome() {
+	public BasicChromosome getRandomChromosome() {
 		return new TestChromosome(value);
 	}
 

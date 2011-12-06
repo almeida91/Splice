@@ -1,7 +1,7 @@
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 
-public class SinChromosome extends Chromosome {
+public class SinChromosome extends BasicChromosome {
 	private double x, y;
 
 	public SinChromosome(double x, double y) {
@@ -28,7 +28,7 @@ public class SinChromosome extends Chromosome {
 	}
 
 	@Override
-	public Chromosome crossover(Chromosome chromossome) {
+	public BasicChromosome crossover(BasicChromosome chromossome) {
 		return new SinChromosome(x, ((SinChromosome) chromossome).y);
 	}
 

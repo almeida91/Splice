@@ -9,12 +9,12 @@ import org.junit.Test;
 public class MinimumAverageFitnessConditionTest {
 	final double MINIMUM_FITNESS = 0.5;
 	final double STEP = 0.6;
-	MinimumAverageFitnessCondition condition;
+	MinimumAverageFitness condition;
 	GenerationData data;
 
 	@Before
 	public void setUp() throws Exception {
-		condition = new MinimumAverageFitnessCondition(MINIMUM_FITNESS);
+		condition = new MinimumAverageFitness(MINIMUM_FITNESS);
 		data = new GenerationData();
 		
 	}

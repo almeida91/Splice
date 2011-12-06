@@ -1,17 +1,19 @@
 
 import ga.GeneticAlgorithm;
 import ga.MaxmizeGeneticAlgorithm;
+import ga.allocators.ElitismAllocator;
 import ga.allocators.ReplaceAllocator;
 import ga.selectors.TournamentSelector;
-import ga.stopConditions.MinimumBestFitnessCondition;
+import ga.stopConditions.Generations;
+import ga.stopConditions.MinimumBestFitness;
 
 public class Test {
 	public static void main(String[] args) {
 		GeneticAlgorithm ga = new MaxmizeGeneticAlgorithm(
 				new TestChromosomeFactory(),
-				new ReplaceAllocator(), 
+				new ElitismAllocator(0.3), 
 				new TournamentSelector(3));
-		ga.setStopCondition(new MinimumBestFitnessCondition(1.0));
+		ga.setStopCondition(new Generations(100));
 		ga.execute();
 		System.out.println(ga.getBest());
 		System.out.println(ga.getWorst());

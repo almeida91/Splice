@@ -1,7 +1,7 @@
 package ga;
 
 import ga.dataManipulators.ConsoleOutput;
-import ga.stopConditions.GenerationsCondition;
+import ga.stopConditions.Generations;
 
 import java.io.PrintStream;
 import java.util.Random;
@@ -14,7 +14,7 @@ import java.util.Random;
 public abstract class GeneticAlgorithm implements RandomComponent {
 	private int pSize = 100;
 	private double mRate = 0.2;
-	private double cRate = 0.8;
+	private double cRate = 1;
 
 	private double fitnessSum;
 
@@ -25,12 +25,12 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 
 	private ChromosomeFactory factory;
 	private DataManipulator manipulator = new ConsoleOutput();
-	private StopCondition stopCondition = new GenerationsCondition(2000);
+	private StopCondition stopCondition = new Generations(2000);
 	
 	private PrintStream errorStream = System.err;
 	
 	private Random random = new Random();
-
+	
 	/**
 	 * Default constructor
 	 * @param factory the factory from the initial chromosomes will come
@@ -52,11 +52,11 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	/**
 	 * @return the population's best chromosome
 	 */
-	public abstract Chromosome getBest();
+	public abstract BasicChromosome getBest();
 	/**
 	 * @return the population's worst chromosome
 	 */
-	public abstract Chromosome getWorst();
+	public abstract BasicChromosome getWorst();
 
 	/**
 	 * executes the genetic algorithm
@@ -136,16 +136,16 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		this.population = population;
 	}
 
-	protected Chromosome getChromosome() {
+	protected BasicChromosome getChromosome() {
 		return selector.getChromosome();
 	}
 
-	protected void mutate(Chromosome g) {
+	protected void mutate(BasicChromosome g) {
 		g.mutate(mRate);
 	}
 	
-	protected Chromosome crossover(Chromosome a, Chromosome b) {
-		Chromosome c = a.crossover(b);
+	protected BasicChromosome crossover(BasicChromosome a, BasicChromosome b) {
+		BasicChromosome c = a.crossover(b);
 		c.setRandom(random);
 		return c;
 	}

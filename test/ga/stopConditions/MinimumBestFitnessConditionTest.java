@@ -2,7 +2,7 @@ package ga.stopConditions;
 
 import static org.junit.Assert.*;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.GenerationData;
 
 import org.junit.Before;
@@ -12,14 +12,14 @@ import util.TestChromosome;
 
 public class MinimumBestFitnessConditionTest {
 	GenerationData data;
-	Chromosome bestStop, bestContinue;
-	MinimumBestFitnessCondition condition;
+	BasicChromosome bestStop, bestContinue;
+	MinimumBestFitness condition;
 	final double MINIMUM_FITNESS = 0.7;
 	final double STEP = 0.1;
 
 	@Before
 	public void setUp() throws Exception {
-		condition = new MinimumBestFitnessCondition(MINIMUM_FITNESS);
+		condition = new MinimumBestFitness(MINIMUM_FITNESS);
 		data = new GenerationData();
 		bestStop = new TestChromosome(MINIMUM_FITNESS + STEP);
 		bestContinue = new TestChromosome(MINIMUM_FITNESS - STEP); 

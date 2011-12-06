@@ -1,12 +1,12 @@
 package tsp;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.ChromosomeFactory;
 
 public class TspChromosomeFactory extends ChromosomeFactory {
 
 	@Override
-	public Chromosome getRandomChromosome() {
+	public BasicChromosome getRandomChromosome() {
 		return null;
 	}
 

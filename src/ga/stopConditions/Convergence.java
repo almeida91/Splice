@@ -11,14 +11,14 @@ import ga.StopCondition;
  * @author igor
  *
  */
-public class ConvergenceStopCondition extends StopCondition {
+public class Convergence extends StopCondition {
 	private int maxGenerations;
 	private double minFitness = 0;
 	
 	private double bestFitness;
 	private int generations = 0; 
 	
-	public ConvergenceStopCondition(int maxGenerations) {
+	public Convergence(int maxGenerations) {
 		this.maxGenerations = maxGenerations;
 	}
 	
@@ -28,7 +28,7 @@ public class ConvergenceStopCondition extends StopCondition {
 	 * @param maxGenerations
 	 * @param minFitness
 	 */
-	public ConvergenceStopCondition(int maxGenerations, double minFitness) {
+	public Convergence(int maxGenerations, double minFitness) {
 		this.maxGenerations = maxGenerations;
 		this.minFitness = minFitness;
 	}

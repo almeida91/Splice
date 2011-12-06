@@ -1,7 +1,7 @@
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 
-public class TestChromosome extends Chromosome {
+public class TestChromosome extends BasicChromosome {
 	long a, b;
 
 	public TestChromosome(long a, long b) {
@@ -24,7 +24,7 @@ public class TestChromosome extends Chromosome {
 	}
 
 	@Override
-	public Chromosome crossover(Chromosome chromossome) {
+	public BasicChromosome crossover(BasicChromosome chromossome) {
 		TestChromosome otherGenome = (TestChromosome) chromossome;
 		TestChromosome newGenome = new TestChromosome();
 

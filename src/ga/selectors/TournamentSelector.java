@@ -1,6 +1,6 @@
 package ga.selectors;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.Selector;
 
 /**
@@ -19,8 +19,8 @@ public class TournamentSelector extends Selector {
 	}
 
 	@Override
-	public Chromosome getChromosome() {
-		Chromosome chromosome = getPopulation().getRandomChromosome(), temp;
+	public BasicChromosome getChromosome() {
+		BasicChromosome chromosome = getPopulation().getRandomChromosome(), temp;
 		double fitness = chromosome.getFitness();
 
 		for (int i = 0; i < k; i++) {

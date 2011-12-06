@@ -1,8 +1,8 @@
 package knapsack;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 
-public class KnapsackChromosome extends Chromosome {
+public class KnapsackChromosome extends BasicChromosome {
 
 	@Override
 	protected double fitness() {
@@ -14,7 +14,7 @@ public class KnapsackChromosome extends Chromosome {
 	}
 
 	@Override
-	public Chromosome crossover(Chromosome chromosome) {
+	public BasicChromosome crossover(BasicChromosome chromosome) {
 		return null;
 	}
 

@@ -3,10 +3,10 @@ package ga.stopConditions;
 import ga.GenerationData;
 import ga.StopCondition;
 
-public class MinimumBestFitnessCondition extends StopCondition {
+public class MinimumBestFitness extends StopCondition {
 	private double minimum;
 
-	public MinimumBestFitnessCondition(double minimum) {
+	public MinimumBestFitness(double minimum) {
 		this.minimum = minimum;
 	}
 	

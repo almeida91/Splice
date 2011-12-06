@@ -1,12 +1,12 @@
 package knapsack;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.ChromosomeFactory;
 
 public class KnapsackChromosomeFactory extends ChromosomeFactory {
 
 	@Override
-	public Chromosome getRandomChromosome() {
+	public BasicChromosome getRandomChromosome() {
 		return null;
 	}
 

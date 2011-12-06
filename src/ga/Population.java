@@ -13,7 +13,7 @@ public class Population implements RandomComponent {
 	/**
 	 * this contains all the chromosomes
 	 */
-	private ArrayList<Chromosome> chromosomes;
+	private ArrayList<BasicChromosome> chromosomes;
 	/**
 	 * the sum of all fitnesses it's used in roullette selection and in the average calculation
 	 */
@@ -54,8 +54,8 @@ public class Population implements RandomComponent {
 	 * 
 	 */
 	public void initializePopulation() {
-		Chromosome chromosome;
-		chromosomes = new ArrayList<Chromosome>(size);
+		BasicChromosome chromosome;
+		chromosomes = new ArrayList<BasicChromosome>(size);
 
 		for (int i = 0; i < size; i++) {
 			chromosome = factory.getRandomChromosome();
@@ -74,7 +74,7 @@ public class Population implements RandomComponent {
 	/**
 	 * @return the chromosome's collection
 	 */
-	public ArrayList<Chromosome> getChromosomes() {
+	public ArrayList<BasicChromosome> getChromosomes() {
 		return chromosomes;
 	}
 
@@ -90,11 +90,11 @@ public class Population implements RandomComponent {
 		return chromosomes.size();
 	}
 
-	public Chromosome get(int i) {
+	public BasicChromosome get(int i) {
 		return chromosomes.get(i);
 	}
 	
-	public Chromosome getRandomChromosome() {
+	public BasicChromosome getRandomChromosome() {
 		return this.get(getRandom().nextInt(getSize()));
 	}
 	

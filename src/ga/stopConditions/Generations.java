@@ -8,10 +8,10 @@ import ga.StopCondition;
  * @author igor
  *
  */
-public class GenerationsCondition extends StopCondition {
+public class Generations extends StopCondition {
 	private int generations;
 
-	public GenerationsCondition(int generations) {
+	public Generations(int generations) {
 		this.generations = generations;
 	}
 

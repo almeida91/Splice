@@ -13,7 +13,7 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 
 	@Override
 	protected void doGeneneration() {
-		Chromosome a, b, c;
+		BasicChromosome a, b, c;
 
 		getPopulation().sort();
 
@@ -34,10 +34,10 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 	}
 
 	@Override
-	public Chromosome getBest() {
+	public BasicChromosome getBest() {
 		double fitness = 0;
-		Chromosome chromosome = null;
-		for (Chromosome g : getPopulation().getChromosomes()) {
+		BasicChromosome chromosome = null;
+		for (BasicChromosome g : getPopulation().getChromosomes()) {
 			if (g.getFitness() >= fitness) {
 				fitness = g.getFitness();
 				chromosome = g;
@@ -47,10 +47,10 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 	}
 
 	@Override
-	public Chromosome getWorst() {
-		Chromosome chromosome = getPopulation().getRandomChromosome();
+	public BasicChromosome getWorst() {
+		BasicChromosome chromosome = getPopulation().getRandomChromosome();
 		double fitness = chromosome.getFitness();
-		for (Chromosome g : getPopulation().getChromosomes()) {
+		for (BasicChromosome g : getPopulation().getChromosomes()) {
 			if (g.getFitness() <= fitness) {
 				fitness = g.getFitness();
 				chromosome = g;
@@ -58,5 +58,4 @@ public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 		}
 		return chromosome;
 	}
-
 }

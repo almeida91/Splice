@@ -16,7 +16,7 @@ public abstract class ChromosomeFactory implements RandomComponent {
 	 * Generates a new random chromosome
 	 * @return
 	 */
-	public abstract Chromosome getRandomChromosome();
+	public abstract BasicChromosome getRandomChromosome();
 	/**
 	 * Holds any logic to be done before the GA's execution.
 	 * It should be noted that when this is called there's a Random instance setted while this is not true in the constructor

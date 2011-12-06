@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * 
  */
 public abstract class PopulationAllocator extends PopulationManipulator {
-	private ArrayList<Chromosome> newPopulation;
+	private ArrayList<BasicChromosome> newPopulation;
 	
 	/**
 	 * Defines the logic of how to allocate the new set
@@ -22,7 +22,7 @@ public abstract class PopulationAllocator extends PopulationManipulator {
 	 * Appends a chromosome to the new population
 	 * @param chromosome
 	 */
-	public void append(Chromosome chromosome) {
+	public void append(BasicChromosome chromosome) {
 		chromosome.setRandom(getRandom());
 		newPopulation.add(chromosome);
 	}
@@ -31,7 +31,7 @@ public abstract class PopulationAllocator extends PopulationManipulator {
 	 * Returns the bufferized new population
 	 * @return
 	 */
-	public ArrayList<Chromosome> getNewPopulation() {
+	public ArrayList<BasicChromosome> getNewPopulation() {
 		return newPopulation;
 	}
 	
@@ -39,6 +39,6 @@ public abstract class PopulationAllocator extends PopulationManipulator {
 	 * Resets the buffer, you don't want the population to grow till your memory overflows
 	 */
 	public void reset() {
-		newPopulation = new ArrayList<Chromosome>(getPopulation().getSize());
+		newPopulation = new ArrayList<BasicChromosome>(getPopulation().getSize());
 	}
 }

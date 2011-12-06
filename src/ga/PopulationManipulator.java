@@ -12,7 +12,7 @@ abstract class PopulationManipulator implements RandomComponent {
 	private Population population;
 	private Random random;
 
-	public void setPopulation(ArrayList<Chromosome> population) {
+	public void setPopulation(ArrayList<BasicChromosome> population) {
 		this.population.getChromosomes().clear();
 		this.population.getChromosomes().addAll(population);
 	}

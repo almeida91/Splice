@@ -15,7 +15,7 @@ public abstract class Selector extends PopulationManipulator implements RandomCo
 	 * The selection logic
 	 * @return a chromosome for crossover
 	 */
-	public abstract Chromosome getChromosome();
+	public abstract BasicChromosome getChromosome();
 
 	public Random getRandom() {
 		return random;

@@ -1,13 +1,13 @@
 package util;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 
 /**
  * Simple chromosome used to run the tests
  * @author igor almeida
  *
  */
-public class TestChromosome extends Chromosome {
+public class TestChromosome extends BasicChromosome {
 	double value;
 	
 	public TestChromosome(double value) {
@@ -24,7 +24,7 @@ public class TestChromosome extends Chromosome {
 	}
 
 	@Override
-	public Chromosome crossover(Chromosome chromosome) {
+	public BasicChromosome crossover(BasicChromosome chromosome) {
 		return null;
 	}
 

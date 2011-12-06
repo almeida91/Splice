@@ -1,8 +1,8 @@
 package tsp;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 
-public class TspChromosome extends Chromosome {
+public class TspChromosome extends BasicChromosome {
 
 	@Override
 	protected double fitness() {
@@ -14,7 +14,7 @@ public class TspChromosome extends Chromosome {
 	}
 
 	@Override
-	public Chromosome crossover(Chromosome chromosome) {
+	public BasicChromosome crossover(BasicChromosome chromosome) {
 		return null;
 	}
 

@@ -12,7 +12,6 @@ public class ElitismRemoveAllocator extends ElitismAllocator {
 		super(rate);
 		mFitness = minimumFitness;
 	}
-	
 
 	@Override
 	public void allocate() {

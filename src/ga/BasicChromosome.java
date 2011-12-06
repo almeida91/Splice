@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Igor Almeida
  * 
  */
-public abstract class Chromosome implements Comparable<Chromosome>, RandomComponent {
+public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent {
 	private double fitness;
 	private Random random;
 
@@ -31,7 +31,7 @@ public abstract class Chromosome implements Comparable<Chromosome>, RandomCompon
 	 * @param chromosome
 	 * @return
 	 */
-	public abstract Chromosome crossover(Chromosome chromosome);
+	public abstract BasicChromosome crossover(BasicChromosome chromosome);
 
 	/**
 	 * Calculate the chromosome's fitness
@@ -47,7 +47,7 @@ public abstract class Chromosome implements Comparable<Chromosome>, RandomCompon
 	}
 
 	@Override
-	public int compareTo(Chromosome o) {
+	public int compareTo(BasicChromosome o) {
 		if (fitness == o.fitness)
 			return 0;
 		if (fitness > o.fitness)
@@ -55,18 +55,18 @@ public abstract class Chromosome implements Comparable<Chromosome>, RandomCompon
 		return -1;
 	}
 
-	public Comparator<Chromosome> getComparator() {
-		return new Comparator<Chromosome>() {
+	public Comparator<BasicChromosome> getComparator() {
+		return new Comparator<BasicChromosome>() {
 			@Override
-			public int compare(Chromosome o1, Chromosome o2) {
+			public int compare(BasicChromosome o1, BasicChromosome o2) {
 				return o1.compareTo(o2);
 			}
 
 			@Override
 			public boolean equals(Object obj) {
-				if (!(obj instanceof Chromosome))
+				if (!(obj instanceof BasicChromosome))
 					return false;
-				return ((Chromosome) obj).getFitness() == fitness;
+				return ((BasicChromosome) obj).getFitness() == fitness;
 			}
 		};
 	}

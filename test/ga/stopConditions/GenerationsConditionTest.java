@@ -7,14 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GenerationsConditionTest {
-	GenerationsCondition condition;
+	Generations condition;
 	GenerationData data;
 	final int GENERATIONS = 1000;
 	final int MAX = 100;
 
 	@Before
 	public void setUp() throws Exception {
-		condition = new GenerationsCondition(GENERATIONS);
+		condition = new Generations(GENERATIONS);
 		data = new GenerationData();
 	}
 

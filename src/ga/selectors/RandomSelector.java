@@ -1,6 +1,6 @@
 package ga.selectors;
 
-import ga.Chromosome;
+import ga.BasicChromosome;
 import ga.Selector;
 
 /**
@@ -10,7 +10,7 @@ import ga.Selector;
  */
 public class RandomSelector extends Selector {
 	@Override
-	public Chromosome getChromosome() {
+	public BasicChromosome getChromosome() {
 		return getPopulation().getRandomChromosome();
 	}
 }
