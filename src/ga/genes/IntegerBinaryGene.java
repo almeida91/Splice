@@ -7,8 +7,9 @@ import java.math.BigInteger;
  * @author igor
  *
  */
-public class IntegerBinaryGene extends BinaryGene<BigInteger> {
-
+public class IntegerBinaryGene extends BinaryGene {
+	
+	
 	public IntegerBinaryGene(BigInteger value) {
 		super(value);
 	}
@@ -18,7 +19,13 @@ public class IntegerBinaryGene extends BinaryGene<BigInteger> {
 	 * @param length bit sequence length
 	 */
 	public IntegerBinaryGene(int length) {
-		this(null); // TODO: needs a random object to make a new BigInteger instance
+		this(null);
+		setLength(length);
+	}
+	
+	@Override
+	public void initialize() {
+		setValue(new BigInteger(getLength(), getRandom()));
 	}
 	
 	@Override

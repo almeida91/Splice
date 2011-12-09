@@ -9,7 +9,7 @@ import java.util.Random;
  * @author igor
  *
  */
-public class Population implements RandomComponent {
+public class Population implements RandomComponent, InitializeComponent {
 	/**
 	 * this contains all the chromosomes
 	 */
@@ -53,7 +53,7 @@ public class Population implements RandomComponent {
 	/**
 	 * 
 	 */
-	public void initializePopulation() {
+	public void initialize() {
 		BasicChromosome chromosome;
 		chromosomes = new ArrayList<BasicChromosome>(size);
 
@@ -68,7 +68,7 @@ public class Population implements RandomComponent {
 	 * Sorts the population based on the chromosome's comparator
 	 */
 	public void sort() {
-		Collections.sort(chromosomes, factory.getRandomChromosome().getComparator());
+		Collections.sort(chromosomes, factory.getRandomChromosome().getComparator());  // TODO: no better way to do this?
 	}
 
 	/**

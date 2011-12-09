@@ -6,7 +6,7 @@ import ga.GenerationData;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MinimumAverageFitnessConditionTest {
+public class MinimumAverageFitnessTest {
 	final double MINIMUM_FITNESS = 0.5;
 	final double STEP = 0.6;
 	MinimumAverageFitness condition;

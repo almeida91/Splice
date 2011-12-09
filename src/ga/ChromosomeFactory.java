@@ -9,7 +9,7 @@ import java.util.Random;
  * @author igor
  * 
  */
-public abstract class ChromosomeFactory implements RandomComponent {
+public abstract class ChromosomeFactory implements RandomComponent, InitializeComponent {
 	private Random random;
 	
 	/**
@@ -17,10 +17,7 @@ public abstract class ChromosomeFactory implements RandomComponent {
 	 * @return
 	 */
 	public abstract BasicChromosome getRandomChromosome();
-	/**
-	 * Holds any logic to be done before the GA's execution.
-	 * It should be noted that when this is called there's a Random instance setted while this is not true in the constructor
-	 */
+
 	public void initialize() { }
 
 	public Random getRandom() {

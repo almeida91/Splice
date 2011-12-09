@@ -70,7 +70,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		
 		population = new Population(pSize, factory);
 		setRandomGenerator(population);
-		population.initializePopulation();
+		population.initialize();
 
 		GenerationData data = new GenerationData();
 		

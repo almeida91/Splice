@@ -32,7 +32,7 @@ public class PopulationTest {
 
 	@Test
 	public void testInitializePopulation() {
-		population.initializePopulation();
+		population.initialize();
 		assertEquals(CHROMOSOMES, population.getSize());
 		for (int i = 0; i < population.getSize(); i++) {
 			assertNotNull(population.get(i));

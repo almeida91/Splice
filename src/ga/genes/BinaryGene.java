@@ -10,16 +10,20 @@ import ga.Gene;
  *
  * @param <T>
  */
-public abstract class BinaryGene<T extends Number> extends Gene<T> {
-	public BinaryGene(T value) {
+public abstract class BinaryGene extends Gene<BigInteger> {
+	private int length;
+	
+	public BinaryGene(BigInteger value) {
 		super(value);
+		if (value != null)
+			length = value.bitLength();
 	}
 	
-	/**
-	 * Currently this is a workarround so the same mutators/crossovers can be applied to different binary types, like integer, double or long 
-	 * @return true if the value type is an instance of the BigInteger class
-	 */
-	public boolean isBigInteger() {
-		return getValue() instanceof BigInteger;
+	public int getLength() {
+		return length;
+	}
+
+	protected void setLength(int length) {
+		this.length = length;
 	}
 }

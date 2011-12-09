@@ -8,9 +8,11 @@ import java.util.Random;
  *
  * @param <T> the type of information value
  */
-public abstract class Gene<T> implements RandomComponent {
+public abstract class Gene<T> implements RandomComponent, InitializeComponent {
 	private T value;
 	private Random random;
+	
+	public void initialize() { }
 	
 	public Gene(T value) {
 		this.value = value;
@@ -31,4 +33,5 @@ public abstract class Gene<T> implements RandomComponent {
 	public void setRandom(Random random) {
 		this.random = random;
 	}
+	
 }

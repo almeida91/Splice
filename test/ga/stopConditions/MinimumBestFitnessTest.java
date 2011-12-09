@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import util.TestChromosome;
 
-public class MinimumBestFitnessConditionTest {
+public class MinimumBestFitnessTest {
 	GenerationData data;
 	BasicChromosome bestStop, bestContinue;
 	MinimumBestFitness condition;

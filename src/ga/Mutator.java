@@ -6,6 +6,6 @@ package ga;
  *
  * @param <T> the Gene type that can be mutated
  */
-public interface Mutator<T extends Gene> {
+public interface Mutator<T extends Gene> extends RandomComponent {
 	public void mutate(T gene);
 }

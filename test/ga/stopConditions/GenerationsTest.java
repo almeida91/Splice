@@ -6,7 +6,7 @@ import ga.GenerationData;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GenerationsConditionTest {
+public class GenerationsTest {
 	Generations condition;
 	GenerationData data;
 	final int GENERATIONS = 1000;
