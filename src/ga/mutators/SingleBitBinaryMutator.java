@@ -9,6 +9,6 @@ public class SingleBitBinaryMutator extends MultiBitBinaryMutator {
 	
 	@Override
 	public void mutate(BinaryGene gene) {
-		gene.getValue().flipBit(getRandom().nextInt(gene.getLength()));
+		gene.setValue(gene.getValue().flipBit(getRandom().nextInt(gene.getLength())));
 	}
 }
