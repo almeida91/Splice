@@ -16,7 +16,11 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 	}
 	
 	private void generateMasks() {
+		int step = length / (points + 1);
 		
+		for (int i = 0, j = 0; i < length; i++, j = (j + 1) % step) {
+			
+		}
 	}
 	
 	@Override
@@ -28,8 +32,8 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 		
 		BigInteger value = a.getValue().and(aMask).xor(b.getValue().and(bMask));
 		
-		// TODO: how return if it's an abstract type?
-				
-		return null;
+		BinaryGene c = null;
+		
+		return c;
 	}
 }
