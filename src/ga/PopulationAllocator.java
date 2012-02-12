@@ -1,6 +1,7 @@
 package ga;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Allocates a new population set to the current population
@@ -40,5 +41,12 @@ public abstract class PopulationAllocator extends PopulationManipulator {
 	 */
 	public void reset() {
 		newPopulation = new ArrayList<BasicChromosome>(getPopulation().getSize());
+	}
+	
+	/**
+	 * sorts the the new population buffer
+	 */
+	public void sortNewPopulation() {
+		Collections.sort(newPopulation, newPopulation.get(0).getComparator());
 	}
 }

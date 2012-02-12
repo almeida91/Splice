@@ -30,7 +30,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	private Random random;
 
 	/**
-	 * Defaul constructor
+	 * Default constructor
 	 * @param size the size to initialize the population
 	 * @param factory the factory to fill the initial population
 	 */

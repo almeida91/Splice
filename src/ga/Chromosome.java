@@ -21,7 +21,7 @@ public abstract class Chromosome extends BasicChromosome {
 		Chromosome other = (Chromosome)chromosome;
 		
 		try {
-			newChromsome = this.getClass().newInstance();
+			newChromsome = this.getClass().newInstance(); // TODO: has a better method to do this?
 		} catch (Exception ex) { }
 		
 		newChromsome.crossovers = crossovers;
