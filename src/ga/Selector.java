@@ -1,27 +1,15 @@
 package ga;
 
-import java.util.Random;
-
 /**
  * Selects chromossome's candidates for crossover
  * 
  * @author igor
  * 
  */
-public abstract class Selector extends PopulationManipulator implements RandomComponent {
-	private Random random;
-	
+public interface Selector extends PopulationManipulator, RandomComponent {
 	/**
 	 * The selection logic
 	 * @return a chromosome for crossover
 	 */
-	public abstract BasicChromosome getChromosome();
-
-	public Random getRandom() {
-		return random;
-	}
-
-	public void setRandom(Random random) {
-		this.random = random;
-	}
+	public BasicChromosome getChromosome();
 }

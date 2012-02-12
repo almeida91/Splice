@@ -7,32 +7,10 @@ package ga;
  */
 public class MaxmizeGeneticAlgorithm extends GeneticAlgorithm {
 	public MaxmizeGeneticAlgorithm(ChromosomeFactory factory,
-			PopulationAllocator allocator, Selector selector) {
+			PopulationAllocator allocator, MaxmizeSelector selector) {
 		super(factory, allocator, selector);
 	}
-
-	@Override
-	protected void doGeneneration() {
-		BasicChromosome a, b, c;
-
-		getPopulation().sort();
-
-		for (int i = 0; i < getPopulationSize(); i++) {
-			a = getChromosome();
-			b = getChromosome();
-			c = crossover(a, b);
-			mutate(c);
-			getAllocator().append(c);
-
-			if (getRandom().nextDouble() < getCrossoverRate()) {
-				c = crossover(a, b);
-				mutate(c);
-				getAllocator().append(c);
-				i++;
-			}
-		}
-	}
-
+	
 	@Override
 	public BasicChromosome getBest() {
 		double fitness = 0;

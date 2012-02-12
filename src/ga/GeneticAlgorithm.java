@@ -45,11 +45,6 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	}
 
 	/**
-	 * Executes a single generation logic
-	 * @return the new genomes to be added to the population
-	 */
-	protected abstract void doGeneneration();
-	/**
 	 * @return the population's best chromosome
 	 */
 	public abstract BasicChromosome getBest();
@@ -101,6 +96,27 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		} catch (Exception ex) {
 			errorStream.println("Some errors have ocurred that prevented the execution");
 			ex.printStackTrace(errorStream);
+		}
+	}
+	
+	protected void doGeneneration() {
+		BasicChromosome a, b, c;
+
+		getPopulation().sort();
+
+		for (int i = 0; i < getPopulationSize(); i++) {
+			a = getChromosome();
+			b = getChromosome();
+			c = crossover(a, b);
+			mutate(c);
+			getAllocator().append(c);
+
+			if (getRandom().nextDouble() < getCrossoverRate()) {
+				c = crossover(a, b);
+				mutate(c);
+				getAllocator().append(c);
+				i++;
+			}
 		}
 	}
 

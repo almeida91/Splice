@@ -2,6 +2,7 @@ package ga;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * Allocates a new population set to the current population
@@ -9,8 +10,33 @@ import java.util.Collections;
  * @author igor
  * 
  */
-public abstract class PopulationAllocator extends PopulationManipulator {
+public abstract class PopulationAllocator implements RandomComponent {
 	private ArrayList<BasicChromosome> newPopulation;
+	private Population population;
+	private Random random;
+
+	public void setPopulation(ArrayList<BasicChromosome> population) {
+		this.population.getChromosomes().clear();
+		this.population.getChromosomes().addAll(population);
+	}
+	
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+	
+	public Population getPopulation() {
+		return this.population;
+	}
+	
+	@Override
+	public void setRandom(Random random) {
+		this.random = random;
+	}
+
+	@Override
+	public Random getRandom() {
+		return random;
+	}
 	
 	/**
 	 * Defines the logic of how to allocate the new set
@@ -40,7 +66,7 @@ public abstract class PopulationAllocator extends PopulationManipulator {
 	 * Resets the buffer, you don't want the population to grow till your memory overflows
 	 */
 	public void reset() {
-		newPopulation = new ArrayList<BasicChromosome>(getPopulation().getSize());
+		newPopulation = new ArrayList<BasicChromosome>(population.getSize());
 	}
 	
 	/**
