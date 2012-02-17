@@ -1,10 +1,10 @@
 package ga;
 
 /**
- * Base class to define how the genetic algorithm should stop
+ * defines how the genetic algorithm should stop
  * @author igor
  *
  */
-public abstract class StopCondition {
-	public abstract boolean stop(GenerationData data);
+public interface StopCondition {
+	public boolean stop(GenerationData data);
 }

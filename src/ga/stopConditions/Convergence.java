@@ -11,7 +11,7 @@ import ga.StopCondition;
  * @author igor
  *
  */
-public class Convergence extends StopCondition {
+public class Convergence implements StopCondition {
 	private int maxGenerations;
 	private double minFitness = 0;
 	

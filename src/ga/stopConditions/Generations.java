@@ -8,7 +8,7 @@ import ga.StopCondition;
  * @author igor
  *
  */
-public class Generations extends StopCondition {
+public class Generations implements StopCondition {
 	private int generations;
 
 	public Generations(int generations) {

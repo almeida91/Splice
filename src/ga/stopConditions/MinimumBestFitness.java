@@ -3,7 +3,7 @@ package ga.stopConditions;
 import ga.GenerationData;
 import ga.StopCondition;
 
-public class MinimumBestFitness extends StopCondition {
+public class MinimumBestFitness implements StopCondition {
 	private double minimum;
 
 	public MinimumBestFitness(double minimum) {
