@@ -17,17 +17,24 @@ public class PopulationTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		population = new Population(CHROMOSOMES, new TestChromosomeFactory(FITNESS));
+		population = new Population();
+		population.setSize(CHROMOSOMES);
+		population.setFactory(new TestChromosomeFactory(FITNESS));
 		random = new Random();
 		population.setRandom(random);
 	}
 	
 	@Test
 	public void testCalculateFitnessSum() {
+		try{
 		testInitializePopulation();
 		population.calculateFitnessSum();
 		assertEquals("fitness sum not expected", CHROMOSOMES * FITNESS, population.getFitnessSum(), 0);
 		assertEquals("fitness average not expected", FITNESS, population.getFitnessAverage(), 0.5);
+		}
+		catch (Exception ex) {
+			assertTrue(false);
+		}
 	}
 
 	@Test

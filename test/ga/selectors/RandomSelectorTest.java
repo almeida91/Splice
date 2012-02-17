@@ -21,7 +21,9 @@ public class RandomSelectorTest {
 	public void setUp() throws Exception {
 		random = new Random();
 		
-		population = new Population(300, new TestChromosomeFactory(FITNESS));
+		population = new Population();
+		population.setSize(300);
+		population.setFactory(new TestChromosomeFactory(FITNESS));
 		population.setRandom(random);
 		population.initialize();
 		
