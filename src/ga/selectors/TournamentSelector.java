@@ -7,12 +7,12 @@ import ga.MaxmizeSelector;
 import ga.Population;
 
 /**
- * Selects a chromosome using a k-sized tournament
+ * Selects a chromosome using a k-sized deterministic tournament
  * @author igor
  *
  */
 public class TournamentSelector implements MaxmizeSelector {
-	public int k;
+	private int k;
 	private Population population;
 	private Random random;
 	
@@ -51,4 +51,7 @@ public class TournamentSelector implements MaxmizeSelector {
 
 		return chromosome;
 	}
+
+	@Override
+	public void beforeGeneration() { }
 }

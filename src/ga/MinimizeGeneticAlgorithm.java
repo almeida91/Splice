@@ -4,7 +4,6 @@ public class MinimizeGeneticAlgorithm extends GeneticAlgorithm {
 	public MinimizeGeneticAlgorithm(ChromosomeFactory factory,
 			PopulationAllocator allocator, MinimizeSelector selector) {
 		super(factory, allocator, selector);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

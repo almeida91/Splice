@@ -12,4 +12,5 @@ public interface Selector extends PopulationManipulator, RandomComponent {
 	 * @return a chromosome for crossover
 	 */
 	public BasicChromosome getChromosome();
+	public void beforeGeneration();
 }

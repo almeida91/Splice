@@ -14,7 +14,7 @@ public abstract class PopulationAllocator implements RandomComponent {
 	private ArrayList<BasicChromosome> newPopulation;
 	private Population population;
 	private Random random;
-
+	
 	public void setPopulation(ArrayList<BasicChromosome> population) {
 		this.population.getChromosomes().clear();
 		this.population.getChromosomes().addAll(population);
@@ -75,4 +75,6 @@ public abstract class PopulationAllocator implements RandomComponent {
 	public void sortNewPopulation() {
 		Collections.sort(newPopulation, newPopulation.get(0).getComparator());
 	}
+	
+	
 }

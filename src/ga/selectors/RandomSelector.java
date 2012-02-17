@@ -35,4 +35,7 @@ public class RandomSelector implements MinimizeSelector, MaxmizeSelector {
 	public Random getRandom() {
 		return random;
 	}
+
+	@Override
+	public void beforeGeneration() { }
 }

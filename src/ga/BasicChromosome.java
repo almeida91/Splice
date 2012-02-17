@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Igor Almeida
  * 
  */
-public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent {
+public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent, InitializeComponent {
 	private double fitness;
 	private Random random;
 
@@ -45,6 +45,9 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	public double getFitness() {
 		return fitness;
 	}
+	
+	@Override
+	public void initialize() { }
 
 	@Override
 	public int compareTo(BasicChromosome o) {
@@ -56,19 +59,7 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	}
 
 	public Comparator<BasicChromosome> getComparator() {
-		return new Comparator<BasicChromosome>() {
-			@Override
-			public int compare(BasicChromosome o1, BasicChromosome o2) {
-				return o1.compareTo(o2);
-			}
-
-			@Override
-			public boolean equals(Object obj) {
-				if (!(obj instanceof BasicChromosome))
-					return false;
-				return ((BasicChromosome) obj).getFitness() == fitness;
-			}
-		};
+		return new ChromosomeComparator(fitness);
 	}
 
 	/**
@@ -89,6 +80,4 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	public Random getRandom() {
 		return random;
 	}
-	
-	
 }

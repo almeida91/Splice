@@ -17,32 +17,25 @@ public class Population implements RandomComponent, InitializeComponent {
 	/**
 	 * the sum of all fitnesses it's used in roullette selection and in the average calculation
 	 */
-	private double fitnessSum;
+	protected double fitnessSum;
 	/**
 	 * population's average fitness
 	 */
-	private double fitnessAverage;
+	protected double fitnessAverage;
 	/**
 	 * population's size
 	 */
 	private int size;
+	/**
+	 * the factory to fill the initial population
+	 */
 	private ChromosomeFactory factory;
 	private Random random;
 
 	/**
-	 * Default constructor
-	 * @param size the size to initialize the population
-	 * @param factory the factory to fill the initial population
-	 */
-	public Population(int size, ChromosomeFactory factory) {
-		this.size = size;
-		this.factory = factory;
-	}
-	
-	/**
 	 * Calculates the chromosome's fitness as well their averages
 	 */
-	public void calculateFitnessSum() {
+	public void calculateFitnessSum() throws Exception {
 		fitnessSum = 0;
 		for (int i = 0; i < chromosomes.size(); i++) {
 			fitnessSum += chromosomes.get(i).calculateFitness();
@@ -68,7 +61,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	 * Sorts the population based on the chromosome's comparator
 	 */
 	public void sort() {
-		Collections.sort(chromosomes, factory.getRandomChromosome().getComparator());  // TODO: no better way to do this?
+		Collections.sort(chromosomes, new ChromosomeComparator(0));
 	}
 
 	/**
@@ -104,5 +97,13 @@ public class Population implements RandomComponent, InitializeComponent {
 	
 	public void setRandom(Random random) {
 		this.random = random;
+	}
+	
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
+	public void setFactory(ChromosomeFactory factory) {
+		this.factory = factory;
 	}
 }

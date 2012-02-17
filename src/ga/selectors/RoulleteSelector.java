@@ -42,4 +42,9 @@ public class RoulleteSelector implements MaxmizeSelector {
 
 		return population.get(i == 0 ? i : i - 1);
 	}
+
+	@Override
+	public void beforeGeneration() {
+		population.sort();
+	}
 }

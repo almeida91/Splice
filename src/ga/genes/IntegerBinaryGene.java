@@ -8,8 +8,6 @@ import java.math.BigInteger;
  *
  */
 public class IntegerBinaryGene extends BinaryGene {
-	
-	
 	public IntegerBinaryGene(BigInteger value) {
 		super(value);
 	}
@@ -21,11 +19,6 @@ public class IntegerBinaryGene extends BinaryGene {
 	public IntegerBinaryGene(int length) {
 		this(null);
 		setLength(length);
-	}
-	
-	@Override
-	public void initialize() {
-		setValue(new BigInteger(getLength(), getRandom()));
 	}
 	
 	@Override

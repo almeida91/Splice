@@ -18,7 +18,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 
 	private double fitnessSum;
 
-	private Population population;
+	private Population population = new Population();
 
 	private Selector selector;
 	private PopulationAllocator allocator;
@@ -63,7 +63,8 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		
 		factory.initialize();
 		
-		population = new Population(pSize, factory);
+		population.setSize(pSize);
+		population.setFactory(factory);
 		setRandomGenerator(population);
 		population.initialize();
 
@@ -84,6 +85,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 				data.setFitnessAverage(population.getFitnessAverage());
 
 				allocator.reset();
+				selector.beforeGeneration();
 				doGeneneration();
 				allocator.allocate();
 				
@@ -99,10 +101,11 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		}
 	}
 	
+	/**
+	 * runs the generation's logic, can be overloaded in case of some need
+	 */
 	protected void doGeneneration() {
 		BasicChromosome a, b, c;
-
-		getPopulation().sort();
 
 		for (int i = 0; i < getPopulationSize(); i++) {
 			a = getChromosome();
@@ -148,7 +151,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		return population;
 	}
 
-	protected void setPopulation(Population population) {
+	public void setPopulation(Population population) {
 		this.population = population;
 	}
 
