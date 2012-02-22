@@ -9,6 +9,11 @@
  */
 package ga;
 
+/**
+ * selectors that selects chromosomes with the highest fitness
+ * @author igor
+ *
+ */
 public interface MaxmizeSelector extends Selector {
 
 }

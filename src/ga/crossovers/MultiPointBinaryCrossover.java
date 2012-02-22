@@ -28,7 +28,7 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 		int step = length / (points + 1);
 		
 		for (int i = 0, j = 0; i < length; i++, j = (j + 1) % step) {
-			
+			// TODO: where's the implementation?
 		}
 	}
 	

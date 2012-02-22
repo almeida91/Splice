@@ -12,8 +12,8 @@ package ga;
 import java.util.Random;
 
 /**
- * This class defines the structure for the factories that give chromosomes to
- * fill the population
+ * This class defines the structure for the factories that produces
+ * chromosomes to fill the population
  * 
  * @author igor
  * 

@@ -9,7 +9,7 @@
  */
 package ga.stopConditions;
 
-import ga.GenerationData;
+import ga.Population;
 import ga.StopCondition;
 
 /**
@@ -23,6 +23,7 @@ import ga.StopCondition;
 public class Convergence implements StopCondition {
 	private int maxGenerations;
 	private double minFitness = 0;
+	private Population population;
 	
 	private double bestFitness;
 	private int generations = 0; 
@@ -43,8 +44,8 @@ public class Convergence implements StopCondition {
 	}
 	
 	@Override
-	public boolean stop(GenerationData data) {
-		double fitness = data.getBestChromosome().getFitness();
+	public boolean stop(int generation) {
+		double fitness = population.getMaximum().getFitness();
 		
 		if (fitness == bestFitness)
 			generations++;
@@ -56,4 +57,13 @@ public class Convergence implements StopCondition {
 		return generations >= maxGenerations & bestFitness >= minFitness;
 	}
 
+	@Override
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
+	@Override
+	public Population getPopulation() {
+		return population;
+	}
 }

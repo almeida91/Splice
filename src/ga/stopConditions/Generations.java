@@ -9,7 +9,7 @@
  */
 package ga.stopConditions;
 
-import ga.GenerationData;
+import ga.Population;
 import ga.StopCondition;
 
 /**
@@ -25,11 +25,19 @@ public class Generations implements StopCondition {
 	}
 
 	@Override
-	public boolean stop(GenerationData data) {
-		return data.getGeneration() >= generations;
+	public boolean stop(int generation) {
+		return generation >= generations;
 	}
 
 	public int getGenerations() {
 		return generations;
+	}
+
+	@Override
+	public void setPopulation(Population population) { }
+
+	@Override
+	public Population getPopulation() {
+		return null;
 	}
 }

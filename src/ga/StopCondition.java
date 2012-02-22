@@ -14,6 +14,6 @@ package ga;
  * @author igor
  *
  */
-public interface StopCondition {
-	public boolean stop(GenerationData data);
+public interface StopCondition extends PopulationManipulator {
+	public boolean stop(int generation);
 }

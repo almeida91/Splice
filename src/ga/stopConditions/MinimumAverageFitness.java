@@ -9,19 +9,29 @@
  */
 package ga.stopConditions;
 
-import ga.GenerationData;
+import ga.Population;
 import ga.StopCondition;
 
 public class MinimumAverageFitness implements StopCondition {
 	private double minimum;
+	private Population population;
 
 	public MinimumAverageFitness(double minimum) {
 		this.minimum = minimum;
 	}
 
 	@Override
-	public boolean stop(GenerationData data) {
-		return data.getFitnessAverage() >= minimum;
+	public boolean stop(int generation) {
+		return population.getFitnessAverage() >= minimum;
 	}
 
+	@Override
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
+	@Override
+	public Population getPopulation() {
+		return population;
+	}
 }

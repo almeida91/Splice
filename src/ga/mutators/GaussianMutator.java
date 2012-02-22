@@ -14,9 +14,18 @@ import java.util.Random;
 import ga.Mutator;
 import ga.genes.ListGene;
 
-public class GaussianMutator implements Mutator<ListGene<Number>> {
+public class GaussianMutator implements Mutator<ListGene> { // FIXME: this makes a bug =\
 	private Random random;
 	private double x,y;
+	
+	public GaussianMutator(double max) {
+		this(0,max);
+	}
+	
+	public GaussianMutator(double min, double max) {
+		this.x = min;
+		this.y = max;
+	}
 
 	@Override
 	public void setRandom(Random random) {
@@ -29,7 +38,7 @@ public class GaussianMutator implements Mutator<ListGene<Number>> {
 	}
 
 	@Override
-	public void mutate(ListGene<Number> gene) {
+	public void mutate(ListGene gene) {
 		gene.set(random.nextInt(gene.getSize()), ((random.nextGaussian() * (y - x)) + x));
 	}
 

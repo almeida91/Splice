@@ -9,18 +9,15 @@
  */
 package ga.stopConditions;
 
-import static org.junit.Assert.*;
 import ga.BasicChromosome;
-import ga.GenerationData;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import util.TestChromosome;
 
-public class ConvergenceTest {
+public class ConvergenceTest { // TODO: unimplemented
 	Convergence condition;
-	GenerationData data;
 	BasicChromosome bestStop;
 	BasicChromosome bestContinue;
 	final int GENERATIONS = 1000;
@@ -30,7 +27,6 @@ public class ConvergenceTest {
 	
 	@Before
 	public void setUp() {
-		data = new GenerationData();
 		bestContinue = new TestChromosome(MINIMUM_FITNESS - STEP);
 		bestStop = new TestChromosome(MINIMUM_FITNESS + STEP); 
 	}
@@ -38,7 +34,6 @@ public class ConvergenceTest {
 	@Test
 	public void testStop() {
 		condition = new Convergence(GENERATIONS);
-		
 	}
 
 	@Test

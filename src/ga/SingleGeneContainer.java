@@ -9,13 +9,10 @@
  */
 package ga;
 
-/**
- * Defines how to do the crossover of two Genes
- * @author igor
- *
- * @param <T> the Gene type that the crossover can be applied
- */
 @SuppressWarnings("rawtypes")
-public interface Crossover<T extends Gene> { // TODO: what without generics?
-	public T doCrossover(T a, T b);
+public interface SingleGeneContainer<T extends Gene> {
+	public void setGene(T gene);
+	public void setCrossover(Crossover<T> crossover);
+	public void setMutator(Mutator<T> mutator);
+	public T getGene();
 }

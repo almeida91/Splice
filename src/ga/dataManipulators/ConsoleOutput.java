@@ -10,7 +10,7 @@
 package ga.dataManipulators;
 
 import ga.DataManipulator;
-import ga.GenerationData;
+import ga.Population;
 
 /**
  * Prints each generation data into the default output stream
@@ -18,16 +18,27 @@ import ga.GenerationData;
  *
  */
 public class ConsoleOutput extends DataManipulator {
+	private Population population;
+	
 	@Override
-	public void appendData(GenerationData data) throws Exception {
-		System.out.println("Generation #" + data.getGeneration() + " fitness: "
-				+ data.getFitnessAverage() + " best: "
-				+ data.getBestChromosome().getFitness() + " worst: "
-				+ data.getWorstChromosome().getFitness() + " pop size: "
-				+ data.getPopulation().getChromosomes().size());
+	public void appendData(int generation) throws Exception {
+		System.out.println("Generation #" + generation + " fitness: "
+				+ population.getFitnessAverage() + " max: "
+				+ population.getMaximum().getFitness() + " min: "
+				+ population.getMinimum().getFitness() + " pop size: "
+				+ population.getSize());
 	}
 
 	@Override
 	public void saveData() { }
 
+	@Override
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
+	@Override
+	public Population getPopulation() {
+		return population;
+	}
 }

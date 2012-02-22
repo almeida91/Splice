@@ -11,6 +11,11 @@ package ga;
 
 import java.util.Random;
 
+/**
+ * A component that needs to hold a Random object
+ * @author igor
+ *
+ */
 interface RandomComponent {
 	public void setRandom(Random random);
 	public Random getRandom();

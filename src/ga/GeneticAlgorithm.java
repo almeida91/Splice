@@ -20,7 +20,7 @@ import java.util.Random;
  * @author igor
  *
  */
-public abstract class GeneticAlgorithm implements RandomComponent {
+public class GeneticAlgorithm implements RandomComponent {
 	private int pSize = 100;
 	private double mRate = 0.2;
 	private double cRate = 1;
@@ -33,7 +33,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	private PopulationAllocator allocator;
 
 	private ChromosomeFactory factory;
-	private DataManipulator manipulator = new ConsoleOutput();
+	private DataManipulator dataManipulator = new ConsoleOutput();
 	private StopCondition stopCondition = new Generations(2000);
 	
 	private PrintStream errorStream = System.err;
@@ -54,15 +54,6 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	}
 
 	/**
-	 * @return the population's best chromosome
-	 */
-	public abstract BasicChromosome getBest();
-	/**
-	 * @return the population's worst chromosome
-	 */
-	public abstract BasicChromosome getWorst();
-
-	/**
 	 * executes the genetic algorithm
 	 */
 	public void execute() {
@@ -77,32 +68,25 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		setRandomGenerator(population);
 		population.initialize();
 
-		GenerationData data = new GenerationData();
-		
-		allocator.setPopulation(population);
-		selector.setPopulation(population);
+		setPopulationManipulator(allocator);
+		setPopulationManipulator(selector);
+		setPopulationManipulator(stopCondition);
+		setPopulationManipulator(dataManipulator);
 		
 		try {
 			int i = 0;
 			do {
 				population.calculateFitnessSum();
 				
-				data.setPopulation(population);
-				data.setBestChromosome(getBest());
-				data.setWorstChromosome(getWorst());
-				data.setGeneration(i);
-				data.setFitnessAverage(population.getFitnessAverage());
-
 				allocator.reset();
 				selector.beforeGeneration();
 				doGeneneration();
 				allocator.allocate();
 				
-				manipulator.appendData(data);
-				
+				dataManipulator.appendData(i);
 				i++;
-			} while (!stopCondition.stop(data));
-			manipulator.saveData();
+			} while (!stopCondition.stop(i));
+			dataManipulator.saveData();
 			population.calculateFitnessSum();
 		} catch (Exception ex) {
 			errorStream.println("Some errors have ocurred that prevented the execution");
@@ -135,6 +119,10 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	private void setRandomGenerator(RandomComponent component) {
 		component.setRandom(random);
 	}
+	
+	private void setPopulationManipulator(PopulationManipulator manipulator) {
+		manipulator.setPopulation(population);
+	}
 
 	public int getPopulationSize() {
 		return pSize;
@@ -156,7 +144,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 		this.fitnessSum = fitnessSum;
 	}
 
-	protected Population getPopulation() {
+	public Population getPopulation() {
 		return population;
 	}
 
@@ -191,7 +179,7 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	}
 
 	public void setDataManipulator(DataManipulator dataManipulator) {
-		manipulator = dataManipulator;
+		this.dataManipulator = dataManipulator;
 	}
 
 	public PrintStream getErrorStream() {
@@ -221,4 +209,6 @@ public abstract class GeneticAlgorithm implements RandomComponent {
 	public void setRandom(Random random) {
 		this.random = random;
 	}
+	
+	
 }

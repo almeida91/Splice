@@ -10,7 +10,7 @@
 package ga.dataManipulators;
 
 import ga.DataManipulator;
-import ga.GenerationData;
+import ga.Population;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,20 +23,31 @@ import java.io.IOException;
  */
 public class GenerationDataFileOutput extends DataManipulator {
 	protected BufferedWriter writer;
+	protected Population population; 
 
 	public GenerationDataFileOutput(String path) throws IOException {
 		writer = new BufferedWriter(new FileWriter(path));
 	}
 
 	@Override
-	public void appendData(GenerationData data) throws Exception {
-		writer.append(data.getFitnessAverage() + " "
-				+ data.getBestChromosome().getFitness() + " "
-				+ data.getWorstChromosome().getFitness() + "\n");
+	public void appendData(int generation) throws Exception {
+		writer.append(population.getFitnessAverage() + " "
+				+ population.getMaximum().getFitness() + " "
+				+ population.getMinimum().getFitness() + "\n");
 	}
 
 	@Override
 	public void saveData() throws Exception {
 		writer.close();
+	}
+
+	@Override
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
+	@Override
+	public Population getPopulation() {
+		return population;
 	}
 }

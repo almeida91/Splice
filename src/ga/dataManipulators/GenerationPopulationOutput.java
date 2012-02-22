@@ -12,7 +12,6 @@ package ga.dataManipulators;
 import java.io.IOException;
 
 import ga.BasicChromosome;
-import ga.GenerationData;
 
 /**
  * Save the whole generation fitness to a specified file
@@ -37,10 +36,10 @@ public class GenerationPopulationOutput extends GenerationDataFileOutput {
 	}
 	
 	@Override
-	public void appendData(GenerationData data) throws Exception {
+	public void appendData(int generation) throws Exception {
 		counter += 1;
 		if (counter % step == 0) {
-			for (BasicChromosome chromosome : data.getPopulation().getChromosomes()) {
+			for (BasicChromosome chromosome : population.getChromosomes()) {
 				writer.append(chromosome.getFitness() + " ");
 			}
 			writer.append('\n');

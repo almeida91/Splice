@@ -44,6 +44,11 @@ public class RandomSelector implements MinimizeSelector, MaxmizeSelector {
 	public Random getRandom() {
 		return random;
 	}
+	
+	@Override
+	public Population getPopulation() {
+		return population;
+	}
 
 	@Override
 	public void beforeGeneration() { }

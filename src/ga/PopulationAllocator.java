@@ -19,7 +19,7 @@ import java.util.Random;
  * @author igor
  * 
  */
-public abstract class PopulationAllocator implements RandomComponent {
+public abstract class PopulationAllocator implements RandomComponent, PopulationManipulator {
 	private ArrayList<BasicChromosome> newPopulation;
 	private Population population;
 	private Random random;

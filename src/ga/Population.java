@@ -52,9 +52,6 @@ public class Population implements RandomComponent, InitializeComponent {
 		fitnessAverage = fitnessSum / chromosomes.size();
 	}
 
-	/**
-	 * 
-	 */
 	public void initialize() {
 		BasicChromosome chromosome;
 		chromosomes = new ArrayList<BasicChromosome>(size);
@@ -72,7 +69,39 @@ public class Population implements RandomComponent, InitializeComponent {
 	public void sort() {
 		Collections.sort(chromosomes, new ChromosomeComparator(0));
 	}
-
+	
+	/**
+	 * Searches the chromosome with highest fitness value
+	 * @return the chromosome with maximum fitness
+	 */
+	public BasicChromosome getMaximum() {
+		double fitness = 0;
+		BasicChromosome chromosome = null;
+		for (BasicChromosome g : chromosomes) {
+			if (g.getFitness() >= fitness) {
+				fitness = g.getFitness();
+				chromosome = g;
+			}
+		}
+		return chromosome;
+	}
+	
+	/**
+	 * Searches the chromosome with the population's lowest fitness
+	 * @return the chromosome with minimum fitness
+	 */
+	public BasicChromosome getMinimum() {
+		BasicChromosome chromosome = getRandomChromosome();
+		double fitness = chromosome.getFitness();
+		for (BasicChromosome g : chromosomes) {
+			if (g.getFitness() <= fitness) {
+				fitness = g.getFitness();
+				chromosome = g;
+			}
+		}
+		return chromosome;
+	}
+	
 	/**
 	 * @return the chromosome's collection
 	 */

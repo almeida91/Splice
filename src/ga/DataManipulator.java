@@ -14,13 +14,13 @@ package ga;
  * @author igor
  *
  */
-public abstract class DataManipulator {
+public abstract class DataManipulator implements PopulationManipulator {
 	/**
 	 * Appends a new generation to the execution data
 	 * @param data the data of a given generation
 	 * @throws Exception
 	 */
-	public abstract void appendData(GenerationData data) throws Exception;
+	public abstract void appendData(int generation) throws Exception;
 	/**
 	 * Saves the input
 	 * @throws Exception

@@ -60,6 +60,11 @@ public class TournamentSelector implements MaxmizeSelector {
 
 		return chromosome;
 	}
+	
+	@Override
+	public Population getPopulation() {
+		return population;
+	}
 
 	@Override
 	public void beforeGeneration() { }

@@ -9,6 +9,7 @@
  */
 package ga;
 
-public interface PopulationManipulator extends RandomComponent {
+public interface PopulationManipulator {
 	public void setPopulation(Population population);
+	public Population getPopulation();
 }
