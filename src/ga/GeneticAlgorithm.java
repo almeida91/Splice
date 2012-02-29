@@ -10,6 +10,7 @@
 package ga;
 
 import ga.dataManipulators.ConsoleOutput;
+import ga.exceptionHandlers.ErrorStream;
 import ga.stopConditions.Generations;
 
 import java.io.PrintStream;
@@ -23,20 +24,16 @@ import java.util.Random;
 public class GeneticAlgorithm implements RandomComponent {
 	private int pSize = 100;
 	private double mRate = 0.2;
-	private double cRate = 1;
-
 	private double fitnessSum;
 
 	private Population population = new Population();
 
 	private Selector selector;
 	private PopulationAllocator allocator;
-
 	private ChromosomeFactory factory;
 	private DataManipulator dataManipulator = new ConsoleOutput();
 	private StopCondition stopCondition = new Generations(2000);
-	
-	private PrintStream errorStream = System.err;
+	private ExceptionHandler handler = new ErrorStream();
 	
 	private Random random = new Random();
 	
@@ -89,8 +86,7 @@ public class GeneticAlgorithm implements RandomComponent {
 			dataManipulator.saveData();
 			population.calculateFitnessSum();
 		} catch (Exception ex) {
-			errorStream.println("Some errors have ocurred that prevented the execution");
-			ex.printStackTrace(errorStream);
+			handler.handle(ex);
 		}
 	}
 	
@@ -100,22 +96,20 @@ public class GeneticAlgorithm implements RandomComponent {
 	protected void doGeneneration() {
 		BasicChromosome a, b, c;
 
-		for (int i = 0; i < getPopulationSize(); i++) {
+		for (int i = 0; i < getPopulationSize(); i += 2) {
 			a = getChromosome();
 			b = getChromosome();
+			
 			c = crossover(a, b);
 			mutate(c);
-			getAllocator().append(c);
+			allocator.append(c);
 
-			if (getRandom().nextDouble() < getCrossoverRate()) {
-				c = crossover(a, b);
-				mutate(c);
-				getAllocator().append(c);
-				i++;
-			}
+			c = crossover(a, b);
+			mutate(c);
+			allocator.append(c);
 		}
 	}
-
+	
 	private void setRandomGenerator(RandomComponent component) {
 		component.setRandom(random);
 	}
@@ -130,10 +124,6 @@ public class GeneticAlgorithm implements RandomComponent {
 
 	public double getMutationRate() {
 		return mRate;
-	}
-
-	public double getCrossoverRate() {
-		return cRate;
 	}
 
 	protected double getFitnessSum() {
@@ -174,20 +164,8 @@ public class GeneticAlgorithm implements RandomComponent {
 		mRate = rate;
 	}
 
-	public void setCrossoverRate(double rate) {
-		cRate = rate;
-	}
-
 	public void setDataManipulator(DataManipulator dataManipulator) {
 		this.dataManipulator = dataManipulator;
-	}
-
-	public PrintStream getErrorStream() {
-		return errorStream;
-	}
-
-	public void setErrorStream(PrintStream errorStream) {
-		this.errorStream = errorStream;
 	}
 
 	public StopCondition getStopCondition() {
@@ -198,10 +176,6 @@ public class GeneticAlgorithm implements RandomComponent {
 		this.stopCondition = stopCondition;
 	}
 
-	public PopulationAllocator getAllocator() {
-		return allocator;
-	}
-
 	public Random getRandom() {
 		return random;
 	}
@@ -210,5 +184,7 @@ public class GeneticAlgorithm implements RandomComponent {
 		this.random = random;
 	}
 	
-	
+	public void setExceptionHandler(ExceptionHandler handler) {
+		this.handler = handler;
+	}
 }
