@@ -1,0 +1,13 @@
+If you need to build from the source just open it on eclipse and export the src/ folder as
+a jar package.
+
+Look for samples/ folder to see how to build simple genetic algorithms.
+Samples included:
+	samples/knapsack/
+		the knapsack problem resolution
+	samples/nqueens/
+		it solves the N-Queens problem
+	samples/tsp/
+		solves the traveling salesman problem
+	samples/zeros/
+		evolves a list of integers until its values are all zeros

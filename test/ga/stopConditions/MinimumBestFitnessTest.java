@@ -9,8 +9,6 @@
  */
 package ga.stopConditions;
 
-import static org.junit.Assert.*;
-
 import ga.BasicChromosome;
 
 import org.junit.Before;

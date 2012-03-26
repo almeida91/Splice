@@ -11,6 +11,7 @@ package ga.mutators;
 
 import java.util.Random;
 
+import ga.Gene;
 import ga.Mutator;
 import ga.genes.BinaryGene;
 
@@ -25,7 +26,8 @@ public class MultiBitBinaryMutator implements Mutator<BinaryGene> {
 	@Override
 	public void mutate(BinaryGene gene) {
 		for (int i = 0; i < nBits; i++) {
-			gene.setValue(gene.getValue().flipBit(random.nextInt(gene.getLength())));
+			// FIXME: requires some casts
+			//gene.setValue(gene.getValue().flipBit(random.nextInt(gene.getLength())));
 		}
 	}
 

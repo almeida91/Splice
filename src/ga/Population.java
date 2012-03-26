@@ -57,7 +57,7 @@ public class Population implements RandomComponent, InitializeComponent {
 		chromosomes = new ArrayList<BasicChromosome>(size);
 
 		for (int i = 0; i < size; i++) {
-			chromosome = factory.getRandomChromosome();
+			chromosome = factory.generateChromosome();
 			chromosome.setRandom(random);
 			chromosomes.add(chromosome);
 		}

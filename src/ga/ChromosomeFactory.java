@@ -20,12 +20,42 @@ import java.util.Random;
  */
 public abstract class ChromosomeFactory implements RandomComponent, InitializeComponent {
 	private Random random;
+	private ChromosomeType type;
+	private Gene[] genes;
+	private Mutator[] mutators;
+	private Crossover[] crossovers;
 	
 	/**
 	 * Generates a new random chromosome
 	 * @return
 	 */
 	public abstract BasicChromosome getRandomChromosome();
+	
+	private void checkType(BasicChromosome chromosome) {
+		if (type != null)
+			return;
+		if (chromosome instanceof Chromosome)
+			type = ChromosomeType.NORMAL;
+		else if(chromosome instanceof SingleGeneChromosome)
+			type = ChromosomeType.SINGLE;
+		else
+			type = ChromosomeType.BASIC;
+	}
+	
+	public BasicChromosome generateChromosome() {
+		if (type == ChromosomeType.NORMAL) {
+			Chromosome c = (Chromosome)getRandomChromosome();
+			
+			return c;
+		}
+		else if (type == ChromosomeType.SINGLE) {
+			SingleGeneChromosome<?> c = (SingleGeneChromosome<?>)getRandomChromosome();
+			
+			return c;
+		}
+		
+		return getRandomChromosome();
+	}
 
 	public void initialize() { }
 

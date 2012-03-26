@@ -12,6 +12,7 @@ package ga.crossovers;
 import java.math.BigInteger;
 
 import ga.Crossover;
+import ga.Gene;
 import ga.genes.BinaryGene;
 
 
@@ -45,4 +46,5 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 		
 		return c;
 	}
+
 }

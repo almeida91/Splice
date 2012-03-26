@@ -10,43 +10,55 @@
 package ga;
 
 @SuppressWarnings("rawtypes")
-public abstract class Chromosome extends BasicChromosome {
-	private Gene[] genes;
-	private Crossover<Gene>[] crossovers;
-	private Mutator<Gene>[] mutators;
+public abstract class Chromosome<T extends Gene> extends BasicChromosome {
+	private T[] genes;
+	private Crossover<T> crossover;
+	private Mutator<T> mutator;
 	
 	protected abstract Chromosome getNew();
 	
-	public Chromosome(Gene[] genes, Crossover<Gene>[] crossovers, Mutator<Gene>[] mutators) {
+	public Chromosome(T[] genes, Crossover<T> crossover, Mutator<T> mutator) {
 		this.genes = genes;
-		this.crossovers = crossovers;
-		this.mutators = mutators;
+		this.crossover = crossover;
+		this.mutator = mutator;
 	}
 	
-	public Gene get(int i) {
+	public T get(int i) {
 		return genes[i];
+	}
+	
+	public void setCrossovers(Crossover<T> crossover) {
+		this.crossover = crossover;
+	}
+	
+	public void setMutators(Mutator<T> mutator) {
+		this.mutator = mutator;
+	}
+	
+	public void setGenes(T[] genes) {
+		this.genes = genes;
 	}
 	
 	@Override
 	protected void mutate() {
 		for (int i = 0; i < genes.length; i++) {
-			mutators[i].mutate(genes[i]);
+			mutator.mutate(genes[i]);
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
 		Chromosome newChromsome = getNew();
 		Chromosome other = (Chromosome)chromosome;
 		
-		newChromsome.crossovers = crossovers;
-		newChromsome.mutators = mutators;
+		newChromsome.crossover = crossover;
+		newChromsome.mutator = mutator;
 		newChromsome.genes = new Gene[genes.length];
 		
 		for (int i = 0; i < genes.length; i++) {
-			newChromsome.genes[i] = this.crossovers[i].doCrossover(this.genes[i], other.genes[i]);
+			newChromsome.genes[i] = this.crossover.doCrossover(this.genes[i], (T)(other.get(i)));
 		}
-		
 		return null;
 	}
 

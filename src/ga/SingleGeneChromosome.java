@@ -32,7 +32,7 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	}
 	
 	public T getGene() {
-		return gene;
+		return (T)gene;
 	}
 	
 	@Override

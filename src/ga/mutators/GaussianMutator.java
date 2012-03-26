@@ -12,9 +12,10 @@ package ga.mutators;
 import java.util.Random;
 
 import ga.Mutator;
+import ga.Gene;
 import ga.genes.ListGene;
 
-public class GaussianMutator implements Mutator<ListGene> { // FIXME: this makes a bug =\
+public class GaussianMutator implements Mutator<ListGene> { 
 	private Random random;
 	private double x,y;
 	

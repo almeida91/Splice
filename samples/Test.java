@@ -12,7 +12,7 @@ public class Test {
 				new TestChromosomeFactory(),
 				new ElitismAllocator(0.3), 
 				new TournamentSelector(3));
-		ga.setStopCondition(new Generations(100));
+		ga.setStopCondition(new Generations(10000));
 		ga.execute();
 		/*
 		 * TestGenome g = new TestGenome(); for (int i = 0; i < 10; i++) {

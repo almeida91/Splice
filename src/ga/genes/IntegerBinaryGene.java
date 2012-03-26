@@ -28,6 +28,7 @@ public class IntegerBinaryGene extends BinaryGene {
 	public IntegerBinaryGene(int length) {
 		this(null);
 		setLength(length);
+		// TODO: there's no value
 	}
 	
 	@Override
