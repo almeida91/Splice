@@ -4,7 +4,7 @@ import java.util.Random;
 import ga.BasicChromosome;
 import ga.ChromosomeFactory;
 import ga.SingleGeneChromosome;
-import ga.genes.IntegerBinaryGene;
+import ga.genes.BinaryGene;
 
 
 public class OneZeroChromosomeFactory extends ChromosomeFactory {
@@ -17,8 +17,8 @@ public class OneZeroChromosomeFactory extends ChromosomeFactory {
 	
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		SingleGeneChromosome<IntegerBinaryGene> c = new OneZeroChromosome();
-		c.setGene(new IntegerBinaryGene(new BigInteger(bitSize, getRandom())));
+		SingleGeneChromosome<BinaryGene> c = new OneZeroChromosome();
+		c.setGene(new BinaryGene(new BigInteger(bitSize, getRandom())));
 		
 		return c;
 	}

@@ -19,7 +19,7 @@ import ga.Gene;
  *
  * @param <T>
  */
-public abstract class BinaryGene extends Gene<BigInteger> {
+public class BinaryGene extends Gene<BigInteger> {
 	private int length;
 	
 	public BinaryGene(BigInteger value) {
@@ -34,5 +34,10 @@ public abstract class BinaryGene extends Gene<BigInteger> {
 
 	protected void setLength(int length) {
 		this.length = length;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getValue().toString(2);
 	}
 }

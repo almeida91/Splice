@@ -1,11 +1,11 @@
 import ga.SingleGeneChromosome;
-import ga.genes.IntegerBinaryGene;
+import ga.genes.BinaryGene;
 
 
-public class OneZeroChromosome extends SingleGeneChromosome<IntegerBinaryGene> {
+public class OneZeroChromosome extends SingleGeneChromosome<BinaryGene> {
 
 	@Override
-	protected SingleGeneChromosome<IntegerBinaryGene> getNew() {
+	protected SingleGeneChromosome<BinaryGene> getNew() {
 		return new OneZeroChromosome();
 	}
 

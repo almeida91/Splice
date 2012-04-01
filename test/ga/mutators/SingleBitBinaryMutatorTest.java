@@ -11,7 +11,7 @@ package ga.mutators;
 
 import static org.junit.Assert.*;
 
-import ga.genes.IntegerBinaryGene;
+import ga.genes.BinaryGene;
 
 import java.math.BigInteger;
 import java.util.Random;
@@ -35,11 +35,10 @@ public class SingleBitBinaryMutatorTest {
 	public void testMutate() {
 		BigInteger originalValue, value = new BigInteger(512, random);
 		originalValue = value.or(BigInteger.ZERO);
-		IntegerBinaryGene gene = new IntegerBinaryGene(value);
+		BinaryGene gene = new BinaryGene(value);
 		
 		mutator.mutate(gene);
 		
 		assertEquals(1, gene.getValue().xor(originalValue).bitCount());
 	}
-
 }

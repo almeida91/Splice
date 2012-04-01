@@ -22,15 +22,33 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 	private BigInteger aMask, bMask;
 	
 	public MultiPointBinaryCrossover(int points) {
-		this.points = points;
+		this.points = points + 1;
 	}
 	
 	private void generateMasks() {
-		int step = length / (points + 1);
-		
-		for (int i = 0, j = 0; i < length; i++, j = (j + 1) % step) {
-			// TODO: where's the implementation?
+		// FIXME: this was a quick fix, maybe a better method?
+		StringBuilder ones = new StringBuilder(length);
+		String one = "1";
+		for (int i = 0; i < length; i++) {
+			ones.append(one);
 		}
+
+		aMask = new BigInteger(ones.toString(), 2);
+		byte[] m = aMask.toByteArray();
+
+		boolean zero = true;
+
+		for (int i = 0, j = 0; i < m.length; i++, j = (j + 1)
+				% (m.length / points + 1)) {
+			if (j == 0)
+				zero = !zero;
+
+			if (zero) {
+				m[i] = 0;
+			}
+		}
+		aMask = new BigInteger(m);
+		bMask = aMask.negate();
 	}
 	
 	@Override
@@ -42,9 +60,7 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 		
 		BigInteger value = a.getValue().and(aMask).xor(b.getValue().and(bMask));
 		
-		BinaryGene c = null;
-		
-		return c;
+		return new BinaryGene(value);
 	}
 
 }
