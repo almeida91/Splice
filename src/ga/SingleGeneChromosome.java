@@ -32,7 +32,7 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	}
 	
 	public T getGene() {
-		return (T)gene;
+		return gene;
 	}
 	
 	@Override
@@ -47,7 +47,7 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	
 	@Override
 	protected void mutate() {
-		mutator.mutate(gene);
+		this.mutator.mutate(gene);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -56,6 +56,10 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 		SingleGeneChromosome<T> other = (SingleGeneChromosome<T>)chromosome;
 		SingleGeneChromosome<T> newChromosome = getNew();
 		newChromosome.gene = crossover.doCrossover(gene, other.gene);
+		
+		newChromosome.mutator = mutator;
+		newChromosome.crossover = crossover;
+		
 		return newChromosome;
 	}
 

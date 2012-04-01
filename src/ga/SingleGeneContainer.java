@@ -10,9 +10,7 @@
 package ga;
 
 @SuppressWarnings("rawtypes")
-public interface SingleGeneContainer<T extends Gene> {
+public interface SingleGeneContainer<T extends Gene> extends GeneContainer<T> {
 	public void setGene(T gene);
-	public void setCrossover(Crossover<T> crossover);
-	public void setMutator(Mutator<T> mutator);
 	public T getGene();
 }

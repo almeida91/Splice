@@ -38,7 +38,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	/**
 	 * the factory to fill the initial population
 	 */
-	private ChromosomeFactory factory;
+	private ChromosomeFactory<?> factory;
 	private Random random;
 
 	/**
@@ -141,7 +141,7 @@ public class Population implements RandomComponent, InitializeComponent {
 		this.size = size;
 	}
 	
-	public void setFactory(ChromosomeFactory factory) {
+	public void setFactory(ChromosomeFactory<?> factory) {
 		this.factory = factory;
 	}
 }

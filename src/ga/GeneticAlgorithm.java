@@ -13,7 +13,6 @@ import ga.dataManipulators.ConsoleOutput;
 import ga.exceptionHandlers.ErrorStream;
 import ga.stopConditions.Generations;
 
-import java.io.PrintStream;
 import java.util.Random;
 
 /**
@@ -30,7 +29,7 @@ public class GeneticAlgorithm implements RandomComponent {
 
 	private Selector selector;
 	private PopulationAllocator allocator;
-	private ChromosomeFactory factory;
+	private ChromosomeFactory<?> factory;
 	private DataManipulator dataManipulator = new ConsoleOutput();
 	private StopCondition stopCondition = new Generations(2000);
 	private ExceptionHandler handler = new ErrorStream();
@@ -43,7 +42,7 @@ public class GeneticAlgorithm implements RandomComponent {
 	 * @param allocator the new population allocator
 	 * @param selector the crossover candidates selector
 	 */
-	public GeneticAlgorithm(ChromosomeFactory factory,
+	public GeneticAlgorithm(ChromosomeFactory<?> factory,
 			PopulationAllocator allocator, Selector selector) {
 		this.allocator = allocator;
 		this.selector = selector;

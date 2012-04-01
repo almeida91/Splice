@@ -10,7 +10,7 @@
 package ga;
 
 @SuppressWarnings("rawtypes")
-public abstract class Chromosome<T extends Gene> extends BasicChromosome {
+public abstract class Chromosome<T extends Gene> extends BasicChromosome implements GeneContainer<T> {
 	private T[] genes;
 	private Crossover<T> crossover;
 	private Mutator<T> mutator;

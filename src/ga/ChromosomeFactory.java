@@ -18,12 +18,12 @@ import java.util.Random;
  * @author igor
  * 
  */
-public abstract class ChromosomeFactory implements RandomComponent, InitializeComponent {
+@SuppressWarnings("rawtypes")
+public abstract class ChromosomeFactory<T extends Gene> implements RandomComponent, InitializeComponent {
 	private Random random;
 	private ChromosomeType type;
-	private Gene[] genes;
-	private Mutator[] mutators;
-	private Crossover[] crossovers;
+	private Mutator<T> mutator;
+	private Crossover<T> crossover;
 	
 	/**
 	 * Generates a new random chromosome
@@ -42,19 +42,18 @@ public abstract class ChromosomeFactory implements RandomComponent, InitializeCo
 			type = ChromosomeType.BASIC;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public BasicChromosome generateChromosome() {
-		if (type == ChromosomeType.NORMAL) {
-			Chromosome c = (Chromosome)getRandomChromosome();
-			
-			return c;
-		}
-		else if (type == ChromosomeType.SINGLE) {
-			SingleGeneChromosome<?> c = (SingleGeneChromosome<?>)getRandomChromosome();
-			
-			return c;
-		}
+		BasicChromosome chromosome = getRandomChromosome();
+		checkType(chromosome);
 		
-		return getRandomChromosome();
+		if (type == ChromosomeType.NORMAL || type == ChromosomeType.SINGLE) {
+			GeneContainer<T> c = (GeneContainer<T>)chromosome;
+			c.setCrossover(crossover);
+			c.setMutator(mutator);
+		}			
+		
+		return chromosome;
 	}
 
 	public void initialize() { }
@@ -65,5 +64,22 @@ public abstract class ChromosomeFactory implements RandomComponent, InitializeCo
 
 	public void setRandom(Random random) {
 		this.random = random;
+	}
+
+	public Mutator<T> getMutator() {
+		return mutator;
+	}
+
+	public void setMutator(Mutator<T> mutator) {
+		this.mutator = mutator;
+		this.mutator.setRandom(random);
+	}
+
+	public Crossover<T> getCrossover() {
+		return crossover;
+	}
+
+	public void setCrossover(Crossover<T> crossover) {
+		this.crossover = crossover;
 	}
 }

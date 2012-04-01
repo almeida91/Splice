@@ -14,7 +14,7 @@ import java.util.Random;
 import ga.Mutator;
 import ga.genes.ListGene;
 
-public class PermutateMutator<T> implements Mutator<ListGene> {
+public class PermutateMutator<T> implements Mutator<ListGene<T>> {
 	private Random random;
 	
 	@Override
@@ -28,17 +28,16 @@ public class PermutateMutator<T> implements Mutator<ListGene> {
 	}
 
 	@Override
-	public void mutate(ListGene gene) {
-		ListGene<Object> g = (ListGene<Object>)gene;
-		Object temp;
+	public void mutate(ListGene<T> gene) {
+		T temp;
 		int i,j;
 		
-		i = random.nextInt(g.getValue().size());
-		j = random.nextInt(g.getValue().size());
+		i = random.nextInt(gene.getSize());
+		j = random.nextInt(gene.getSize());
 		
-		temp = g.get(i);
-		g.set(i, g.get(j));
-		g.set(j, temp);
+		temp = gene.get(i);
+		gene.set(i, gene.get(j));
+		gene.set(j, temp);
 	}
 
 }
