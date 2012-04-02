@@ -7,7 +7,6 @@ import ga.crossovers.SinglePointBinaryCrossover;
 import ga.genes.BinaryGene;
 import ga.mutators.SingleBitBinaryMutator;
 
-
 public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	private int limit;
 	
@@ -21,12 +20,10 @@ public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 		setCrossover(new SinglePointBinaryCrossover());
 	}
 	
-	
 	@Override
 	public BasicChromosome getRandomChromosome() {
 		SingleGeneChromosome<BinaryGene> c = new OneZeroChromosome();
 		c.setGene(new BinaryGene(new BigInteger(String.valueOf(getRandom().nextInt(limit)))));
 		return c;
 	}
-
 }

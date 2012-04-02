@@ -26,8 +26,7 @@ public class MultiBitBinaryMutator implements Mutator<BinaryGene> {
 	@Override
 	public void mutate(BinaryGene gene) {
 		for (int i = 0; i < nBits; i++) {
-			// FIXME: requires some casts
-			//gene.setValue(gene.getValue().flipBit(random.nextInt(gene.getLength())));
+			gene.setValue(gene.getValue().flipBit(getRandom().nextInt(gene.getLength())));
 		}
 	}
 
