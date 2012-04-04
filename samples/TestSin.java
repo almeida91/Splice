@@ -1,8 +1,8 @@
 
-import ga.GeneticAlgorithm;
-import ga.allocators.ElitismAllocator;
-import ga.selectors.TournamentSelector;
-import ga.stopConditions.Generations;
+import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ElitismAllocator;
+import splice.ga.selectors.TournamentSelector;
+import splice.ga.stopConditions.Generations;
 
 public class TestSin {
 	public static void main(String[] args) {

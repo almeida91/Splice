@@ -1,6 +1,6 @@
 package tsp;
 
-import ga.BasicChromosome;
+import splice.ga.BasicChromosome;
 
 public class TspChromosome extends BasicChromosome {
 

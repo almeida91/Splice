@@ -1,6 +1,6 @@
 package knapsack;
 
-import ga.BasicChromosome;
+import splice.ga.BasicChromosome;
 
 public class KnapsackChromosome extends BasicChromosome {
 

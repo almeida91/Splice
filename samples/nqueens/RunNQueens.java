@@ -1,8 +1,8 @@
 package nqueens;
 
-import ga.GeneticAlgorithm;
-import ga.allocators.ElitismAllocator;
-import ga.selectors.TournamentSelector;
+import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ElitismAllocator;
+import splice.ga.selectors.TournamentSelector;
 
 public class RunNQueens {
 	public static void main(String[] args) {

@@ -9,7 +9,7 @@
  */
 package util;
 
-import ga.BasicChromosome;
+import splice.ga.BasicChromosome;
 
 /**
  * Simple chromosome used to run the tests

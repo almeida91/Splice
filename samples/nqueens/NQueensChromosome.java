@@ -1,6 +1,6 @@
 package nqueens;
 
-import ga.BasicChromosome;
+import splice.ga.BasicChromosome;
 
 /**
  * This is just a test needs heavy refactory

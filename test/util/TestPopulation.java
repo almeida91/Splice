@@ -1,6 +1,6 @@
 package util;
 
-import ga.Population;
+import splice.ga.Population;
 
 public class TestPopulation extends Population {
 	double average;

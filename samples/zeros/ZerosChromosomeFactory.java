@@ -3,12 +3,13 @@ package zeros;
 import java.util.ArrayList;
 import java.util.List;
 
-import ga.BasicChromosome;
-import ga.ChromosomeFactory;
-import ga.Crossover;
-import ga.Mutator;
-import ga.genes.ListGene;
-import ga.mutators.GaussianMutator;
+import splice.ga.BasicChromosome;
+import splice.ga.ChromosomeFactory;
+import splice.ga.Crossover;
+import splice.ga.Mutator;
+import splice.ga.genes.ListGene;
+import splice.ga.mutators.GaussianMutator;
+
 
 public class ZerosChromosomeFactory extends ChromosomeFactory {
 	private int size;

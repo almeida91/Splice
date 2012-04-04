@@ -1,7 +1,7 @@
 package zeros;
 
-import ga.SingleGeneChromosome;
-import ga.genes.ListGene;
+import splice.ga.SingleGeneChromosome;
+import splice.ga.genes.ListGene;
 
 public class ZerosChromosome extends SingleGeneChromosome<ListGene<Integer>> {
 	@Override

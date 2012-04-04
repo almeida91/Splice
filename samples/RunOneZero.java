@@ -1,7 +1,7 @@
-import ga.GeneticAlgorithm;
-import ga.allocators.ReplaceAllocator;
-import ga.selectors.MinimizeTournametSelector;
-import ga.stopConditions.Generations;
+import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ReplaceAllocator;
+import splice.ga.selectors.MinimizeTournametSelector;
+import splice.ga.stopConditions.Generations;
 
 public class RunOneZero {
 	public static void main(String[] args) {

@@ -1,14 +1,15 @@
 
 import java.math.BigInteger;
 
-import ga.GeneticAlgorithm;
-import ga.allocators.ElitismAllocator;
-import ga.allocators.ReplaceAllocator;
-import ga.crossovers.SinglePointBinaryCrossover;
-import ga.genes.BinaryGene;
-import ga.selectors.TournamentSelector;
-import ga.stopConditions.Generations;
-import ga.stopConditions.MinimumBestFitness;
+import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ElitismAllocator;
+import splice.ga.allocators.ReplaceAllocator;
+import splice.ga.crossovers.SinglePointBinaryCrossover;
+import splice.ga.genes.BinaryGene;
+import splice.ga.selectors.TournamentSelector;
+import splice.ga.stopConditions.Generations;
+import splice.ga.stopConditions.MinimumBestFitness;
+
 
 public class Test {
 	public static void main(String[] args) {

@@ -9,8 +9,8 @@
  */
 package util;
 
-import ga.BasicChromosome;
-import ga.ChromosomeFactory;
+import splice.ga.BasicChromosome;
+import splice.ga.ChromosomeFactory;
 
 public class TestChromosomeFactory extends ChromosomeFactory {
 	double value;

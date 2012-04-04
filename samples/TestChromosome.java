@@ -1,5 +1,5 @@
 
-import ga.BasicChromosome;
+import splice.ga.BasicChromosome;
 
 public class TestChromosome extends BasicChromosome {
 	long a, b;

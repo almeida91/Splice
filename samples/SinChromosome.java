@@ -1,5 +1,5 @@
 
-import ga.BasicChromosome;
+import splice.ga.BasicChromosome;
 
 public class SinChromosome extends BasicChromosome {
 	private double x, y;

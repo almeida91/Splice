@@ -1,5 +1,5 @@
-import ga.SingleGeneChromosome;
-import ga.genes.BinaryGene;
+import splice.ga.SingleGeneChromosome;
+import splice.ga.genes.BinaryGene;
 
 public class OneZeroChromosome extends SingleGeneChromosome<BinaryGene> {
 	@Override
