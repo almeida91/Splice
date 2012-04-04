@@ -14,22 +14,29 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import splice.ga.Population;
 import splice.ga.stopConditions.MinimumAverageFitness;
+import util.TestPopulation;
 
 public class MinimumAverageFitnessTest {
-	// FIXME: requires a fake population object, as there's no longer GenerationData class
 	final double MINIMUM_FITNESS = 0.5;
-	final double STEP = 0.6;
+	final double STEP = 0.3;
 	MinimumAverageFitness condition;
+	Population populationContinue, populationStop;
 
 	@Before
 	public void setUp() throws Exception {
 		condition = new MinimumAverageFitness(MINIMUM_FITNESS);
-		
+		populationContinue = new TestPopulation(MINIMUM_FITNESS - STEP);
+		populationStop = new TestPopulation(MINIMUM_FITNESS + STEP);
 	}
 
 	@Test
 	public void testStop() {
+		condition.setPopulation(populationContinue);
+		assertFalse(condition.stop(0));
+		condition.setPopulation(populationStop);
+		assertTrue(condition.stop(0));
 	}
 
 }
