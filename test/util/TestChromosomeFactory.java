@@ -12,6 +12,7 @@ package util;
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 
+@SuppressWarnings("rawtypes")
 public class TestChromosomeFactory extends ChromosomeFactory {
 	double value;
 	

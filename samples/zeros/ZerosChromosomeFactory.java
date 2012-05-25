@@ -11,6 +11,7 @@ import splice.ga.genes.ListGene;
 import splice.ga.mutators.GaussianMutator;
 
 
+@SuppressWarnings("rawtypes")
 public class ZerosChromosomeFactory extends ChromosomeFactory {
 	private int size;
 	private int maxValue;
@@ -21,6 +22,7 @@ public class ZerosChromosomeFactory extends ChromosomeFactory {
 	}
 	
 
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public BasicChromosome getRandomChromosome() {
 		ZerosChromosome c = new ZerosChromosome();

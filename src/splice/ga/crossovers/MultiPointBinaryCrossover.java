@@ -12,7 +12,6 @@ package splice.ga.crossovers;
 import java.math.BigInteger;
 
 import splice.ga.Crossover;
-import splice.ga.Gene;
 import splice.ga.genes.BinaryGene;
 
 

@@ -11,11 +11,11 @@ package splice.ga.mutators;
 
 import java.util.Random;
 
-import splice.ga.Gene;
 import splice.ga.Mutator;
 import splice.ga.genes.ListGene;
 
 
+@SuppressWarnings("rawtypes")
 public class GaussianMutator implements Mutator<ListGene> { 
 	private Random random;
 	private double x,y;
@@ -39,6 +39,7 @@ public class GaussianMutator implements Mutator<ListGene> {
 		return random;
 	}
 
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void mutate(ListGene gene) {
 		gene.set(random.nextInt(gene.getSize()), ((random.nextGaussian() * (y - x)) + x));

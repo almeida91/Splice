@@ -10,7 +10,6 @@
 package splice.ga.dataManipulators;
 
 import splice.ga.DataManipulator;
-import splice.ga.Population;
 
 /**
  * Prints each generation data into the default output stream

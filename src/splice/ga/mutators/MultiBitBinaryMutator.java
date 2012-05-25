@@ -11,7 +11,6 @@ package splice.ga.mutators;
 
 import java.util.Random;
 
-import splice.ga.Gene;
 import splice.ga.Mutator;
 import splice.ga.genes.BinaryGene;
 
