@@ -35,18 +35,5 @@ public class ParallelPopulation extends Population {
 		}
 		
 		fitnessAverage = sum.getValue() / getSize();
-		/*
-		CalculateFitnessWorker t1,t2;
-		t1 = new CalculateFitnessWorker(this, 0, getSize() / 2);
-		t2 = new CalculateFitnessWorker(this, getSize() / 2, getSize());
-		
-		t1.start();
-		t2.start();
-		
-		t1.join();
-		t2.join();
-
-		fitnessAverage = (t1.getSum() + t2.getSum())  / getSize();
-		*/
 	}
 }

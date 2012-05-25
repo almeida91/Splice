@@ -37,10 +37,10 @@ public class GenerationPopulationOutput extends GenerationDataFileOutput {
 	}
 	
 	@Override
-	public void appendData(int generation) throws Exception {
+	public void engineAppendData(int generation) throws Exception {
 		counter += 1;
 		if (counter % step == 0) {
-			for (BasicChromosome chromosome : population.getChromosomes()) {
+			for (BasicChromosome chromosome : getPopulation().getChromosomes()) {
 				writer.append(chromosome.getFitness() + " ");
 			}
 			writer.append('\n');

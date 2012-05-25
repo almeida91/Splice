@@ -33,8 +33,16 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 		for (int i = 0; i < length; i++) {
 			ones.append(one);
 		}
+		
+		if (length == 0) {
+			aMask = BigInteger.ZERO;
+			bMask = new BigInteger("2");
+			return;
+		}
 
 		aMask = new BigInteger(ones.toString(), 2);
+		
+		
 		byte[] m = aMask.toByteArray();
 
 		boolean zero = true;

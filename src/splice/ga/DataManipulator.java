@@ -15,15 +15,46 @@ package splice.ga;
  *
  */
 public abstract class DataManipulator implements PopulationManipulator {
+	private Population population; 
+	private ExceptionHandler handler;
+	
 	/**
 	 * Appends a new generation to the execution data
 	 * @param data the data of a given generation
 	 * @throws Exception
 	 */
-	public abstract void appendData(int generation) throws Exception;
+	public abstract void engineAppendData(int generation) throws Exception;
 	/**
 	 * Saves the input
 	 * @throws Exception
 	 */
 	public abstract void saveData() throws Exception;
+	
+	@Override
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+	
+	public void setHandler(ExceptionHandler handler) {
+		this.handler = handler;
+	}
+	
+	public ExceptionHandler getHandler() {
+		return handler;
+	}
+	
+	@Override
+	public Population getPopulation() {
+		return population;
+	}
+	
+	public void appendData(int generation) {
+		try {
+			engineAppendData(generation);
+		} catch (Exception e) {
+			handler.handle(e);
+		}
+	}
+	
+	
 }

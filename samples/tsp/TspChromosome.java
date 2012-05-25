@@ -1,8 +1,9 @@
 package tsp;
 
-import splice.ga.BasicChromosome;
+import splice.ga.SingleGeneChromosome;
+import splice.ga.genes.ListGene;
 
-public class TspChromosome extends BasicChromosome {
+public class TspChromosome extends SingleGeneChromosome<ListGene<Integer>> {
 
 	@Override
 	protected double fitness() {
@@ -10,11 +11,8 @@ public class TspChromosome extends BasicChromosome {
 	}
 
 	@Override
-	protected void mutate() {
-	}
-
-	@Override
-	public BasicChromosome crossover(BasicChromosome chromosome) {
+	protected SingleGeneChromosome<ListGene<Integer>> getNew() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

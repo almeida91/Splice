@@ -18,27 +18,16 @@ import splice.ga.Population;
  *
  */
 public class ConsoleOutput extends DataManipulator {
-	private Population population;
 	
 	@Override
-	public void appendData(int generation) throws Exception {
+	public void engineAppendData(int generation) throws Exception {
 		System.out.println("Generation #" + generation + " fitness: "
-				+ population.getFitnessAverage() + " max: "
-				+ population.getMaximum().getFitness() + " min: "
-				+ population.getMinimum().getFitness() + " pop size: "
-				+ population.getSize());
+				+ getPopulation().getFitnessAverage() + " max: "
+				+ getPopulation().getMaximum().getFitness() + " min: "
+				+ getPopulation().getMinimum().getFitness() + " pop size: "
+				+ getPopulation().getSize());
 	}
 
 	@Override
 	public void saveData() { }
-
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-
-	@Override
-	public Population getPopulation() {
-		return population;
-	}
 }

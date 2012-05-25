@@ -18,6 +18,7 @@ public class SingleBitBinaryMutator extends MultiBitBinaryMutator {
 	
 	@Override
 	public void mutate(BinaryGene g) {
-		g.setValue(g.getValue().flipBit(getRandom().nextInt(g.getLength())));
+		int i = g.getLength() > 0 ? g.getLength() : 1;
+		g.setValue(g.getValue().flipBit(getRandom().nextInt(i)));
 	}
 }

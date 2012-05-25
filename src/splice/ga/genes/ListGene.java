@@ -13,7 +13,12 @@ import java.util.List;
 
 import splice.ga.Gene;
 
-
+/**
+ * 
+ * @author igor
+ *
+ * @param <T>
+ */
 public class ListGene<T> extends Gene<List<T>> {
 	public ListGene(List<T> value) {
 		super(value);

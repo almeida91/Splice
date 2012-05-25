@@ -17,7 +17,7 @@ import java.util.Random;
  * interfaces. You may find it easier to customize the behavior of a single
  * individual using this class as you have to implement by yourself the logic
  * behind the crossover and mutation. It is also good when you need a better
- * performance as it makes fewer abstractions than its derivates.
+ * performance as it makes fewer abstractions than its derivatives.
  * Besides the fitness value and a Random object reference, by default no other
  * value is hold by this class.
  * 
