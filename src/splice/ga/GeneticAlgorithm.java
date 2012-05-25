@@ -54,6 +54,8 @@ public class GeneticAlgorithm implements RandomComponent {
 	 * executes the genetic algorithm
 	 */
 	public void execute() {
+		dataManipulator.setHandler(handler);
+		
 		setRandomGenerator(selector);
 		setRandomGenerator(allocator);
 		setRandomGenerator(factory);
@@ -74,13 +76,13 @@ public class GeneticAlgorithm implements RandomComponent {
 			int i = 0;
 			do {
 				population.calculateFitnessSum();
+				dataManipulator.appendData(i);
 				
 				allocator.reset();
 				selector.beforeGeneration();
 				doGeneneration();
 				allocator.allocate();
 				
-				dataManipulator.appendData(i);
 				i++;
 			} while (!stopCondition.stop(i));
 			dataManipulator.saveData();
