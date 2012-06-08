@@ -23,10 +23,48 @@ import splice.ga.Gene;
 public class BinaryGene extends Gene<BigInteger> {
 	private int length;
 	
+	private static byte[] getBytes(long x){
+        byte[] b = new byte[8];
+        b[0] = (byte)(x >> 0);
+        b[1] = (byte)(x >> 8);
+        b[2] = (byte)(x >> 16);
+        b[3] = (byte)(x >> 24);
+        b[4] = (byte)(x >> 32);
+        b[5] = (byte)(x >> 40);
+        b[6] = (byte)(x >> 48);
+        b[7] = (byte)(x >> 56);
+        return b;
+    }
+	
+	private static byte[] getBytes(int x){
+        byte[] b = new byte[4];
+        b[0] = (byte)(x >> 0);
+        b[1] = (byte)(x >> 8);
+        b[2] = (byte)(x >> 16);
+        b[3] = (byte)(x >> 24);
+        return b;
+    }
+	
 	public BinaryGene(BigInteger value) {
 		super(value);
-		if (value != null)
+		if (value == null)
 			length = value.bitLength();
+	}
+	
+	public BinaryGene(int value) {
+		this(new BigInteger(getBytes(value)));
+	}
+	
+	public BinaryGene(long value) {
+		this(new BigInteger(getBytes(value)));
+	}
+	
+	public BinaryGene(double value) {
+		this(new BigInteger(getBytes(Double.doubleToLongBits(value))));
+	}
+	
+	public BinaryGene(float value) {
+		this(new BigInteger(getBytes(Float.floatToIntBits(value))));
 	}
 	
 	public int getLength() {
@@ -42,22 +80,41 @@ public class BinaryGene extends Gene<BigInteger> {
 		return this.getValue().toString(2);
 	}
 	
+	/**
+	 * Converts the internal value using the built-in JDK's IEEE 754
+	 * bit layout
+	 * @return the gene's float value
+	 */
 	public float toFloat() {
         return Float.intBitsToFloat(getValue().intValue());
     }
 	
+	/**
+	 * Converts the bit-string value to the "double format" of IEEE 754
+	 * floating point bit layout as defined in the JDK
+	 * @return double value represented by the bit-string
+	 */
 	public double toDouble() {
 		return Double.longBitsToDouble(getValue().longValue());
 	}
 	
+	/**
+	 * @return conversion to integer value
+	 */
 	public int toInt() {
 		return getValue().intValue();
 	}
 	
+	/**
+	 * @return bit-string value converted to long
+	 */
 	public long toLong() {
 		return getValue().longValue();
 	}
 	
+	/**
+	 * @return the raw byte array bit-string representation
+	 */
 	public byte[] toByteArray() {
 		return getValue().toByteArray();
 	}
