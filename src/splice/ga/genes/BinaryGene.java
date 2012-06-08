@@ -33,12 +33,32 @@ public class BinaryGene extends Gene<BigInteger> {
 		return length;
 	}
 
-	protected void setLength(int length) {
+	public void setLength(int length) {
 		this.length = length;
 	}
 	
 	@Override
 	public String toString() {
 		return this.getValue().toString(2);
+	}
+	
+	public float toFloat() {
+        return Float.intBitsToFloat(getValue().intValue());
+    }
+	
+	public double toDouble() {
+		return Double.longBitsToDouble(getValue().longValue());
+	}
+	
+	public int toInt() {
+		return getValue().intValue();
+	}
+	
+	public long toLong() {
+		return getValue().longValue();
+	}
+	
+	public byte[] toByteArray() {
+		return getValue().toByteArray();
 	}
 }
