@@ -9,12 +9,10 @@
  */
 package splice.ga.stopConditions;
 
-import splice.ga.Population;
 import splice.ga.StopCondition;
 
-public class MinimumBestFitness implements StopCondition {
+public class MinimumBestFitness extends StopCondition {
 	private double minimum;
-	private Population population;
 
 	public MinimumBestFitness(double minimum) {
 		this.minimum = minimum;
@@ -22,16 +20,6 @@ public class MinimumBestFitness implements StopCondition {
 	
 	@Override
 	public boolean stop(int generation) {
-		return population.getMaximum().getFitness() >= minimum;
-	}
-
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-
-	@Override
-	public Population getPopulation() {
-		return population;
+		return getPopulation().getMaximum().getFitness() >= minimum;
 	}
 }

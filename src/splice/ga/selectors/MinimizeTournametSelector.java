@@ -1,48 +1,35 @@
+/*
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * DEALINGS IN THE SOFTWARE.
+ */
 package splice.ga.selectors;
 
-import java.util.Random;
-
 import splice.ga.BasicChromosome;
-import splice.ga.MinimizeSelector;
-import splice.ga.Population;
+import splice.ga.Selector;
 
-
-public class MinimizeTournametSelector implements MinimizeSelector {
-	private Population population;
-	private Random random;
-	
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-	
-	@Override
-	public Population getPopulation() {
-		return population;
-	}
-
+public class MinimizeTournametSelector extends Selector {
 	@Override
 	public void beforeGeneration() { }
 	
 	@Override
 	public BasicChromosome getChromosome() {
 		BasicChromosome a,b;
-		a = population.getRandomChromosome();
-		b = population.getRandomChromosome();
+		a = getPopulation().getRandomChromosome();
+		b = getPopulation().getRandomChromosome();
 		
 		if (a.getFitness() < b.getFitness())
 			return a;
 		else
 			return b;
+	}
+	
+	@Override
+	public void initialize() {
+		getProblemType().setMinimization();
 	}
 }

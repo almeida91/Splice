@@ -9,7 +9,6 @@
  */
 package splice.ga.stopConditions;
 
-import splice.ga.Population;
 import splice.ga.StopCondition;
 
 /**
@@ -17,7 +16,7 @@ import splice.ga.StopCondition;
  * @author igor
  *
  */
-public class Generations implements StopCondition {
+public class Generations extends StopCondition {
 	private int generations;
 
 	public Generations(int generations) {
@@ -31,13 +30,5 @@ public class Generations implements StopCondition {
 
 	public int getGenerations() {
 		return generations;
-	}
-
-	@Override
-	public void setPopulation(Population population) { }
-
-	@Override
-	public Population getPopulation() {
-		return null;
 	}
 }

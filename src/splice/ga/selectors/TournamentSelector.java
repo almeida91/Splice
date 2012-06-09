@@ -9,11 +9,8 @@
  */
 package splice.ga.selectors;
 
-import java.util.Random;
-
 import splice.ga.BasicChromosome;
-import splice.ga.MaxmizeSelector;
-import splice.ga.Population;
+import splice.ga.Selector;
 
 
 /**
@@ -21,26 +18,8 @@ import splice.ga.Population;
  * @author igor
  *
  */
-public class TournamentSelector implements MaxmizeSelector {
+public class TournamentSelector extends Selector {
 	private int k;
-	private Population population;
-	private Random random;
-	
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-
 	/**
 	 * @param size the tournament size
 	 */
@@ -50,11 +29,11 @@ public class TournamentSelector implements MaxmizeSelector {
 
 	@Override
 	public BasicChromosome getChromosome() {
-		BasicChromosome chromosome = population.getRandomChromosome(), temp;
+		BasicChromosome chromosome = getPopulation().getRandomChromosome(), temp;
 		double fitness = chromosome.getFitness();
 
 		for (int i = 0; i < k; i++) {
-			temp = population.getRandomChromosome();
+			temp = getPopulation().getRandomChromosome();
 			if (temp.getFitness() > fitness)
 				chromosome = temp;
 		}
@@ -63,10 +42,10 @@ public class TournamentSelector implements MaxmizeSelector {
 	}
 	
 	@Override
-	public Population getPopulation() {
-		return population;
-	}
-
-	@Override
 	public void beforeGeneration() { }
+	
+	@Override
+	public void initialize() {
+		getProblemType().setMaxmization();
+	}
 }

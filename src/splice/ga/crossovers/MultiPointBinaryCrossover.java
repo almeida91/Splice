@@ -67,8 +67,10 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 		}
 		
 		BigInteger value = a.getValue().and(aMask).xor(b.getValue().and(bMask));
+		BinaryGene g = new BinaryGene(value);
+		g.setLength(a.getLength());
 		
-		return new BinaryGene(value);
+		return g;
 	}
 
 }

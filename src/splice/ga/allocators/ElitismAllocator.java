@@ -12,33 +12,51 @@ package splice.ga.allocators;
 import splice.ga.PopulationAllocator;
 
 /**
- * Allocates the new set base on the elistism concept
+ * Allocates the new set base on the elitist concept
  * @author igor
  *
  */
 public class ElitismAllocator extends PopulationAllocator {
 	private double rate;
+	private int n;
 	
 	/**
 	 * 
 	 * @param rate the percentage of the old population to be kept
 	 */
 	public ElitismAllocator(double rate) {
-		super();
 		this.rate = rate;
 	}
 
 	@Override
 	public void allocate() {
 		getPopulation().sort();
-		int n = (int)(getPopulation().getSize() * rate);
-		getNewPopulation().addAll(getPopulation().getChromosomes().subList(getPopulation().getSize() - n, getPopulation().getSize()));
+		
+		if (getProblemType().isMaxmization()) {
+			for (int i = 1; i <= n; i++) {
+				append(getPopulation().get(getPopulation().getSize() - i));
+			}
+		}
+		else {
+			for (int i = 0; i < n; i++) {
+				append(getPopulation().get(i)); 
+			}
+		}
+		
 		setPopulation(getNewPopulation());
 	}
 
 	public double getRate() {
 		return rate;
 	}
-
-
+	
+	@Override
+	public boolean complete() {
+		return bufferSize() >= getPopulation().getSize() - n;
+	}
+	
+	@Override
+	public void initialize() {
+		n = (int)(getPopulation().getSize() * rate);
+	}
 }

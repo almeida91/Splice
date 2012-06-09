@@ -9,7 +9,6 @@
  */
 package splice.ga;
 
-
 import java.util.Random;
 
 import splice.ga.dataManipulators.ConsoleOutput;
@@ -34,6 +33,7 @@ public class GeneticAlgorithm implements RandomComponent {
 	private DataManipulator dataManipulator = new ConsoleOutput();
 	private StopCondition stopCondition = new Generations(2000);
 	private ExceptionHandler handler = new ErrorStream();
+	private ProblemType problemType = new ProblemType();
 	
 	private Random random = new Random();
 	
@@ -48,6 +48,8 @@ public class GeneticAlgorithm implements RandomComponent {
 		this.allocator = allocator;
 		this.selector = selector;
 		this.factory = factory;
+		
+		problemType.setMaxmization();
 	}
 
 	/**
@@ -59,18 +61,25 @@ public class GeneticAlgorithm implements RandomComponent {
 		setRandomGenerator(selector);
 		setRandomGenerator(allocator);
 		setRandomGenerator(factory);
+		setRandomGenerator(population);
 		
 		factory.initialize();
 		
 		population.setSize(pSize);
 		population.setFactory(factory);
-		setRandomGenerator(population);
 		population.initialize();
 
 		setPopulationManipulator(allocator);
 		setPopulationManipulator(selector);
 		setPopulationManipulator(stopCondition);
 		setPopulationManipulator(dataManipulator);
+		
+		setProblemType(allocator);
+		setProblemType(stopCondition);
+		setProblemType(selector);
+		
+		allocator.initialize();
+		selector.initialize();
 		
 		try {
 			int i = 0;
@@ -98,7 +107,7 @@ public class GeneticAlgorithm implements RandomComponent {
 	protected void doGeneneration() {
 		BasicChromosome a, b, c;
 
-		for (int i = 0; i < getPopulationSize(); i += 2) {
+		while (!allocator.complete()) {
 			a = getChromosome();
 			b = getChromosome();
 			
@@ -110,6 +119,10 @@ public class GeneticAlgorithm implements RandomComponent {
 			mutate(c);
 			allocator.append(c);
 		}
+	}
+	
+	private void setProblemType(ProblemTypeComponent component) {
+		component.setProblemType(problemType);
 	}
 	
 	private void setRandomGenerator(RandomComponent component) {

@@ -9,6 +9,8 @@
  */
 package splice.ga;
 
+import java.util.Random;
+
 /**
  * This class contains a single gene, it is useful when you want to store
  * just a single information. You could also use the Chromosome class
@@ -63,4 +65,14 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 		return newChromosome;
 	}
 
+	@Override
+	public String toString() {
+		return gene.toString();
+	}
+	
+	@Override
+	public void setRandom(Random random) {
+		super.setRandom(random);
+		gene.setRandom(random);
+	}
 }

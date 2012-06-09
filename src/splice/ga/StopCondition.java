@@ -14,6 +14,21 @@ package splice.ga;
  * @author igor
  *
  */
-public interface StopCondition extends PopulationManipulator {
-	public boolean stop(int generation);
+public abstract class StopCondition extends PopulationManipulator implements ProblemTypeComponent {
+	private ProblemType problemType;
+	
+	/**
+	 * Defines when the GA may stop based on a defined condition
+	 * @param generation current generation's number
+	 * @return true if the condition has been met
+	 */
+	public abstract boolean stop(int generation);
+
+	public ProblemType getProblemType() {
+		return problemType;
+	}
+
+	public void setProblemType(ProblemType problemType) {
+		this.problemType = problemType;
+	}
 }

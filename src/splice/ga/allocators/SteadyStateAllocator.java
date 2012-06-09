@@ -34,5 +34,14 @@ public class SteadyStateAllocator extends PopulationAllocator {
 			getPopulation().getChromosomes().set(i, getNewPopulation().get((getNewPopulation().size() - 1) - i));
 		}
 	}
+	
+	@Override
+	public boolean complete() {
+		return false;
+	}
 
+	@Override
+	public void initialize() {
+		
+	}
 }

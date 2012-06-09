@@ -14,8 +14,7 @@ package splice.ga;
  * @author igor
  *
  */
-public abstract class DataManipulator implements PopulationManipulator {
-	private Population population; 
+public abstract class DataManipulator extends PopulationManipulator {
 	private ExceptionHandler handler;
 	
 	/**
@@ -30,22 +29,12 @@ public abstract class DataManipulator implements PopulationManipulator {
 	 */
 	public abstract void saveData() throws Exception;
 	
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-	
 	public void setHandler(ExceptionHandler handler) {
 		this.handler = handler;
 	}
 	
 	public ExceptionHandler getHandler() {
 		return handler;
-	}
-	
-	@Override
-	public Population getPopulation() {
-		return population;
 	}
 	
 	public void appendData(int generation) {
@@ -55,6 +44,4 @@ public abstract class DataManipulator implements PopulationManipulator {
 			handler.handle(e);
 		}
 	}
-	
-	
 }

@@ -9,11 +9,8 @@
  */
 package splice.ga.selectors;
 
-import java.util.Random;
-
 import splice.ga.BasicChromosome;
-import splice.ga.MaxmizeSelector;
-import splice.ga.Population;
+import splice.ga.Selector;
 
 
 /**
@@ -21,45 +18,27 @@ import splice.ga.Population;
  * @author igor
  *
  */
-public class RoulleteSelector implements MaxmizeSelector {
-	private Population population;
-	private Random random;
-	
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-	
+public class RoulleteSelector extends Selector {
 	@Override
 	public BasicChromosome getChromosome() {
 		int i;
 		double aux = 0;
-		double limit = getRandom().nextGaussian() * population.getFitnessSum();
+		double limit = getRandom().nextGaussian() * getPopulation().getFitnessSum();
 
-		for (i = 0; i < population.getSize() & aux < limit; ++i) {
-			aux += population.get(i).getFitness();
+		for (i = 0; i < getPopulation().getSize() & aux < limit; ++i) {
+			aux += getPopulation().get(i).getFitness();
 		}
 
-		return population.get(i == 0 ? i : i - 1);
+		return getPopulation().get(i == 0 ? i : i - 1);
 	}
 	
 	@Override
-	public Population getPopulation() {
-		return population;
+	public void beforeGeneration() { 
+		getPopulation().sort();
 	}
-
+	
 	@Override
-	public void beforeGeneration() {
-		population.sort();
+	public void initialize() {
+		getProblemType().setMaxmization();
 	}
 }

@@ -21,7 +21,7 @@ import splice.ga.Gene;
  * @param <T>
  */
 public class BinaryGene extends Gene<BigInteger> {
-	private int length;
+	private int length = 0;
 	
 	private static byte[] getBytes(long x){
         byte[] b = new byte[8];
@@ -47,24 +47,36 @@ public class BinaryGene extends Gene<BigInteger> {
 	
 	public BinaryGene(BigInteger value) {
 		super(value);
-		if (value == null)
+		if (value != null)
 			length = value.bitLength();
 	}
 	
 	public BinaryGene(int value) {
 		this(new BigInteger(getBytes(value)));
+		length = 32;
 	}
 	
 	public BinaryGene(long value) {
 		this(new BigInteger(getBytes(value)));
+		length = 64;
 	}
 	
 	public BinaryGene(double value) {
 		this(new BigInteger(getBytes(Double.doubleToLongBits(value))));
+		length = 64;
 	}
 	
 	public BinaryGene(float value) {
 		this(new BigInteger(getBytes(Float.floatToIntBits(value))));
+		length = 64;
+	}
+	
+	@Override
+	public void initialize() {
+		if (getValue() != null)
+			return;
+		if (length == 0)
+			throw new RuntimeException("BinaryGene must have lenght set");
 	}
 	
 	public int getLength() {

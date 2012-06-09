@@ -19,10 +19,11 @@ import java.util.Random;
  * @author igor
  * 
  */
-public abstract class PopulationAllocator implements RandomComponent, PopulationManipulator {
+public abstract class PopulationAllocator extends PopulationManipulator implements RandomComponent, InitializeComponent, ProblemTypeComponent {
 	private ArrayList<BasicChromosome> newPopulation;
 	private Population population;
 	private Random random;
+	private ProblemType problemType;
 	
 	public void setPopulation(ArrayList<BasicChromosome> population) {
 		this.population.getChromosomes().clear();
@@ -55,6 +56,12 @@ public abstract class PopulationAllocator implements RandomComponent, Population
 	public abstract void allocate();
 	
 	/**
+	 * 
+	 * @return true if the buffer has been filled
+	 */
+	public abstract boolean complete();
+	
+	/**
 	 * Appends a chromosome to the new population
 	 * @param chromosome
 	 */
@@ -78,12 +85,22 @@ public abstract class PopulationAllocator implements RandomComponent, Population
 		newPopulation = new ArrayList<BasicChromosome>(population.getSize());
 	}
 	
+	public int bufferSize() {
+		return newPopulation.size();
+	}
+	
 	/**
 	 * sorts the the new population buffer
 	 */
 	public void sortNewPopulation() {
 		Collections.sort(newPopulation, newPopulation.get(0).getComparator());
 	}
-	
-	
+
+	public ProblemType getProblemType() {
+		return problemType;
+	}
+
+	public void setProblemType(ProblemType problemType) {
+		this.problemType = problemType;
+	}
 }

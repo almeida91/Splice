@@ -9,7 +9,14 @@
  */
 package splice.ga;
 
-public interface PopulationManipulator {
-	public void setPopulation(Population population);
-	public Population getPopulation();
+public abstract class PopulationManipulator {
+	private Population population;
+	
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+	
+	public Population getPopulation() {
+		return population;
+	}
 }

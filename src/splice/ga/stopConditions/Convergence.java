@@ -9,61 +9,57 @@
  */
 package splice.ga.stopConditions;
 
-import splice.ga.Population;
 import splice.ga.StopCondition;
 
 /**
  * Stops the genetic algorithm when after n-generations no evolution is achieved
  * shouldn't used with non-elitist allocators as the values may change so it
- * will come to an infinite loop.
- * This condition considers evolution the increase in the population's best fitness
+ * will come to an infinite loop. This condition considers evolution the
+ * increase in the population's best fitness
+ * 
  * @author igor
- *
+ * 
  */
-public class Convergence implements StopCondition {
+public class Convergence extends StopCondition {
 	private int maxGenerations;
-	private double minFitness = 0;
-	private Population population;
-	
+	private double refFitness = 0;
+
 	private double bestFitness;
-	private int generations = 0; 
-	
+	private int generations = 0;
+
 	public Convergence(int maxGenerations) {
 		this.maxGenerations = maxGenerations;
 	}
-	
+
 	/**
 	 * like the default constructor, but it will not stop if the minimum fitness
-	 * has not been achieved 
+	 * has not been achieved
+	 * 
 	 * @param maxGenerations
-	 * @param minFitness
+	 * @param refFitness
 	 */
-	public Convergence(int maxGenerations, double minFitness) {
+	public Convergence(int maxGenerations, double refFitness) {
 		this.maxGenerations = maxGenerations;
-		this.minFitness = minFitness;
+		this.refFitness = refFitness;
 	}
-	
+
 	@Override
 	public boolean stop(int generation) {
-		double fitness = population.getMaximum().getFitness();
-		
+		double fitness = getProblemType().isMaxmization() ? 
+				getPopulation().getMaximum().getFitness() : 
+				getPopulation().getMinimum().getFitness();
+
 		if (fitness == bestFitness)
 			generations++;
-		if (fitness > bestFitness) {
+		if (fitness != bestFitness) {
 			bestFitness = fitness;
 			generations = 0;
 		}
-		
-		return generations >= maxGenerations & bestFitness >= minFitness;
-	}
 
-	@Override
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
-
-	@Override
-	public Population getPopulation() {
-		return population;
+		return generations >= maxGenerations
+				& (getProblemType().isMaxmization() ? 
+						bestFitness >= refFitness :
+						bestFitness <= refFitness
+				);
 	}
 }
