@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.BasicChromosome;
-import splice.ga.stopConditions.MinimumBestFitness;
 import util.TestChromosome;
 
 public class MinimumBestFitnessTest {

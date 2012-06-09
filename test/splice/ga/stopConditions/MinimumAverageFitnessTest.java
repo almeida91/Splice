@@ -9,13 +9,13 @@
  */
 package splice.ga.stopConditions;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.Population;
-import splice.ga.stopConditions.MinimumAverageFitness;
 import util.TestPopulation;
 
 public class MinimumAverageFitnessTest {

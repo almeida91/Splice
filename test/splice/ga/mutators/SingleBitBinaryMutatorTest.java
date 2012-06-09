@@ -9,8 +9,7 @@
  */
 package splice.ga.mutators;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigInteger;
 import java.util.Random;
@@ -19,7 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.genes.BinaryGene;
-import splice.ga.mutators.SingleBitBinaryMutator;
 
 public class SingleBitBinaryMutatorTest {
 	SingleBitBinaryMutator mutator;

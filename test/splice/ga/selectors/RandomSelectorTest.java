@@ -9,16 +9,15 @@
  */
 package splice.ga.selectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Random;
-
 
 import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.Population;
-import splice.ga.selectors.RandomSelector;
 import util.TestChromosomeFactory;
 
 public class RandomSelectorTest {

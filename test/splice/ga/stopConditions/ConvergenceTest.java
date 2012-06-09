@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.BasicChromosome;
-import splice.ga.stopConditions.Convergence;
 import util.TestChromosome;
 
 public class ConvergenceTest { // TODO: unimplemented
