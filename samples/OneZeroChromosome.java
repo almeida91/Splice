@@ -9,6 +9,6 @@ public class OneZeroChromosome extends SingleGeneChromosome<BinaryGene> {
 
 	@Override
 	protected double fitness() {
-		return getGene().getValue().intValue();
+		return getGene().toDouble();
 	}
 }

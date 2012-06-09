@@ -24,7 +24,7 @@ public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	@Override
 	public BasicChromosome getRandomChromosome() {
 		SingleGeneChromosome<BinaryGene> c = new OneZeroChromosome();
-		c.setGene(new BinaryGene(new BigInteger(String.valueOf(getRandom().nextInt(limit)))));
+		c.setGene(new BinaryGene(getRandom().nextInt(limit)));
 		return c;
 	}
 }

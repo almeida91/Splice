@@ -1,9 +1,6 @@
 
-import java.io.IOException;
-
 import splice.ga.GeneticAlgorithm;
 import splice.ga.allocators.ElitismAllocator;
-import splice.ga.dataManipulators.GenerationDataFileOutput;
 import splice.ga.dataManipulators.GenerationPopulationOutput;
 import splice.ga.selectors.TournamentSelector;
 import splice.ga.stopConditions.Generations;
