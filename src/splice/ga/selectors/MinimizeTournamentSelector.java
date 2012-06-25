@@ -12,7 +12,7 @@ package splice.ga.selectors;
 import splice.ga.BasicChromosome;
 import splice.ga.Selector;
 
-public class MinimizeTournametSelector extends Selector {
+public class MinimizeTournamentSelector extends Selector {
 	@Override
 	public void beforeGeneration() { }
 	

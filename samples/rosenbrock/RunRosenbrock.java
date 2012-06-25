@@ -11,13 +11,13 @@ package rosenbrock;
 
 import splice.ga.GeneticAlgorithm;
 import splice.ga.allocators.ReplaceAllocator;
-import splice.ga.selectors.MinimizeTournametSelector;
+import splice.ga.selectors.MinimizeTournamentSelector;
 import splice.ga.stopConditions.Generations;
 
 public class RunRosenbrock {
 	public static void main(String[] args) {
-		GeneticAlgorithm ga = new GeneticAlgorithm(new RosenbrockChromosomeFactory(), new ReplaceAllocator(), new MinimizeTournametSelector());
-		ga.setStopCondition(new Generations(10000));
+		GeneticAlgorithm ga = new GeneticAlgorithm(new RosenbrockChromosomeFactory(), new ReplaceAllocator(), new MinimizeTournamentSelector());
+		ga.setStopCondition(new Generations(1000));
 		ga.execute();
 		System.out.println(ga.getPopulation().getMinimum());
 	}
