@@ -11,7 +11,12 @@ package splice.ga;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
+
+import splice.InitializeComponent;
+import splice.RandomComponent;
 
 /**
  * The chromosome's collection
@@ -107,6 +112,12 @@ public class Population implements RandomComponent, InitializeComponent {
 	 */
 	public ArrayList<BasicChromosome> getChromosomes() {
 		return chromosomes;
+	}
+	
+	public Set<BasicChromosome> getChromosomesSet() {
+		HashSet<BasicChromosome> set = new HashSet<BasicChromosome>();
+		set.addAll(chromosomes);
+		return set;
 	}
 
 	public double getFitnessSum() {

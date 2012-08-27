@@ -11,6 +11,11 @@ package splice.ga;
 
 import java.util.Random;
 
+import splice.InitializeComponent;
+import splice.ProblemType;
+import splice.ProblemTypeComponent;
+import splice.RandomComponent;
+
 /**
  * Selects chromossome's candidates for crossover
  * 

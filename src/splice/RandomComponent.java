@@ -7,26 +7,16 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package splice;
 
-public class ProblemType {
-	private boolean maxmization, minimization;
+import java.util.Random;
 
-	public void setMaxmization() {
-		maxmization = true;
-		minimization = false;
-	}
-	
-	public void setMinimization() {
-		maxmization = false;
-		minimization = true;
-	}
-
-	public boolean isMaxmization() {
-		return maxmization;
-	}
-
-	public boolean isMinimization() {
-		return minimization;
-	}
+/**
+ * A component that needs to hold a Random object
+ * @author igor
+ *
+ */
+public interface RandomComponent {
+	public void setRandom(Random random);
+	public Random getRandom();
 }

@@ -74,4 +74,17 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 		s += "]";
 		return s;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public boolean equals(Object obj) {
+		Chromosome<T> o = (Chromosome<T>)obj;
+		
+		for (int i = 0; i < genes.length; i++) {
+			if (!genes[i].equals(o.genes[i]))
+				return false;
+		}
+		
+		return true;
+	}
 }

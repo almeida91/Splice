@@ -27,6 +27,7 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
 	
 	private void generateMasks() {
 		// FIXME: this was a quick fix, maybe a better method? It raises a bug on some occasions
+		// FIXME: does it still raises the bug from above?
 		StringBuilder ones = new StringBuilder(length);
 		String one = "1";
 		for (int i = 0; i < length; i++) {

@@ -11,6 +11,9 @@ package splice.ga;
 
 import java.util.Random;
 
+import splice.InitializeComponent;
+import splice.RandomComponent;
+
 /**
  * This class defines the structure for the factories that produces
  * chromosomes to fill the population

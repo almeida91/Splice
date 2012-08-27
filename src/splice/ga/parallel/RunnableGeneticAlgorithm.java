@@ -7,17 +7,27 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package splice.ga.parallel;
 
-import splice.RandomComponent;
+import splice.ga.ChromosomeFactory;
+import splice.ga.GeneticAlgorithm;
+import splice.ga.PopulationAllocator;
+import splice.ga.Selector;
+
 
 /**
- * Defines how to mutate a Gene
+ * 
  * @author igor
  *
- * @param <T> the Gene type that can be mutated
  */
-@SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
-	public void mutate(T gene);
+public class RunnableGeneticAlgorithm extends GeneticAlgorithm implements Runnable {
+	public RunnableGeneticAlgorithm(ChromosomeFactory<?> factory,
+			PopulationAllocator allocator, Selector selector) {
+		super(factory, allocator, selector);
+	}
+
+	@Override
+	public void run() {
+		execute();
+	}
 }

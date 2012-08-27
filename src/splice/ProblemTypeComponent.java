@@ -7,16 +7,10 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package splice;
 
-import java.util.Random;
 
-/**
- * A component that needs to hold a Random object
- * @author igor
- *
- */
-interface RandomComponent {
-	public void setRandom(Random random);
-	public Random getRandom();
+public interface ProblemTypeComponent {
+	public void setProblemType(ProblemType type);
+	public ProblemType getProblemType();
 }

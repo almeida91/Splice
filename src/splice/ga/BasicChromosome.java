@@ -12,6 +12,9 @@ package splice.ga;
 import java.util.Comparator;
 import java.util.Random;
 
+import splice.InitializeComponent;
+import splice.RandomComponent;
+
 /**
  * Base class for chromosomes, it doesn't support the mutator/crossover
  * interfaces. You may find it easier to customize the behavior of a single

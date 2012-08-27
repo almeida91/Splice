@@ -7,17 +7,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package splice;
 
-import splice.RandomComponent;
-
-/**
- * Defines how to mutate a Gene
- * @author igor
- *
- * @param <T> the Gene type that can be mutated
- */
-@SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
-	public void mutate(T gene);
+public interface InitializeComponent {
+	/**
+	 * Holds any logic to be done before the algorithm's execution.
+	 * It should be noted that when this is called there's a Random
+	 * instance setted while this is not true in the constructor
+	 */
+	public void initialize();
 }

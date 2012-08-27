@@ -9,6 +9,9 @@
  */
 package splice.ga;
 
+import splice.ProblemType;
+import splice.ProblemTypeComponent;
+
 /**
  * defines how the genetic algorithm should stop
  * @author igor

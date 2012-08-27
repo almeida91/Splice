@@ -11,7 +11,7 @@ package splice.ga.exceptionHandlers;
 
 import java.io.PrintStream;
 
-import splice.ga.ExceptionHandler;
+import splice.ExceptionHandler;
 
 /**
  * 

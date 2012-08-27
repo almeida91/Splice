@@ -7,13 +7,18 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package splice.ga.parallel;
 
-/**
- * Defines the behavior for exception/error handling
- * @author igor
- *
- */
-public interface ExceptionHandler {
-	public void handle(Exception ex);
+import splice.ga.ChromosomeFactory;
+import splice.ga.PopulationAllocator;
+import splice.ga.Selector;
+
+public class MigrationGeneticAlgorithm extends RunnableGeneticAlgorithm {
+	
+
+	public MigrationGeneticAlgorithm(ChromosomeFactory<?> factory,
+			PopulationAllocator allocator, Selector selector) {
+		super(factory, allocator, selector);
+	}
+
 }

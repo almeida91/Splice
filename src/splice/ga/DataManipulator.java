@@ -9,6 +9,8 @@
  */
 package splice.ga;
 
+import splice.ExceptionHandler;
+
 /**
  * Base class for the generation data log/manipulation logic
  * @author igor

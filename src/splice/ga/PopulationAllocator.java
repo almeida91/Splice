@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import splice.InitializeComponent;
+import splice.ProblemType;
+import splice.ProblemTypeComponent;
+import splice.RandomComponent;
+
 /**
  * Allocates a new population set to the current population
  * 

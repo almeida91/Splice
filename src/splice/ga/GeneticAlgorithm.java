@@ -11,6 +11,12 @@ package splice.ga;
 
 import java.util.Random;
 
+import splice.ExceptionHandler;
+import splice.InitializeComponent;
+import splice.ProblemType;
+import splice.ProblemTypeComponent;
+import splice.RandomComponent;
+
 import splice.ga.dataManipulators.ConsoleOutput;
 import splice.ga.exceptionHandlers.ErrorStream;
 import splice.ga.stopConditions.Generations;
@@ -20,10 +26,12 @@ import splice.ga.stopConditions.Generations;
  * @author igor
  *
  */
-public class GeneticAlgorithm implements RandomComponent {
-	private int pSize = 100;
-	private double mRate = 0.2;
+public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
+	private int populationSize = 100;
+	private double mutationRate = 0.2;
 	private double fitnessSum;
+	private double lastTime = 0;
+	private boolean initPopulation = true;
 
 	private Population population = new Population();
 
@@ -56,30 +64,9 @@ public class GeneticAlgorithm implements RandomComponent {
 	 * executes the genetic algorithm
 	 */
 	public void execute() {
-		dataManipulator.setHandler(handler);
+		initialize();
 		
-		setRandomGenerator(selector);
-		setRandomGenerator(allocator);
-		setRandomGenerator(factory);
-		setRandomGenerator(population);
-		
-		factory.initialize();
-		
-		population.setSize(pSize);
-		population.setFactory(factory);
-		population.initialize();
-
-		setPopulationManipulator(allocator);
-		setPopulationManipulator(selector);
-		setPopulationManipulator(stopCondition);
-		setPopulationManipulator(dataManipulator);
-		
-		setProblemType(allocator);
-		setProblemType(stopCondition);
-		setProblemType(selector);
-		
-		allocator.initialize();
-		selector.initialize();
+		double begin = System.currentTimeMillis();
 		
 		try {
 			int i = 0;
@@ -89,7 +76,7 @@ public class GeneticAlgorithm implements RandomComponent {
 				
 				allocator.reset();
 				selector.beforeGeneration();
-				doGeneneration();
+				doGeneneration(i);
 				allocator.allocate();
 				
 				i++;
@@ -99,12 +86,16 @@ public class GeneticAlgorithm implements RandomComponent {
 		} catch (Exception ex) {
 			handler.handle(ex);
 		}
+		
+		double end = System.currentTimeMillis();
+		
+		lastTime = end - begin;
 	}
 	
 	/**
 	 * runs the generation's logic, can be overloaded in case of some need
 	 */
-	protected void doGeneneration() {
+	protected void doGeneneration(int i) {
 		BasicChromosome a, b, c;
 
 		while (!allocator.complete()) {
@@ -121,6 +112,35 @@ public class GeneticAlgorithm implements RandomComponent {
 		}
 	}
 	
+	public void initialize() {
+		dataManipulator.setHandler(handler);
+		
+		setRandomGenerator(selector);
+		setRandomGenerator(allocator);
+		setRandomGenerator(factory);
+		setRandomGenerator(population);
+		
+		factory.initialize();
+		
+		if (initPopulation) {
+			population.setSize(populationSize);
+			population.setFactory(factory);
+			population.initialize();
+		}
+
+		setPopulationManipulator(allocator);
+		setPopulationManipulator(selector);
+		setPopulationManipulator(stopCondition);
+		setPopulationManipulator(dataManipulator);
+		
+		setProblemType(allocator);
+		setProblemType(stopCondition);
+		setProblemType(selector);
+		
+		allocator.initialize();
+		selector.initialize();
+	}
+	
 	private void setProblemType(ProblemTypeComponent component) {
 		component.setProblemType(problemType);
 	}
@@ -134,11 +154,11 @@ public class GeneticAlgorithm implements RandomComponent {
 	}
 
 	public int getPopulationSize() {
-		return pSize;
+		return populationSize;
 	}
 
 	public double getMutationRate() {
-		return mRate;
+		return mutationRate;
 	}
 
 	protected double getFitnessSum() {
@@ -162,7 +182,7 @@ public class GeneticAlgorithm implements RandomComponent {
 	}
 
 	protected void mutate(BasicChromosome g) {
-		g.mutate(mRate);
+		g.mutate(mutationRate);
 	}
 	
 	protected BasicChromosome crossover(BasicChromosome a, BasicChromosome b) {
@@ -172,11 +192,11 @@ public class GeneticAlgorithm implements RandomComponent {
 	}
 
 	public void setPopulationSize(int size) {
-		pSize = size;
+		populationSize = size;
 	}
 
 	public void setMutationRate(double rate) {
-		mRate = rate;
+		mutationRate = rate;
 	}
 
 	public void setDataManipulator(DataManipulator dataManipulator) {
@@ -201,5 +221,21 @@ public class GeneticAlgorithm implements RandomComponent {
 	
 	public void setExceptionHandler(ExceptionHandler handler) {
 		this.handler = handler;
+	}
+
+	/**
+	 * With this you can use a predefined chromosome set,
+	 * just remember to call this before execute
+	 * @param initPopulation
+	 */
+	public void setInitPopulation(boolean initPopulation) {
+		this.initPopulation = initPopulation;
+	}
+
+	/**
+	 * Returns the last execution time in milliseconds 
+	 */
+	public double getLastTime() {
+		return this.lastTime;
 	}
 }

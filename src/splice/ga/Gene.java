@@ -11,6 +11,9 @@ package splice.ga;
 
 import java.util.Random;
 
+import splice.InitializeComponent;
+import splice.RandomComponent;
+
 /**
  * Base class for a single chromosome information
  * @author igor
@@ -43,4 +46,10 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
 		this.random = random;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean equals(Object obj) {
+		Gene<T> o = (Gene<T>)obj;
+		return value.equals(o.value);
+	}
 }

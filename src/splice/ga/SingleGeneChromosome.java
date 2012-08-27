@@ -75,4 +75,12 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 		super.setRandom(random);
 		gene.setRandom(random);
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public boolean equals(Object obj) {
+		SingleGeneChromosome<T> o = (SingleGeneChromosome<T>)obj;
+		
+		return o.gene.equals(gene);
+	}
 }

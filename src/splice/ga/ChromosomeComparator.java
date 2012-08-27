@@ -11,6 +11,14 @@ package splice.ga;
 
 import java.util.Comparator;
 
+/**
+ * To be used with sorting algorithms, it should be noted
+ * as it is the equals method will only consider the fitness
+ * of the given chromosomes. For a value comparison you
+ * should use the provided equals() methods
+ * @author igor
+ *
+ */
 public class ChromosomeComparator implements Comparator<BasicChromosome> {
 	private double fitness;
 	
