@@ -13,10 +13,14 @@ import splice.ga.BasicChromosome;
 import splice.ga.Selector;
 
 public class NeighborhoodSelector extends Selector {
-	private int maxDist, pivot = -1;
+	/**
+	 * maximum search distance from current pivot
+	 */
+	private int maxSearchDistance;
+	private int pivot = -1;
 	
 	public NeighborhoodSelector(int maxDistance) {
-		maxDist = maxDistance;
+		maxSearchDistance = maxDistance;
 	}
 
 	@Override
@@ -27,6 +31,26 @@ public class NeighborhoodSelector extends Selector {
 
 	@Override
 	public BasicChromosome getChromosome() {
-		return null;
+		BasicChromosome c;
+		
+		if (pivot == -1) {
+			pivot = getRandom().nextInt(getPopulation().getSize());
+			c = getPopulation().get(pivot);
+		}
+		else {
+			// if true will select a lesser value
+			if (getRandom().nextBoolean()) {
+				 pivot -= getRandom().nextInt(maxSearchDistance);
+				 pivot = (getPopulation().getSize() - pivot) % getPopulation().getSize();
+			}
+			else {
+				pivot += getRandom().nextInt(maxSearchDistance);
+				pivot = pivot % getPopulation().getSize();
+			}
+			c = getPopulation().get(pivot);
+			pivot = -1;
+		}
+			
+		return c;
 	}
 }
