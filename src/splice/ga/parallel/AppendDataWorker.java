@@ -1,6 +1,6 @@
 package splice.ga.parallel;
 
-import splice.ga.ExceptionHandler;
+import splice.ExceptionHandler;
 
 class AppendDataWorker extends Thread {
 	public ExceptionHandler handler;
