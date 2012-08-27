@@ -1,5 +1,3 @@
-import java.math.BigInteger;
-
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 import splice.ga.SingleGeneChromosome;
