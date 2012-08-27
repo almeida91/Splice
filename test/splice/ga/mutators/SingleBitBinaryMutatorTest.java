@@ -39,6 +39,7 @@ public class SingleBitBinaryMutatorTest {
 		
 		mutator.mutate(gene);
 		
+		// verifies that the hamming distance is just one bit
 		assertEquals(1, gene.getValue().xor(originalValue).bitCount());
 	}
 }
