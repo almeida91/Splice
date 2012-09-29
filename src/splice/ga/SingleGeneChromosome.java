@@ -79,8 +79,11 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean equals(Object obj) {
+        if (!(obj instanceof SingleGeneChromosome))
+            return false;
+
 		SingleGeneChromosome<T> o = (SingleGeneChromosome<T>)obj;
-		
+
 		return o.gene.equals(gene);
 	}
 }

@@ -37,26 +37,26 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	
 	@Override
 	protected void mutate() {
-		for (int i = 0; i < genes.length; i++) {
-			mutator.mutate(genes[i]);
-		}
+        for (T gene : genes) {
+            mutator.mutate(gene);
+        }
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
-		Chromosome newChromsome = getNew();
+		Chromosome newChromosome = getNew();
 		Chromosome other = (Chromosome)chromosome;
 		
-		newChromsome.crossover = crossover;
-		newChromsome.mutator = mutator;
-		newChromsome.genes = new Gene[genes.length];
+		newChromosome.crossover = crossover;
+		newChromosome.mutator = mutator;
+		newChromosome.genes = new Gene[genes.length];
 		
 		for (int i = 0; i < genes.length; i++) {
-			newChromsome.genes[i] = this.crossover.doCrossover(this.genes[i], (T)(other.get(i)));
+			newChromosome.genes[i] = this.crossover.doCrossover(this.genes[i], (T)(other.get(i)));
 		}
 		
-		return newChromsome;
+		return newChromosome;
 	}
 
 	@Override
@@ -78,6 +78,9 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean equals(Object obj) {
+        if (!(obj instanceof Chromosome))
+            return false;
+
 		Chromosome<T> o = (Chromosome<T>)obj;
 		
 		for (int i = 0; i < genes.length; i++) {

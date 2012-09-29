@@ -76,7 +76,7 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 				
 				allocator.reset();
 				selector.beforeGeneration();
-				doGeneneration(i);
+				doGeneration(i);
 				allocator.allocate();
 				
 				i++;
@@ -94,8 +94,9 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 	
 	/**
 	 * runs the generation's logic, can be overloaded in case of some need
-	 */
-	protected void doGeneneration(int i) {
+     * @param generation current generation, it may be used for some algorithms that do some task at every n-generations
+     */
+	protected void doGeneration(int generation) {
 		BasicChromosome a, b, c;
 
 		while (!allocator.complete()) {
@@ -226,15 +227,15 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 	/**
 	 * With this you can use a predefined chromosome set,
 	 * just remember to call this before execute
-	 * @param initPopulation
+	 * @param initPopulation initial set for the population
 	 */
 	public void setInitPopulation(boolean initPopulation) {
 		this.initPopulation = initPopulation;
 	}
 
 	/**
-	 * Returns the last execution time in milliseconds 
-	 */
+	 * @return the last execution time in milliseconds
+     */
 	public double getLastTime() {
 		return this.lastTime;
 	}

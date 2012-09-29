@@ -34,9 +34,9 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	/**
 	 * Implementation of the fitness function
 	 * 
-	 * @return
+	 * @return the fitness for the chromosome
 	 */
-	protected abstract double fitness();
+    protected abstract double fitness();
 
 	/**
 	 * Implementation of the chromosome's mutation logic
@@ -44,16 +44,16 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	protected abstract void mutate();
 
 	/**
-	 * Performs the chromosome's crossover with a given
+	 * Performs the chromosome's crossover with a given chromosome
 	 * 
-	 * @param chromosome
-	 * @return
+	 * @param chromosome other chromosome to make crossover with
+	 * @return one child of the crossover operation
 	 */
 	public abstract BasicChromosome crossover(BasicChromosome chromosome);
 
 	/**
 	 * Calculate the chromosome's fitness
-	 * @return
+	 * @return fitness value as calculated by #fitness()
 	 */
 	public double calculateFitness() {
 		fitness = fitness();

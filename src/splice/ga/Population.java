@@ -29,7 +29,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	 */
 	private ArrayList<BasicChromosome> chromosomes;
 	/**
-	 * the sum of all fitnesses it's used in roullette selection and in the average calculation
+	 * the sum of all fitnesses it's used in roulette selection and in the average calculation
 	 */
 	protected double fitnessSum;
 	/**
@@ -48,12 +48,14 @@ public class Population implements RandomComponent, InitializeComponent {
 
 	/**
 	 * Calculates the chromosome's fitness as well their averages
-	 */
+     * @throws Exception to be used when you have some kind of complex fitness function that throws something
+     * so the exception will be propagated
+     */
 	public void calculateFitnessSum() throws Exception {
 		fitnessSum = 0;
-		for (int i = 0; i < chromosomes.size(); i++) {
-			fitnessSum += chromosomes.get(i).calculateFitness();
-		}
+        for (BasicChromosome chromosome : chromosomes) {
+            fitnessSum += chromosome.calculateFitness();
+        }
 		fitnessAverage = fitnessSum / chromosomes.size();
 	}
 

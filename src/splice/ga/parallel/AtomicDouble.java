@@ -9,12 +9,16 @@
  */
 package splice.ga.parallel;
 
-public class AtomicDouble {
+class AtomicDouble {
 	private volatile double value;
 	
 	public AtomicDouble(double value) {
 		this.value = value;
 	}
+
+    public AtomicDouble() {
+        this(0);
+    }
 	
 	public void increment() {
 		value++;

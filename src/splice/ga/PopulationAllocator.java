@@ -55,8 +55,6 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	
 	/**
 	 * Defines the logic of how to allocate the new set
-	 * 
-	 * @param newPopulation new chromosome's set
 	 */
 	public abstract void allocate();
 	
@@ -68,7 +66,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	
 	/**
 	 * Appends a chromosome to the new population
-	 * @param chromosome
+	 * @param chromosome one chromosome
 	 */
 	public void append(BasicChromosome chromosome) {
 		chromosome.setRandom(getRandom());
@@ -76,8 +74,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	}
 
 	/**
-	 * Returns the bufferized new population
-	 * @return
+	 * @return the bufferized new population
 	 */
 	public ArrayList<BasicChromosome> getNewPopulation() {
 		return newPopulation;

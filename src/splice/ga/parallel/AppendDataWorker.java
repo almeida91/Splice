@@ -3,9 +3,9 @@ package splice.ga.parallel;
 import splice.ExceptionHandler;
 
 class AppendDataWorker extends Thread {
-	public ExceptionHandler handler;
-	public int generation;
-	public AsyncDataManipulator dataManipulator;
+	private ExceptionHandler handler;
+	private int generation;
+	private AsyncDataManipulator dataManipulator;
 	
 	public AppendDataWorker(int generation, ExceptionHandler handler, AsyncDataManipulator dataManipulator) {
 		this.handler = handler;

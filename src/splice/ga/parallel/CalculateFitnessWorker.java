@@ -11,7 +11,7 @@ package splice.ga.parallel;
 
 import splice.ga.Population;
 
-public class CalculateFitnessWorker extends Thread {
+class CalculateFitnessWorker extends Thread {
 	private AtomicDouble sum;
 	private Population population;
 	private int begin, end;

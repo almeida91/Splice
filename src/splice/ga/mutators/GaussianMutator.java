@@ -21,7 +21,7 @@ public class GaussianMutator implements Mutator<ListGene> {
 	private double x,y;
 	
 	public GaussianMutator(double max) {
-		this(0,max);
+		this(0, max);
 	}
 	
 	public GaussianMutator(double min, double max) {

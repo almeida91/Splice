@@ -21,13 +21,13 @@ public abstract class DataManipulator extends PopulationManipulator {
 	
 	/**
 	 * Appends a new generation to the execution data
-	 * @param data the data of a given generation
-	 * @throws Exception
+	 * @param generation current generation to save data
+	 * @throws Exception mainly IO exceptions due to the manipulations that might be done inside the class
 	 */
-	public abstract void engineAppendData(int generation) throws Exception;
+	protected abstract void engineAppendData(int generation) throws Exception;
 	/**
 	 * Saves the input
-	 * @throws Exception
+	 * @throws Exception may throw an exception
 	 */
 	public abstract void saveData() throws Exception;
 	

@@ -18,7 +18,7 @@ import splice.ga.Selector;
  * @author igor
  *
  */
-public class RoulleteSelector extends Selector {
+public class RouletteSelector extends Selector {
 	@Override
 	public BasicChromosome getChromosome() {
 		int i;

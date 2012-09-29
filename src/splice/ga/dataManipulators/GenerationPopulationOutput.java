@@ -23,8 +23,9 @@ public class GenerationPopulationOutput extends GenerationDataFileOutput {
 	private int step, counter;
 	
 	/**
-	 * @param step defines at which number of generations it will save the population data
-	 * @throws IOException 
+	 * @param path where you want to save the file
+     * @param step defines at which number of generations it will save the population data
+	 * @throws IOException may throw on some stream error
 	 */
 	public GenerationPopulationOutput(String path, int step) throws IOException {
 		super(path);
@@ -41,7 +42,7 @@ public class GenerationPopulationOutput extends GenerationDataFileOutput {
 		counter += 1;
 		if (counter % step == 0) {
 			for (BasicChromosome chromosome : getPopulation().getChromosomes()) {
-				writer.append(chromosome.getFitness() + " ");
+                writer.append(String.valueOf(chromosome.getFitness())).append(" ");
 			}
 			writer.append('\n');
 		}

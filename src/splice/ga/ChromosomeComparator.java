@@ -33,8 +33,6 @@ public class ChromosomeComparator implements Comparator<BasicChromosome> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof BasicChromosome))
-			return false;
-		return ((BasicChromosome) obj).getFitness() == fitness;
-	}
+        return obj instanceof BasicChromosome && ((BasicChromosome) obj).getFitness() == fitness;
+    }
 }

@@ -35,8 +35,8 @@ public class Convergence extends StopCondition {
 	 * like the default constructor, but it will not stop if the minimum fitness
 	 * has not been achieved
 	 * 
-	 * @param maxGenerations
-	 * @param refFitness
+	 * @param maxGenerations how many generations the GA will stop after the minimum fitness has been reached
+	 * @param refFitness average fitness this condition will expect to stop the GA's execution
 	 */
 	public Convergence(int maxGenerations, double refFitness) {
 		this.maxGenerations = maxGenerations;

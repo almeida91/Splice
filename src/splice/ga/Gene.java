@@ -49,6 +49,8 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
+        if (!(obj instanceof Gene))
+            return false;
 		Gene<T> o = (Gene<T>)obj;
 		return value.equals(o.value);
 	}

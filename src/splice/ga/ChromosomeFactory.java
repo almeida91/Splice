@@ -29,8 +29,8 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 	private Crossover<T> crossover;
 	
 	/**
-	 * Generates a new random chromosome
-	 * @return
+	 * This method is used to fill the population with new individuals.
+	 * @return new random chromosome
 	 */
 	public abstract BasicChromosome getRandomChromosome();
 	

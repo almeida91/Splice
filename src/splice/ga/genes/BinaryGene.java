@@ -14,18 +14,17 @@ import java.math.BigInteger;
 import splice.ga.Gene;
 
 /**
- * Base class for genes that stores their informations in a binary way
+ * Base class for genes that stores their information in a binary way
  * 
  * @author igor
  * 
- * @param <T>
  */
 public class BinaryGene extends Gene<BigInteger> {
 	private int length = 0;
 
 	private static byte[] getBytes(long x) {
 		byte[] b = new byte[8];
-		b[0] = (byte) (x >> 0);
+		b[0] = (byte) (x);
 		b[1] = (byte) (x >> 8);
 		b[2] = (byte) (x >> 16);
 		b[3] = (byte) (x >> 24);
@@ -38,7 +37,7 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	private static byte[] getBytes(int x) {
 		byte[] b = new byte[4];
-		b[0] = (byte) (x >> 0);
+		b[0] = (byte) (x);
 		b[1] = (byte) (x >> 8);
 		b[2] = (byte) (x >> 16);
 		b[3] = (byte) (x >> 24);
@@ -76,7 +75,7 @@ public class BinaryGene extends Gene<BigInteger> {
 		if (getValue() != null)
 			return;
 		if (length == 0)
-			throw new RuntimeException("BinaryGene must have lenght set");
+			throw new RuntimeException("BinaryGene must have length set");
 	}
 
 	public int getLength() {
