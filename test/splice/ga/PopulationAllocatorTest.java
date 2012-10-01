@@ -14,28 +14,38 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import util.TestChromosomeFactory;
+import util.TestAllocator;
+import util.TestPopulation;
 
-public class GeneticAlgorithmTest {
-	GeneticAlgorithm ga;
-
+public class PopulationAllocatorTest {
+	Population population;
+	PopulationAllocator allocator;
+	ChromosomeFactory<?> factory;
+	
 	@Before
 	public void setUp() {
+		population = new TestPopulation(0.0, 10);
+		population.initialize();
+		
+		allocator = new TestAllocator();
+	}
+
+	@Test
+	public void testAppend() {
+		allocator.setPopulation(population);
 		
 	}
 
 	@Test
-	public void testExecute() {
+	public void testReset() {
+		allocator.setPopulation(population);
+		
+		
+	}
+	
+	@Test
+	public void testSetPopulation() {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testDoGeneration() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testInitialize() {
-		fail("Not yet implemented");
-	}
 }

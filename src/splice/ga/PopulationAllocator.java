@@ -95,7 +95,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	 * sorts the the new population buffer
 	 */
 	public void sortNewPopulation() {
-		Collections.sort(newPopulation, newPopulation.get(0).getComparator());
+		Collections.sort(newPopulation, new ChromosomeComparator(0));
 	}
 
 	public ProblemType getProblemType() {

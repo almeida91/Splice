@@ -5,12 +5,20 @@ import splice.ga.Population;
 public class TestPopulation extends Population {
 	double average;
 	
-	public TestPopulation(double average) {
+	public TestPopulation(double average, int size) {
 		this.average = average;
+		setSize(size);
+	}
+	
+	public TestPopulation(double average) {
+		this(average, 0);
 	}
 	
 	@Override
-	public double getFitnessAverage() {
-		return average;
+	public void initialize() {
+		if (getFactory() == null)
+			setFactory(new TestChromosomeFactory(average));
+		
+		super.initialize();
 	}
 }

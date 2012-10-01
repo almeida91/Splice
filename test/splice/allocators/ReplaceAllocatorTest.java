@@ -7,30 +7,27 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package splice.allocators;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import util.TestChromosomeFactory;
-
-public class GeneticAlgorithmTest {
-	GeneticAlgorithm ga;
-
+public class ReplaceAllocatorTest {
+	
 	@Before
 	public void setUp() {
 		
 	}
 
 	@Test
-	public void testExecute() {
+	public void testAllocate() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testDoGeneration() {
+	public void testComplete() {
 		fail("Not yet implemented");
 	}
 
@@ -38,4 +35,5 @@ public class GeneticAlgorithmTest {
 	public void testInitialize() {
 		fail("Not yet implemented");
 	}
+
 }

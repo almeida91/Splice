@@ -7,35 +7,26 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.ga;
+package util;
 
-import static org.junit.Assert.*;
+import splice.ga.PopulationAllocator;
 
-import org.junit.Before;
-import org.junit.Test;
+/**
+ * As the other classes in this package it is just a mockup so an abstract class may be tested
+ * @author igor
+ *
+ */
+public class TestAllocator extends PopulationAllocator {
 
-import util.TestChromosomeFactory;
+	@Override
+	public void initialize() { }
 
-public class GeneticAlgorithmTest {
-	GeneticAlgorithm ga;
+	@Override
+	public void allocate() { }
 
-	@Before
-	public void setUp() {
-		
+	@Override
+	public boolean complete() {
+		return false;
 	}
 
-	@Test
-	public void testExecute() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDoGeneration() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testInitialize() {
-		fail("Not yet implemented");
-	}
 }

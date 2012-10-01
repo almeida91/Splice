@@ -157,4 +157,8 @@ public class Population implements RandomComponent, InitializeComponent {
 	public void setFactory(ChromosomeFactory<?> factory) {
 		this.factory = factory;
 	}
+
+	public ChromosomeFactory<?> getFactory() {
+		return factory;
+	}
 }
