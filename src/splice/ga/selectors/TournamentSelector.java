@@ -46,6 +46,6 @@ public class TournamentSelector extends Selector {
 	
 	@Override
 	public void initialize() {
-		getProblemType().setMaxmization();
+		getProblemType().setMaximization();
 	}
 }

@@ -32,7 +32,7 @@ public class ElitismAllocator extends PopulationAllocator {
 	public void allocate() {
 		getPopulation().sort();
 		
-		if (getProblemType().isMaxmization()) {
+		if (getProblemType().isMaximization()) {
 			for (int i = 1; i <= n; i++) {
 				append(getPopulation().get(getPopulation().getSize() - i));
 			}

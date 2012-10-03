@@ -57,7 +57,7 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 		this.selector = selector;
 		this.factory = factory;
 		
-		problemType.setMaxmization();
+		problemType.setMaximization();
 	}
 
 	/**

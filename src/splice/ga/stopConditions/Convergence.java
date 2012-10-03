@@ -45,7 +45,7 @@ public class Convergence extends StopCondition {
 
 	@Override
 	public boolean stop(int generation) {
-		double fitness = getProblemType().isMaxmization() ? 
+		double fitness = getProblemType().isMaximization() ?
 				getPopulation().getMaximum().getFitness() : 
 				getPopulation().getMinimum().getFitness();
 
@@ -57,7 +57,7 @@ public class Convergence extends StopCondition {
 		}
 
 		return generations >= maxGenerations
-				& (getProblemType().isMaxmization() ? 
+				& (getProblemType().isMaximization() ?
 						bestFitness >= refFitness :
 						bestFitness <= refFitness
 				);

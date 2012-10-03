@@ -39,6 +39,6 @@ public class RouletteSelector extends Selector {
 	
 	@Override
 	public void initialize() {
-		getProblemType().setMaxmization();
+		getProblemType().setMaximization();
 	}
 }
