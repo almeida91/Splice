@@ -12,7 +12,7 @@ package util;
 import splice.ga.PopulationAllocator;
 
 /**
- * As the other classes in this package it is just a mockup so an abstract class may be tested
+ * As the other classes in this package it is just a mock-up so an abstract class may be tested
  * @author igor
  *
  */
