@@ -29,12 +29,21 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	private Population population;
 	private Random random;
 	private ProblemType problemType;
-	
+
+    /**
+     * This method replaces the current population with other chromosomes,
+     * but keeps the reference to the old population object
+     * @param population
+     */
 	public void setPopulation(ArrayList<BasicChromosome> population) {
 		this.population.getChromosomes().clear();
 		this.population.getChromosomes().addAll(population);
 	}
-	
+
+    /**
+     * Changes the allocator's population reference
+     * @param population which one will have chromosomes allocated
+     */
 	public void setPopulation(Population population) {
 		this.population = population;
 	}
@@ -83,7 +92,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	/**
 	 * Resets the buffer, you don't want the population to grow till your memory overflows
 	 */
-	public void reset() {
+	public void reset() { //TODO: should call this at initialization
 		newPopulation = new ArrayList<BasicChromosome>(population.getSize());
 	}
 	

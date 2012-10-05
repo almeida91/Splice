@@ -13,27 +13,44 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import splice.ga.BasicChromosome;
+import splice.ga.Population;
+import splice.ga.allocators.ReplaceAllocator;
+import util.TestChromosome;
+import util.TestPopulation;
 
 public class ReplaceAllocatorTest {
+    ReplaceAllocator allocator;
+    Population population;
+    final int POPULATION_SIZE = 10;
 	
 	@Before
 	public void setUp() {
-		
+	    allocator = new ReplaceAllocator();
+        population = new TestPopulation(0.0, POPULATION_SIZE);
+        population.initialize();
+        allocator.setPopulation(population);
+        allocator.reset();
 	}
 
 	@Test
 	public void testAllocate() {
-		fail("Not yet implemented");
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            allocator.append(new TestChromosome(1));
+        }
+
+        allocator.allocate();
+
+        for (BasicChromosome c : population.getChromosomes()) {
+            assertEquals(c.calculateFitness(), 1, 0);
+        }
 	}
 
 	@Test
 	public void testComplete() {
-		fail("Not yet implemented");
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            allocator.append(new TestChromosome(1));
+        }
+        assertTrue(allocator.complete());
 	}
-
-	@Test
-	public void testInitialize() {
-		fail("Not yet implemented");
-	}
-
 }

@@ -9,6 +9,7 @@
  */
 package splice.ga;
 
+import splice.InitializeComponent;
 import splice.ProblemType;
 import splice.ProblemTypeComponent;
 
@@ -17,7 +18,7 @@ import splice.ProblemTypeComponent;
  * @author igor
  *
  */
-public abstract class StopCondition extends PopulationManipulator implements ProblemTypeComponent {
+public abstract class StopCondition extends PopulationManipulator implements ProblemTypeComponent, InitializeComponent {
 	private ProblemType problemType;
 	
 	/**
@@ -34,4 +35,7 @@ public abstract class StopCondition extends PopulationManipulator implements Pro
 	public void setProblemType(ProblemType problemType) {
 		this.problemType = problemType;
 	}
+
+    @Override
+    public void initialize() { }
 }
