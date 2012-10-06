@@ -1,13 +1,14 @@
 /*
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.allocators;
+
+package splice.ga.allocators;
 
 import static org.junit.Assert.*;
 
@@ -15,8 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import splice.ga.BasicChromosome;
 import splice.ga.Population;
-import splice.ga.allocators.ReplaceAllocator;
-import util.TestChromosome;
+import util.TestBasicChromosome;
 import util.TestPopulation;
 
 public class ReplaceAllocatorTest {
@@ -36,7 +36,7 @@ public class ReplaceAllocatorTest {
 	@Test
 	public void testAllocate() {
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            allocator.append(new TestChromosome(1));
+            allocator.append(new TestBasicChromosome(1));
         }
 
         allocator.allocate();
@@ -49,7 +49,9 @@ public class ReplaceAllocatorTest {
 	@Test
 	public void testComplete() {
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            allocator.append(new TestChromosome(1));
+            allocator.append(new TestBasicChromosome(1));
+            if (i < POPULATION_SIZE - 1)
+                assertFalse(allocator.complete());
         }
         assertTrue(allocator.complete());
 	}

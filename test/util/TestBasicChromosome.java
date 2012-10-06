@@ -10,24 +10,37 @@
 
 package util;
 
-import splice.ga.PopulationAllocator;
+import splice.ga.BasicChromosome;
 
 /**
- * As the other classes in this package it is just a mock-up so an abstract class may be tested
- * @author igor
+ * Simple chromosome used to run the tests
+ * @author igor almeida
  *
  */
-public class TestAllocator extends PopulationAllocator {
-
+public class TestBasicChromosome extends BasicChromosome {
+	double value;
+    boolean mutated;
+	
+	public TestBasicChromosome(double value) {
+		this.value = value;
+	}
+	
 	@Override
-	public void initialize() { }
-
-	@Override
-	public void allocate() { }
-
-	@Override
-	public boolean complete() {
-		return false;
+	protected double fitness() {
+		return value;
 	}
 
+	@Override
+	protected void mutate() {
+        mutated = true;
+	}
+
+	@Override
+	public BasicChromosome crossover(BasicChromosome chromosome) {
+		return null;
+	}
+
+    public boolean isMutated() {
+        return mutated;
+    }
 }
