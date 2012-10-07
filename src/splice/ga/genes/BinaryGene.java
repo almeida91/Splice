@@ -25,23 +25,23 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	private static byte[] getBytes(long x) {
 		byte[] b = new byte[8];
-		b[0] = (byte) (x);
-		b[1] = (byte) (x >> 8);
-		b[2] = (byte) (x >> 16);
-		b[3] = (byte) (x >> 24);
-		b[4] = (byte) (x >> 32);
-		b[5] = (byte) (x >> 40);
-		b[6] = (byte) (x >> 48);
-		b[7] = (byte) (x >> 56);
+		b[0] = (byte) (x >> 56);
+		b[1] = (byte) (x >> 48);
+		b[2] = (byte) (x >> 40);
+		b[3] = (byte) (x >> 32);
+		b[4] = (byte) (x >> 24);
+		b[5] = (byte) (x >> 16);
+		b[6] = (byte) (x >> 8);
+		b[7] = (byte) (x >> 0);
 		return b;
 	}
 
 	private static byte[] getBytes(int x) {
 		byte[] b = new byte[4];
-		b[0] = (byte) (x);
-		b[1] = (byte) (x >> 8);
-		b[2] = (byte) (x >> 16);
-		b[3] = (byte) (x >> 24);
+		b[0] = (byte) (x >> 24);
+		b[1] = (byte) (x >> 16);
+		b[2] = (byte) (x >> 8);
+		b[3] = (byte) (x);
 		return b;
 	}
 

@@ -43,7 +43,7 @@ public class RandomSelectorTest {
 	}
 
 	@Test
-	public void test() {
+	public void testGetChromosome() {
 		assertNotNull(selector.getChromosome());
 		assertEquals(FITNESS, selector.getChromosome().calculateFitness(), 0);
 	}

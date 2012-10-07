@@ -17,8 +17,9 @@ import splice.ga.stopConditions.Generations;
 public class RunRosenbrock {
 	public static void main(String[] args) {
 		GeneticAlgorithm ga = new GeneticAlgorithm(new RosenbrockChromosomeFactory(), new ReplaceAllocator(), new MinimizeTournamentSelector());
-		ga.setStopCondition(new Generations(1000));
+		ga.setStopCondition(new Generations(2000));
 		ga.execute();
-		System.out.println(ga.getPopulation().getMinimum());
+
+        System.out.println(ga.getPopulation().getMinimum());
 	}
 }
