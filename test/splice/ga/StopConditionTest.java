@@ -10,15 +10,16 @@
 
 package splice.ga;
 
-import splice.RandomComponent;
+import org.junit.Test;
+import splice.ProblemTypeTest;
+import util.TestStopCondition;
 
 /**
- * Defines how to mutate a TestGene
  * @author igor
- *
- * @param <T> the TestGene type that can be mutated
  */
-@SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
-	public void mutate(T gene);
+public class StopConditionTest {
+    @Test
+    public void testRandom() {
+        ProblemTypeTest.doTest(new TestStopCondition());
+    }
 }

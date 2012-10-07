@@ -56,20 +56,8 @@ public class BasicChromosomeTest {
     }
 
     @Test
-    public void testCompareTo() {
-        BasicChromosome t0, t1, t2;
-        t0 = new TestBasicChromosome(0);
-        t1 = new TestBasicChromosome(1);
-        t2 = new TestBasicChromosome(2);
-
-        chromosome.calculateFitness();
-        t0.calculateFitness();
-        t1.calculateFitness();
-        t2.calculateFitness();
-
-        assertEquals(-1, chromosome.compareTo(t2));
-        assertEquals(0, chromosome.compareTo(t1));
-        assertEquals(1, chromosome.compareTo(t0));
+    public void testGetComparator() throws Exception {
+        double value = chromosome.calculateFitness();
+        ChromosomeComparatorTest.doTest(chromosome.getComparator(), chromosome.getFitness());
     }
-
 }

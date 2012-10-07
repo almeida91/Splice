@@ -8,17 +8,15 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga;
+package util;
 
-import splice.RandomComponent;
+import splice.ga.Gene;
 
 /**
- * Defines how to mutate a TestGene
  * @author igor
- *
- * @param <T> the TestGene type that can be mutated
  */
-@SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
-	public void mutate(T gene);
+public class TestGene<T> extends Gene<T> {
+    public TestGene(T value) {
+        super(value);
+    }
 }

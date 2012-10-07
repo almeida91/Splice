@@ -15,6 +15,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import splice.ProblemTypeTest;
+import splice.RandomComponentTest;
 import util.TestAllocator;
 import util.TestBasicChromosome;
 import util.TestPopulation;
@@ -65,4 +67,13 @@ public class PopulationAllocatorTest {
         }
 	}
 
+    @Test
+    public void testRandom() {
+        RandomComponentTest.doTest(allocator);
+    }
+
+    @Test
+    public void testProblemType() {
+        ProblemTypeTest.doTest(allocator);
+    }
 }

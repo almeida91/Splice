@@ -99,4 +99,5 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	public Random getRandom() {
 		return random;
 	}
+
 }

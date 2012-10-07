@@ -32,7 +32,7 @@ public class ErrorStream implements ExceptionHandler {
 
 	@Override
 	public void handle(Exception ex) {
-		stream.println("Some errors have ocurred that prevented the execution");
+		stream.println("Some errors have occurred that prevented the execution");
 		ex.printStackTrace(stream);
 	}
 

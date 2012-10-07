@@ -10,15 +10,32 @@
 
 package splice.ga;
 
-import splice.RandomComponent;
+import org.junit.Before;
+import org.junit.Test;
+
+import splice.ProblemTypeTest;
+import splice.RandomComponentTest;
+
+import util.TestSelector;
 
 /**
- * Defines how to mutate a TestGene
  * @author igor
- *
- * @param <T> the TestGene type that can be mutated
  */
-@SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
-	public void mutate(T gene);
+public class SelectorTest {
+    Selector selector;
+
+    @Before
+    public void setUp() {
+        selector = new TestSelector();
+    }
+
+    @Test
+    public void testRandom() {
+        RandomComponentTest.doTest(selector);
+    }
+
+    @Test
+    public void testProblemType() {
+        ProblemTypeTest.doTest(selector);
+    }
 }

@@ -8,17 +8,23 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga;
+package util;
 
-import splice.RandomComponent;
+import splice.ga.BasicChromosome;
+import splice.ga.Selector;
 
 /**
- * Defines how to mutate a TestGene
  * @author igor
- *
- * @param <T> the TestGene type that can be mutated
  */
-@SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
-	public void mutate(T gene);
+public class TestSelector extends Selector {
+    @Override
+    public BasicChromosome getChromosome() {
+        return null;
+    }
+
+    @Override
+    public void beforeGeneration() { }
+
+    @Override
+    public void initialize() { }
 }

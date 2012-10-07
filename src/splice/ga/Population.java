@@ -10,11 +10,7 @@
 
 package splice.ga;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import splice.InitializeComponent;
 import splice.RandomComponent;
@@ -118,7 +114,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	}
 	
 	public Set<BasicChromosome> getChromosomesSet() {
-		HashSet<BasicChromosome> set = new HashSet<BasicChromosome>();
+		TreeSet<BasicChromosome> set = new TreeSet<BasicChromosome>();
 		set.addAll(chromosomes);
 		return set;
 	}
