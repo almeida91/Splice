@@ -11,6 +11,7 @@
 package splice.ga.genes;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -31,7 +32,8 @@ public class BinaryGeneTest {
 
     @Test
     public void testToString() throws Exception {
-
+        BinaryGene gene = new BinaryGene(4);
+        assertEquals("100", gene.toString());
     }
 
     @Test
