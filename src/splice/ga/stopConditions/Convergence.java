@@ -1,12 +1,13 @@
 /*
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 package splice.ga.stopConditions;
 
 import splice.ga.StopCondition;
@@ -45,7 +46,7 @@ public class Convergence extends StopCondition {
 
 	@Override
 	public boolean stop(int generation) {
-		double fitness = getProblemType().isMaxmization() ? 
+		double fitness = getProblemType().isMaximization() ?
 				getPopulation().getMaximum().getFitness() : 
 				getPopulation().getMinimum().getFitness();
 
@@ -57,7 +58,7 @@ public class Convergence extends StopCondition {
 		}
 
 		return generations >= maxGenerations
-				& (getProblemType().isMaxmization() ? 
+				& (getProblemType().isMaximization() ?
 						bestFitness >= refFitness :
 						bestFitness <= refFitness
 				);

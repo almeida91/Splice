@@ -9,21 +9,24 @@
  */
 package splice;
 
+/**
+ * Defines if the given problem's optimization is looking for the maximum or minimum
+ */
 public class ProblemType {
-	private boolean maxmization, minimization;
+	private boolean maximization, minimization;
 
-	public void setMaxmization() {
-		maxmization = true;
+	public void setMaximization() {
+		maximization = true;
 		minimization = false;
 	}
 	
 	public void setMinimization() {
-		maxmization = false;
+		maximization = false;
 		minimization = true;
 	}
 
-	public boolean isMaxmization() {
-		return maxmization;
+	public boolean isMaximization() {
+		return maximization;
 	}
 
 	public boolean isMinimization() {

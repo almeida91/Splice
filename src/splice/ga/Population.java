@@ -1,19 +1,16 @@
 /*
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS 
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 package splice.ga;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 import splice.InitializeComponent;
 import splice.RandomComponent;
@@ -117,7 +114,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	}
 	
 	public Set<BasicChromosome> getChromosomesSet() {
-		HashSet<BasicChromosome> set = new HashSet<BasicChromosome>();
+		TreeSet<BasicChromosome> set = new TreeSet<BasicChromosome>();
 		set.addAll(chromosomes);
 		return set;
 	}
@@ -156,5 +153,9 @@ public class Population implements RandomComponent, InitializeComponent {
 	
 	public void setFactory(ChromosomeFactory<?> factory) {
 		this.factory = factory;
+	}
+
+	public ChromosomeFactory<?> getFactory() {
+		return factory;
 	}
 }
