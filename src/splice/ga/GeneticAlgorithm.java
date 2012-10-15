@@ -226,7 +226,15 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 		this.handler = handler;
 	}
 
-	/**
+    protected PopulationAllocator getAllocator() {
+        return allocator;
+    }
+
+    protected ChromosomeFactory<?> getFactory() {
+        return factory;
+    }
+
+    /**
 	 * With this you can use a predefined chromosome set,
 	 * just remember to call this before execute
 	 * @param initPopulation initial set for the population

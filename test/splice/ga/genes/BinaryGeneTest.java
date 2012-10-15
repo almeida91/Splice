@@ -15,6 +15,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 
 /**
  * @author igor
@@ -22,11 +24,6 @@ import org.junit.Test;
 public class BinaryGeneTest {
     @Test
     public void testInitialize() throws Exception {
-
-    }
-
-    @Test
-    public void testSetLength() throws Exception {
 
     }
 
@@ -70,6 +67,9 @@ public class BinaryGeneTest {
 
     @Test
     public void testToByteArray() throws Exception {
+        byte[] value = new byte[] {1,2,3,4};
 
+        BinaryGene gene = new BinaryGene(new BigInteger(value));
+        assertEquals(value, gene.toByteArray());
     }
 }

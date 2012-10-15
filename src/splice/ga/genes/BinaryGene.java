@@ -47,8 +47,7 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	public BinaryGene(BigInteger value) {
 		super(value);
-		if (value != null)
-			length = value.bitLength();
+	    length = value.bitLength();
 	}
 
 	public BinaryGene(int value) {
@@ -77,6 +76,7 @@ public class BinaryGene extends Gene<BigInteger> {
 			return;
 		if (length == 0)
 			throw new RuntimeException("BinaryGene must have length set");
+        setValue(new BigInteger(length, getRandom()));
 	}
 
 	public int getLength() {
