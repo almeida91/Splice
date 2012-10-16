@@ -32,7 +32,7 @@ public class BinaryGene extends Gene<BigInteger> {
 		b[4] = (byte) (x >> 24);
 		b[5] = (byte) (x >> 16);
 		b[6] = (byte) (x >> 8);
-		b[7] = (byte) (x >> 0);
+		b[7] = (byte) (x);
 		return b;
 	}
 

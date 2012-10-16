@@ -20,25 +20,25 @@ import splice.ga.DataManipulator;
  *
  */
 public class ConsoleOutput extends DataManipulator {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 	
 	@Override
 	public void engineAppendData(int generation) throws Exception {
-                writer.append("Generation #")
-                .append(Integer.toString(generation))
-                .append(" fitness: ")
-                .append(Double.toString(getPopulation().getFitnessAverage()))
-                .append(" max: ")
-                .append(Double.toString(getPopulation().getMaximum().getFitness()))
-                .append(" min: ")
-                .append(Double.toString(getPopulation().getMinimum().getFitness()))
-                .append(" pop size: ")
-                .append(Integer.toString(getPopulation().getSize()))
-                .append("\n");
+        writer.append("Generation #")
+        .append(Integer.toString(generation))
+        .append(" fitness: ")
+        .append(Double.toString(getPopulation().getFitnessAverage()))
+        .append(" max: ")
+        .append(Double.toString(getPopulation().getMaximum().getFitness()))
+        .append(" min: ")
+        .append(Double.toString(getPopulation().getMinimum().getFitness()))
+        .append(" pop size: ")
+        .append(Integer.toString(getPopulation().getSize()))
+        .append("\n");
 	}
 
 	@Override
 	public void saveData() throws Exception {
-            writer.close();
-        }
+        writer.close();
+    }
 }

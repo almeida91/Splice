@@ -37,9 +37,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
      * @param population
      */
 	public void setPopulation(ArrayList<BasicChromosome> population) {
-//		this.population.getChromosomes().clear();
-//		this.population.getChromosomes().addAll(population);
-                this.population.setChromosomes(population);
+        this.population.setChromosomes(population);
 	}
 
     /**

@@ -39,7 +39,12 @@ public abstract class DataManipulator extends PopulationManipulator {
 	public ExceptionHandler getHandler() {
 		return handler;
 	}
-	
+
+    /**
+     * Appends a information to the manipulator, it should be noted that when an exception is thrown by #{engineAppendData}
+     * it will no stop the genetic algorithm's execution, but will log it using the provided handler
+     * @param generation
+     */
 	public void appendData(int generation) {
 		try {
 			engineAppendData(generation);

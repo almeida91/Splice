@@ -113,9 +113,9 @@ public class Population implements RandomComponent, InitializeComponent {
 		return chromosomes;
 	}
         
-        public void setChromosomes(ArrayList<BasicChromosome> x) {
-            this.chromosomes = x;
-        }
+    public void setChromosomes(ArrayList<BasicChromosome> x) {
+        this.chromosomes = x;
+    }
 	
 	public Set<BasicChromosome> getChromosomesSet() {
 		TreeSet<BasicChromosome> set = new TreeSet<BasicChromosome>();

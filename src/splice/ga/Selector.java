@@ -18,7 +18,7 @@ import splice.ProblemTypeComponent;
 import splice.RandomComponent;
 
 /**
- * Selects chromossome's candidates for crossover
+ * Selects chromosome's candidates for crossover
  * 
  * @author igor
  * 

@@ -15,7 +15,7 @@ import splice.ga.Selector;
 
 
 /**
- * Selects a chromosome based on the roullete selection
+ * Selects a chromosome based on the roulette selection
  * @author igor
  *
  */
