@@ -39,6 +39,6 @@ public class ConsoleOutput extends DataManipulator {
 
 	@Override
 	public void saveData() throws Exception {
-        writer.close();
+        writer.flush();
     }
 }

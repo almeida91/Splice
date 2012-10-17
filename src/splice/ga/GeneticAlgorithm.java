@@ -104,18 +104,19 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 			a = getChromosome();
 			b = getChromosome();
 
-            // FIXME: it is a code repetition
-			c = crossover(a, b);
-			mutate(c);
-			allocator.append(c);
-
-			c = crossover(a, b);
-			mutate(c);
-			allocator.append(c);
+            reproduce(a, b);
+            reproduce(b, a);
 		}
 	}
-	
-	public void initialize() {
+
+    private void reproduce(BasicChromosome a, BasicChromosome b) {
+        BasicChromosome c = a.crossover(b);
+        c.setRandom(random);
+        c.mutate(mutationRate);
+        allocator.append(c);
+    }
+
+    public void initialize() {
 		dataManipulator.setHandler(handler);
 		
 		setRandomGenerator(selector);
@@ -182,16 +183,6 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 
 	protected BasicChromosome getChromosome() {
 		return selector.getChromosome();
-	}
-
-	protected void mutate(BasicChromosome g) {
-		g.mutate(mutationRate);
-	}
-	
-	protected BasicChromosome crossover(BasicChromosome a, BasicChromosome b) {
-		BasicChromosome c = a.crossover(b);
-		c.setRandom(random);
-		return c;
 	}
 
 	public void setPopulationSize(int size) {
