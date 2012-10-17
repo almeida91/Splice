@@ -70,6 +70,7 @@ public class BinaryGeneTest {
         byte[] value = new byte[] {1,2,3,4};
 
         BinaryGene gene = new BinaryGene(new BigInteger(value));
-        assertEquals(value, gene.toByteArray());
+
+        assertArrayEquals(value, gene.toByteArray());
     }
 }
