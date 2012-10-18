@@ -51,8 +51,7 @@ public class NQueensChromosome extends BasicChromosome {
 				if (!column(queens[i], queens[j]))
 					f += 1;
 				if (!diagonal(queens[i], queens[j]))
-					;
-				f += 1;
+                    f += 1;
 			}
 		}
 
@@ -67,24 +66,24 @@ public class NQueensChromosome extends BasicChromosome {
 
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
-		NQueensChromosome novo = new NQueensChromosome(n, new int[n][2]);
-		NQueensChromosome outro = (NQueensChromosome) chromosome;
+		NQueensChromosome newChromosome = new NQueensChromosome(n, new int[n][2]);
+		NQueensChromosome other = (NQueensChromosome) chromosome;
 
-		int pontoCorte = n / 2;
+		int pointOfCut = n / 2;
 
 		int i;
 
-		for (i = 0; i < pontoCorte; i++) {
-			novo.queens[i][0] = queens[i][0];
-			novo.queens[i][1] = queens[i][1];
+		for (i = 0; i < pointOfCut; i++) {
+			newChromosome.queens[i][0] = queens[i][0];
+			newChromosome.queens[i][1] = queens[i][1];
 		}
 
 		for (; i < n; i++) {
-			novo.queens[i][0] = outro.queens[i][0];
-			novo.queens[i][1] = outro.queens[i][1];
+			newChromosome.queens[i][0] = other.queens[i][0];
+			newChromosome.queens[i][1] = other.queens[i][1];
 		}
 
-		return novo;
+		return newChromosome;
 	}
 
 	@Override

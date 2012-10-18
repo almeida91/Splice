@@ -30,8 +30,7 @@ import splice.ga.stopConditions.Generations;
 public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 	private int populationSize = 100;
 	private double mutationRate = 0.2;
-	private double fitnessSum;
-	private double lastTime = 0;
+    private double lastTime = 0;
 	private boolean initPopulation = true;
 
 	private Population population = new Population();
@@ -70,7 +69,7 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 		double begin = System.currentTimeMillis();
 		
 		try {
-			int i = 0;
+			int i = 1;
 			do {
 				population.calculateFitnessSum();
 				dataManipulator.appendData(i);
@@ -98,7 +97,7 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
      * @param generation current generation, it may be used for some algorithms that do some task at every n-generations
      */
 	protected void doGeneration(int generation) {
-		BasicChromosome a, b, c;
+		BasicChromosome a, b;
 
 		while (!allocator.complete()) {
 			a = getChromosome();
@@ -165,15 +164,7 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 		return mutationRate;
 	}
 
-	protected double getFitnessSum() {
-		return fitnessSum;
-	}
-
-	protected void setFitnessSum(double fitnessSum) {
-		this.fitnessSum = fitnessSum;
-	}
-
-	public Population getPopulation() {
+    public Population getPopulation() {
 		return population;
 	}
 

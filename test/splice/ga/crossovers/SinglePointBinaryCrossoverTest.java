@@ -10,7 +10,6 @@
 
 package splice.ga.crossovers;
 
-import org.junit.Before;
 import org.junit.Test;
 import splice.ga.genes.BinaryGene;
 
