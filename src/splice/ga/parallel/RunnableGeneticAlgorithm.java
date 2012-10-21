@@ -17,7 +17,8 @@ import splice.ga.Selector;
 
 
 /**
- * 
+ * With this you can run a GeneticAlgorithm inside a thread
+ *
  * @author igor
  *
  */
