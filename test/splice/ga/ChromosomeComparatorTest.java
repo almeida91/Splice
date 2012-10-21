@@ -12,7 +12,7 @@ package splice.ga;
 
 import org.junit.Before;
 import org.junit.Test;
-import util.TestBasicChromosome;
+import util.MockBasicChromosome;
 
 import java.util.Comparator;
 
@@ -30,9 +30,9 @@ public class ChromosomeComparatorTest {
     public void setUp() {
         comparator = new ChromosomeComparator(value);
 
-        t0 = new TestBasicChromosome(value - 1);
-        t1 = new TestBasicChromosome(value);
-        t2 = new TestBasicChromosome(value + 1);
+        t0 = new MockBasicChromosome(value - 1);
+        t1 = new MockBasicChromosome(value);
+        t2 = new MockBasicChromosome(value + 1);
 
         t0.calculateFitness();
         t1.calculateFitness();

@@ -17,9 +17,9 @@ import org.junit.Test;
 
 import splice.ProblemTypeTest;
 import splice.RandomComponentTest;
-import util.TestAllocator;
-import util.TestBasicChromosome;
-import util.TestPopulation;
+import util.MockAllocator;
+import util.MockBasicChromosome;
+import util.MockPopulation;
 
 import java.util.ArrayList;
 
@@ -30,17 +30,17 @@ public class PopulationAllocatorTest {
 
 	@Before
 	public void setUp() {
-		population = new TestPopulation(0.0, POPULATION_SIZE);
+		population = new MockPopulation(0.0, POPULATION_SIZE);
 		population.initialize();
 		
-		allocator = new TestAllocator();
+		allocator = new MockAllocator();
         allocator.setPopulation(population);
 	}
 
 	@Test
 	public void testAppend() {
         testReset();
-		allocator.append(new TestBasicChromosome(1));
+		allocator.append(new MockBasicChromosome(1));
 
         assertEquals(1, allocator.getNewPopulation().get(0).calculateFitness(), 0);
 	}
@@ -57,7 +57,7 @@ public class PopulationAllocatorTest {
         ArrayList<BasicChromosome> list = new ArrayList<BasicChromosome>();
 
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            list.add(new TestBasicChromosome(1));
+            list.add(new MockBasicChromosome(1));
         }
 
         allocator.setPopulation(list);
@@ -75,5 +75,20 @@ public class PopulationAllocatorTest {
     @Test
     public void testProblemType() {
         ProblemTypeTest.doTest(allocator);
+    }
+
+    @Test
+    public void testSort() throws Exception {
+        allocator.reset();
+
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            allocator.append(new MockBasicChromosome(i));
+        }
+
+        allocator.sortNewPopulation();
+
+        for (int i = 0; i < POPULATION_SIZE; i++) {
+            assertEquals(i, allocator.getNewPopulation().get(i).calculateFitness(), 0);
+        }
     }
 }

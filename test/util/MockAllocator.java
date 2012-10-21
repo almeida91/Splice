@@ -10,15 +10,24 @@
 
 package util;
 
-import splice.ga.StopCondition;
+import splice.ga.PopulationAllocator;
 
 /**
+ * As the other classes in this package it is just a mock-up so an abstract class may be tested
  * @author igor
+ *
  */
-public class TestStopCondition extends StopCondition {
+public class MockAllocator extends PopulationAllocator {
 
-    @Override
-    public boolean stop(int generation) {
-        return false;
-    }
+	@Override
+	public void initialize() { }
+
+	@Override
+	public void allocate() { }
+
+	@Override
+	public boolean complete() {
+		return false;
+	}
+
 }

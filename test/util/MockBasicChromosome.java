@@ -11,19 +11,36 @@
 package util;
 
 import splice.ga.BasicChromosome;
-import splice.ga.ChromosomeFactory;
 
-@SuppressWarnings("rawtypes")
-public class TestChromosomeFactory extends ChromosomeFactory {
+/**
+ * Simple chromosome used to run the tests
+ * @author igor almeida
+ *
+ */
+public class MockBasicChromosome extends BasicChromosome {
 	double value;
+    boolean mutated;
 	
-	public TestChromosomeFactory(double value) {
+	public MockBasicChromosome(double value) {
 		this.value = value;
 	}
 	
 	@Override
-	public BasicChromosome getRandomChromosome() {
-		return new TestBasicChromosome(value);
+	protected double fitness() {
+		return value;
 	}
 
+	@Override
+	protected void mutate() {
+        mutated = true;
+	}
+
+	@Override
+	public BasicChromosome crossover(BasicChromosome chromosome) {
+		return null;
+	}
+
+    public boolean isMutated() {
+        return mutated;
+    }
 }

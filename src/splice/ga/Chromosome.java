@@ -35,8 +35,12 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	public void setGenes(T[] genes) {
 		this.genes = genes;
 	}
-	
-	@Override
+
+    public T[] getGenes() {
+        return genes;
+    }
+
+    @Override
 	protected void mutate() {
         for (T gene : genes) {
             mutator.mutate(gene);

@@ -25,7 +25,9 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
 	private T value;
 	private Random random;
 	
-	public void initialize() { }
+	public void initialize() {
+        return;
+    }
 	
 	public Gene(T value) {
 		this.value = value;
@@ -55,4 +57,9 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
 		Gene<T> o = (Gene<T>)obj;
 		return value.equals(o.value);
 	}
+
+    @Override
+    public String toString() {
+        return value.toString();
+    }
 }

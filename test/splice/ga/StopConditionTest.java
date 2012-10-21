@@ -12,7 +12,7 @@ package splice.ga;
 
 import org.junit.Test;
 import splice.ProblemTypeTest;
-import util.TestStopCondition;
+import util.MockStopCondition;
 
 /**
  * @author igor
@@ -20,6 +20,6 @@ import util.TestStopCondition;
 public class StopConditionTest {
     @Test
     public void testRandom() {
-        ProblemTypeTest.doTest(new TestStopCondition());
+        ProblemTypeTest.doTest(new MockStopCondition());
     }
 }

@@ -10,24 +10,28 @@
 
 package util;
 
-import splice.ga.PopulationAllocator;
+import splice.ga.Chromosome;
+import splice.ga.genes.BinaryGene;
 
 /**
- * As the other classes in this package it is just a mock-up so an abstract class may be tested
  * @author igor
- *
  */
-public class TestAllocator extends PopulationAllocator {
+public class MockChromosome extends Chromosome<BinaryGene> {
+    @Override
+    protected Chromosome getNew() {
+        return new MockChromosome();
+    }
 
-	@Override
-	public void initialize() { }
+    @Override
+    protected double fitness() {
+        double sum = 0;
 
-	@Override
-	public void allocate() { }
+        for (BinaryGene gene : getGenes()) {
+            sum += gene.toDouble();
+        }
 
-	@Override
-	public boolean complete() {
-		return false;
-	}
+        return sum;
+    }
+
 
 }

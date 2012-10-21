@@ -21,8 +21,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.RandomComponentTest;
-import util.TestBasicChromosome;
-import util.TestChromosomeFactory;
+import util.MockBasicChromosome;
+import util.MockBasicChromosomeFactory;
 
 public class PopulationTest {
 	Population population;
@@ -34,7 +34,7 @@ public class PopulationTest {
 	public void setUp() throws Exception {
 		population = new Population();
 		population.setSize(CHROMOSOMES);
-		population.setFactory(new TestChromosomeFactory(FITNESS));
+		population.setFactory(new MockBasicChromosomeFactory(FITNESS));
 		random = new Random();
 		population.setRandom(random);
 	}
@@ -75,7 +75,7 @@ public class PopulationTest {
         population.getChromosomes().clear();
 
         for (int i = 0; i < CHROMOSOMES; i++) {
-            population.getChromosomes().add(new TestBasicChromosome(i));
+            population.getChromosomes().add(new MockBasicChromosome(i));
         }
 
         population.calculateFitnessSum();
@@ -112,7 +112,7 @@ public class PopulationTest {
         population.getChromosomes().clear();
 
         for (int i = 0; i < CHROMOSOMES; i++) {
-            population.getChromosomes().add(new TestBasicChromosome(1));
+            population.getChromosomes().add(new MockBasicChromosome(1));
         }
 
         population.calculateFitnessSum();

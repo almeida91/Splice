@@ -13,10 +13,10 @@ package splice.ga;
 import splice.RandomComponent;
 
 /**
- * Defines how to mutate a TestGene
+ * Defines how to mutate a Gene
  * @author igor
  *
- * @param <T> the TestGene type that can be mutated
+ * @param <T> the Gene type that can be mutated
  */
 @SuppressWarnings("rawtypes")
 public interface Mutator<T extends Gene> extends RandomComponent { 

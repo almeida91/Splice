@@ -38,5 +38,7 @@ public abstract class StopCondition extends PopulationManipulator implements Pro
 	}
 
     @Override
-    public void initialize() { }
+    public void initialize() {
+        return;
+    }
 }

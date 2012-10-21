@@ -11,20 +11,19 @@
 package util;
 
 import splice.ga.BasicChromosome;
-import splice.ga.Selector;
+import splice.ga.ChromosomeFactory;
 
-/**
- * @author igor
- */
-public class TestSelector extends Selector {
-    @Override
-    public BasicChromosome getChromosome() {
-        return null;
-    }
+@SuppressWarnings("rawtypes")
+public class MockBasicChromosomeFactory extends ChromosomeFactory {
+	double value;
+	
+	public MockBasicChromosomeFactory(double value) {
+		this.value = value;
+	}
+	
+	@Override
+	public BasicChromosome getRandomChromosome() {
+		return new MockBasicChromosome(value);
+	}
 
-    @Override
-    public void beforeGeneration() { }
-
-    @Override
-    public void initialize() { }
 }

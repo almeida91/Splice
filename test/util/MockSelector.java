@@ -11,36 +11,20 @@
 package util;
 
 import splice.ga.BasicChromosome;
+import splice.ga.Selector;
 
 /**
- * Simple chromosome used to run the tests
- * @author igor almeida
- *
+ * @author igor
  */
-public class TestBasicChromosome extends BasicChromosome {
-	double value;
-    boolean mutated;
-	
-	public TestBasicChromosome(double value) {
-		this.value = value;
-	}
-	
-	@Override
-	protected double fitness() {
-		return value;
-	}
-
-	@Override
-	protected void mutate() {
-        mutated = true;
-	}
-
-	@Override
-	public BasicChromosome crossover(BasicChromosome chromosome) {
-		return null;
-	}
-
-    public boolean isMutated() {
-        return mutated;
+public class MockSelector extends Selector {
+    @Override
+    public BasicChromosome getChromosome() {
+        return null;
     }
+
+    @Override
+    public void beforeGeneration() { }
+
+    @Override
+    public void initialize() { }
 }

@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.Population;
-import util.TestPopulation;
+import util.MockPopulation;
 
 public class MinimumAverageFitnessTest {
 	final double MINIMUM_FITNESS = 0.5;
@@ -28,8 +28,8 @@ public class MinimumAverageFitnessTest {
 	@Before
 	public void setUp() throws Exception {
 		condition = new MinimumAverageFitness(MINIMUM_FITNESS);
-		populationContinue = new TestPopulation(MINIMUM_FITNESS - STEP);
-		populationStop = new TestPopulation(MINIMUM_FITNESS + STEP);
+		populationContinue = new MockPopulation(MINIMUM_FITNESS - STEP);
+		populationStop = new MockPopulation(MINIMUM_FITNESS + STEP);
 	}
 
 	@Test

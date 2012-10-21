@@ -10,30 +10,13 @@
 
 package util;
 
-import splice.ga.Population;
+import splice.ga.Gene;
 
-public class TestPopulation extends Population {
-	double average;
-	
-	public TestPopulation(double average, int size) {
-		this.average = average;
-		setSize(size);
-	}
-	
-	public TestPopulation(double average) {
-		this(average, 0);
-	}
-
-    @Override
-    public double getFitnessAverage() {
-        return average;
+/**
+ * @author igor
+ */
+public class MockGene<T> extends Gene<T> {
+    public MockGene(T value) {
+        super(value);
     }
-	
-	@Override
-	public void initialize() {
-		if (getFactory() == null)
-			setFactory(new TestChromosomeFactory(average));
-		
-		super.initialize();
-	}
 }

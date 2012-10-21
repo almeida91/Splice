@@ -10,13 +10,15 @@
 
 package util;
 
-import splice.ga.Gene;
+import splice.ga.StopCondition;
 
 /**
  * @author igor
  */
-public class TestGene<T> extends Gene<T> {
-    public TestGene(T value) {
-        super(value);
+public class MockStopCondition extends StopCondition {
+
+    @Override
+    public boolean stop(int generation) {
+        return false;
     }
 }

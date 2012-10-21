@@ -66,7 +66,9 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	}
 	
 	@Override
-	public void initialize() { }
+	public void initialize() {
+        return;
+    }
 
 	@Override
 	public int compareTo(BasicChromosome o) {

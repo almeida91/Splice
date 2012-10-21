@@ -64,7 +64,9 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 		return chromosome;
 	}
 
-	public void initialize() { }
+	public void initialize() {
+        return;
+    }
 
 	public Random getRandom() {
 		return random;
@@ -90,4 +92,8 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 	public void setCrossover(Crossover<T> crossover) {
 		this.crossover = crossover;
 	}
+
+    public ChromosomeType getChromosomeType() {
+        return type;
+    }
 }

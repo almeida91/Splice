@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import splice.RandomComponentTest;
 
-import util.TestGene;
+import util.MockGene;
 
 
 /**
@@ -29,7 +29,7 @@ public class GeneTest {
 
     @Before
     public void setUp() {
-        gene = new TestGene<Integer>(42);
+        gene = new MockGene<Integer>(42);
     }
 
     @Test
@@ -40,13 +40,24 @@ public class GeneTest {
 
     @Test
     public void testEquals() {
-        assertTrue(gene.equals(new TestGene<Integer>(42)));
-        assertFalse(gene.equals(new TestGene<Integer>(77)));
+        assertTrue(gene.equals(new MockGene<Integer>(42)));
+        assertFalse(gene.equals(new MockGene<Integer>(77)));
         assertFalse(gene.equals(new Object()));
     }
 
     @Test
     public void testRandom() {
         RandomComponentTest.doTest(gene);
+    }
+
+    @Test
+    public void testToString() {
+        assertEquals("42", gene.toString());
+    }
+
+    @Test
+    public void testInitialize() throws Exception {
+        gene.initialize();
+        assertEquals(VALUE, gene.getValue().longValue());
     }
 }

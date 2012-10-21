@@ -19,7 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.Population;
-import util.TestChromosomeFactory;
+import util.MockBasicChromosomeFactory;
 
 public class RandomSelectorTest {
 	Population population;
@@ -33,7 +33,7 @@ public class RandomSelectorTest {
 		
 		population = new Population();
 		population.setSize(300);
-		population.setFactory(new TestChromosomeFactory(FITNESS));
+		population.setFactory(new MockBasicChromosomeFactory(FITNESS));
 		population.setRandom(random);
 		population.initialize();
 		

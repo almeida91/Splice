@@ -10,20 +10,30 @@
 
 package util;
 
-import splice.ga.Chromosome;
-import splice.ga.genes.BinaryGene;
+import splice.ga.Population;
 
-/**
- * @author igor
- */
-public class TestChromosome extends Chromosome<BinaryGene> {
-    @Override
-    protected Chromosome getNew() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
+public class MockPopulation extends Population {
+	double average;
+	
+	public MockPopulation(double average, int size) {
+		this.average = average;
+		setSize(size);
+	}
+	
+	public MockPopulation(double average) {
+		this(average, 0);
+	}
 
     @Override
-    protected double fitness() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    public double getFitnessAverage() {
+        return average;
     }
+	
+	@Override
+	public void initialize() {
+		if (getFactory() == null)
+			setFactory(new MockBasicChromosomeFactory(average));
+		
+		super.initialize();
+	}
 }
