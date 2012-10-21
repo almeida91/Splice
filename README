@@ -1,6 +1,7 @@
 Splice is a library that helps with creation and execution of genetic algorithms.
 
-To build from source open the project in Eclipse or Intellij and use the src/ folder to export as a jar package.
+To build from source open the folder and run:
+    $ gradle build
 
 Look for samples/ folder to see how to build simple genetic algorithms.
 Samples included:
