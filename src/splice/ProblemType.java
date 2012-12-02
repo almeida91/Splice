@@ -15,12 +15,23 @@ package splice;
 public class ProblemType {
 	private boolean maximization, minimization;
 
+    public ProblemType() {
+        maximization = minimization = false;
+    }
+
+    private void verify() {
+        if (maximization || minimization)
+            throw new RuntimeException("Problem type already defined");
+    }
+
 	public void setMaximization() {
+        verify();
 		maximization = true;
 		minimization = false;
 	}
 	
 	public void setMinimization() {
+        verify();
 		maximization = false;
 		minimization = true;
 	}
@@ -32,4 +43,8 @@ public class ProblemType {
 	public boolean isMinimization() {
 		return minimization;
 	}
+
+    public boolean isUnset() {
+        return !(maximization || minimization);
+    }
 }

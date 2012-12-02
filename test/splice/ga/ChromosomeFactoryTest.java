@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import splice.RandomComponentTest;
 import util.MockBasicChromosomeFactory;
+import util.MockCrossover;
+import util.MockMutator;
 
 import static org.junit.Assert.*;
 
@@ -36,11 +38,13 @@ public class ChromosomeFactoryTest {
 
     @Test
     public void testSetMutator() throws Exception {
-        fail("Not yet implemented");
+        factory.setMutator(new MockMutator());
+        assertNotNull(factory.getMutator());
     }
 
     @Test
     public void testSetCrossover() throws Exception {
-        fail("Not yet implemented");
+        factory.setCrossover(new MockCrossover());
+        assertNotNull(factory.getCrossover());
     }
 }

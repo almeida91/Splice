@@ -17,12 +17,13 @@ import splice.ga.genes.BinaryGene;
 
 
 
-public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
+public class MultiPointBinaryCrossover extends MaskBinaryCrossover {
 	private int parts;
 	private int length = 0;
-	private BigInteger aMask, bMask;
-	
+
 	public MultiPointBinaryCrossover(int points) {
+        super(null);
+
 		parts = points + 1;
 
         if (parts == 0)
@@ -74,11 +75,7 @@ public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
             generateMasks();
         }
 
-		BigInteger value = a.getValue().and(aMask).xor(b.getValue().and(bMask));
-		BinaryGene g = new BinaryGene(value);
-		g.setLength(a.getLength());
-		
-		return g;
+		return super.doCrossover(a,b);
 	}
 
 }

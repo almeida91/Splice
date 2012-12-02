@@ -21,7 +21,7 @@ public class RosenbrockChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	@Override
 	public void initialize() {
 		setMutator(new SingleBitBinaryMutator());
-		setCrossover(new MultiPointBinaryCrossover(32));
+		setCrossover(new MultiPointBinaryCrossover(2));
 	}
 
 	@Override
