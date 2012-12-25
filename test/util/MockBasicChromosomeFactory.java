@@ -16,8 +16,9 @@ import splice.ga.ChromosomeFactory;
 @SuppressWarnings("rawtypes")
 public class MockBasicChromosomeFactory extends ChromosomeFactory {
 	double value;
-	
-	public MockBasicChromosomeFactory(double value) {
+    private boolean initialized;
+
+    public MockBasicChromosomeFactory(double value) {
 		this.value = value;
 	}
 	
@@ -26,4 +27,12 @@ public class MockBasicChromosomeFactory extends ChromosomeFactory {
 		return new MockBasicChromosome(value);
 	}
 
+    @Override
+    public void initialize() {
+        initialized = true;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
 }

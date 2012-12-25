@@ -22,16 +22,13 @@ public class RosenbrockChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	public void initialize() {
 		setMutator(new SingleBitBinaryMutator());
 		setCrossover(new MultiPointBinaryCrossover(2));
+        setSize(2);
+        setGene(new BinaryGene(0));
 	}
 
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		RosenbrockChromosome c = new RosenbrockChromosome();
-		BinaryGene[] g = new BinaryGene[] {
-				new BinaryGene(getRandom().nextInt(Integer.MAX_VALUE)),
-				new BinaryGene(getRandom().nextInt(Integer.MAX_VALUE)) };
-		c.setGenes(g);
-		return c;
+		return new RosenbrockChromosome();
 	}
 
 }

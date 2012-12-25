@@ -28,7 +28,7 @@ import splice.RandomComponent;
  * @author Igor Almeida
  * 
  */
-public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent, InitializeComponent {
+public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent, InitializeComponent, Cloneable {
 	private double fitness;
 	private Random random;
 

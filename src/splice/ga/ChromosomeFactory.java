@@ -28,12 +28,16 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 	private ChromosomeType type;
 	private Mutator<T> mutator;
 	private Crossover<T> crossover;
+    private Gene<?> gene;
+    private int size;
 	
 	/**
 	 * This method is used to fill the population with new individuals.
 	 * @return new random chromosome
 	 */
 	public abstract BasicChromosome getRandomChromosome();
+
+
 
     /**
      * Finds which kind of chromosome will be generated
@@ -59,12 +63,44 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 			GeneContainer<T> c = (GeneContainer<T>)chromosome;
 			c.setCrossover(crossover);
 			c.setMutator(mutator);
-		}			
-		
+		}
+
+        if (type == ChromosomeType.SINGLE) {
+            Gene<?> gene = generateGene();
+            gene.setRandom(getRandom());
+            gene.initialize();
+            ((SingleGeneChromosome)chromosome).setGene(gene);
+        }
+
+
+        if (type== ChromosomeType.NORMAL) {
+            Gene<?>[] genes = new Gene<?>[size];
+
+            for (int i = 0; i < size; i++) {
+                genes[i] = generateGene();
+                genes[i].setRandom(getRandom());
+                genes[i].initialize();
+            }
+
+            ((Chromosome)chromosome).setGenes(genes);
+        }
+
 		return chromosome;
 	}
 
-	public void initialize() {
+    private Gene<?> generateGene() {
+        Gene<?> g = null;
+
+        try {
+            g = gene.clone();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return g;
+    }
+
+    public void initialize() {
         return;
     }
 
@@ -95,5 +131,17 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 
     public ChromosomeType getChromosomeType() {
         return type;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setGene(Gene<?> gene) {
+        this.gene = gene;
     }
 }

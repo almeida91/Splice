@@ -21,7 +21,7 @@ import splice.RandomComponent;
  *
  * @param <T> the type of information value
  */
-public abstract class Gene<T> implements RandomComponent, InitializeComponent {
+public abstract class Gene<T> implements RandomComponent, InitializeComponent, Cloneable {
 	private T value;
 	private Random random;
 	
@@ -61,5 +61,14 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
     @Override
     public String toString() {
         return value.toString();
+    }
+
+    public Gene<T> clone() {
+        try {
+            return (Gene<T>) (super.clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

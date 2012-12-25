@@ -16,9 +16,14 @@ import splice.ga.StopCondition;
  * @author igor
  */
 public class MockStopCondition extends StopCondition {
+    private final boolean willStop;
+
+    public MockStopCondition(boolean willStop) {
+        this.willStop = willStop;
+    }
 
     @Override
     public boolean stop(int generation) {
-        return false;
+        return willStop;
     }
 }

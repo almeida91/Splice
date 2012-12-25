@@ -15,11 +15,6 @@ import splice.ga.genes.ListGene;
 
 public class ZerosChromosome extends SingleGeneChromosome<ListGene<Integer>> {
 	@Override
-	protected SingleGeneChromosome<ListGene<Integer>> getNew() {
-		return new ZerosChromosome();
-	}
-
-	@Override
 	protected double fitness() {
 		double f = 0;
 		

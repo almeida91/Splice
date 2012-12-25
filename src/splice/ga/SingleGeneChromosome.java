@@ -22,12 +22,10 @@ import java.util.Random;
  * @param <T>
  */
 @SuppressWarnings("rawtypes")
-public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromosome implements SingleGeneContainer<T> {
+public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromosome implements SingleGeneContainer<T>, Cloneable {
 	private T gene;
 	private Crossover<T> crossover;
 	private Mutator<T> mutator;
-	
-	protected abstract SingleGeneChromosome<T> getNew();
 	
 	@Override
 	public void setGene(T gene) {
@@ -57,8 +55,13 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
 		SingleGeneChromosome<T> other = (SingleGeneChromosome<T>)chromosome;
-		SingleGeneChromosome<T> newChromosome = getNew();
-		newChromosome.gene = crossover.doCrossover(gene, other.gene);
+        SingleGeneChromosome<T> newChromosome = null;
+        try {
+            newChromosome = (SingleGeneChromosome)clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        newChromosome.gene = crossover.doCrossover(gene, other.gene);
 		
 		newChromosome.mutator = mutator;
 		newChromosome.crossover = crossover;

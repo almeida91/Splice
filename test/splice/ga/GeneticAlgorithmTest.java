@@ -14,17 +14,27 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import util.*;
 
 public class GeneticAlgorithmTest {
 	GeneticAlgorithm ga;
     PopulationAllocator allocator;
     Selector selector;
-    ChromosomeFactory<?> factory;
+    MockBasicChromosomeFactory factory;
+    DataManipulator manipulator;
+    StopCondition stopCondition;
 
 
 	@Before
 	public void setUp() {
+        allocator = new MockAllocator();
+        selector = new MockSelector();
+        factory = new MockBasicChromosomeFactory(0);
+        manipulator = new MockDataManipulator();
+        stopCondition = new MockStopCondition(false);
 
+        ga = new GeneticAlgorithm(factory, allocator, selector);
+        ga.setStopCondition(stopCondition);
 	}
 
 	@Test
@@ -39,6 +49,26 @@ public class GeneticAlgorithmTest {
 
 	@Test
 	public void testInitialize() {
-		fail("Not yet implemented");
+		ga.initialize();
+
+        assertNotNull(allocator.getRandom());
+        assertNotNull(selector.getRandom());
+        assertNotNull(factory.getRandom());
+        assertNotNull(ga.getPopulation().getRandom());
+
+        assertTrue(factory.isInitialized());
+
+        assertNotNull(allocator.getPopulation());
+        assertNotNull(selector.getPopulation());
+        assertNotNull(stopCondition.getPopulation());
+        assertNotNull(allocator.getPopulation());
+
+        assertTrue(factory.isInitialized());
 	}
+
+    @Test
+    public void testSetInitPopulation() throws Exception {
+
+
+    }
 }

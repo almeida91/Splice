@@ -51,13 +51,10 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 	 * @param allocator the new population allocator
 	 * @param selector the crossover candidates selector
 	 */
-	public GeneticAlgorithm(ChromosomeFactory<?> factory,
-			PopulationAllocator allocator, Selector selector) {
+	public GeneticAlgorithm(ChromosomeFactory<?> factory, PopulationAllocator allocator, Selector selector) {
 		this.allocator = allocator;
 		this.selector = selector;
 		this.factory = factory;
-		
-
 	}
 
 	/**

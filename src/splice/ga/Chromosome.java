@@ -18,8 +18,6 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	private Crossover<T> crossover;
 	private Mutator<T> mutator;
 	
-	protected abstract Chromosome getNew();
-	
 	public T get(int i) {
 		return genes[i];
 	}
@@ -50,11 +48,14 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
-		Chromosome newChromosome = getNew();
-		Chromosome other = (Chromosome)chromosome;
+        Chromosome newChromosome = null;
+        try {
+            newChromosome = (Chromosome<T>)(this.clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        Chromosome other = (Chromosome)chromosome;
 		
-		newChromosome.crossover = crossover;
-		newChromosome.mutator = mutator;
 		newChromosome.genes = new Gene[genes.length];
 		
 		for (int i = 0; i < genes.length; i++) {

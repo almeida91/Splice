@@ -72,8 +72,6 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	@Override
 	public void initialize() {
-		if (getValue() != null)
-			return;
 		if (length == 0)
 			throw new RuntimeException("BinaryGene must have length set");
         setValue(new BigInteger(length, getRandom()));

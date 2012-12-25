@@ -18,11 +18,6 @@ import splice.ga.genes.BinaryGene;
  */
 public class MockChromosome extends Chromosome<BinaryGene> {
     @Override
-    protected Chromosome getNew() {
-        return new MockChromosome();
-    }
-
-    @Override
     protected double fitness() {
         double sum = 0;
 
@@ -32,6 +27,4 @@ public class MockChromosome extends Chromosome<BinaryGene> {
 
         return sum;
     }
-
-
 }
