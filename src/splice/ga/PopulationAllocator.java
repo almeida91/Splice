@@ -92,7 +92,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	/**
 	 * Resets the buffer, you don't want the population to grow till your memory overflows
 	 */
-	public void reset() { //TODO: should call this at initialization
+	public void reset() { // TODO: should call this at initialization
 		newPopulation = new ArrayList<BasicChromosome>(population.getSize());
 	}
 	

@@ -24,6 +24,6 @@ public class RosenbrockChromosome extends Chromosome<BinaryGene> {
 
     @Override
     public String toString() {
-        return  "f(" + get(0).toDouble() + ", " + get(1).toDouble() + ") = " + getFitness();
+        return  "f(" + get(0).toFloat() + ", " + get(1).toFloat() + ") = " + getFitness();
     }
 }
