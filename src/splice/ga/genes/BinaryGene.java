@@ -12,6 +12,7 @@ package splice.ga.genes;
 
 import java.math.BigInteger;
 
+import splice.RandomUtil;
 import splice.ga.Gene;
 
 /**
@@ -74,7 +75,7 @@ public class BinaryGene extends Gene<BigInteger> {
 	public void initialize() {
 		if (length == 0)
 			throw new RuntimeException("BinaryGene must have length set");
-        setValue(new BigInteger(length, getRandom()));
+        setValue(new BigInteger(length, RandomUtil.getRandom()));
 	}
 
 	public int getLength() {

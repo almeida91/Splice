@@ -10,13 +10,10 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 import splice.ExceptionHandler;
 import splice.InitializeComponent;
 import splice.ProblemType;
 import splice.ProblemTypeComponent;
-import splice.RandomComponent;
 
 import splice.ga.dataManipulators.ConsoleOutput;
 import splice.ga.exceptionHandlers.ErrorStream;
@@ -27,7 +24,7 @@ import splice.ga.stopConditions.Generations;
  * @author igor
  *
  */
-public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
+public class GeneticAlgorithm implements InitializeComponent {
 	private int populationSize = 100;
 	private double mutationRate = 0.2;
     private double lastTime = 0;
@@ -42,8 +39,6 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 	private StopCondition stopCondition = new Generations(2000);
 	private ExceptionHandler handler = new ErrorStream();
 	private ProblemType problemType = new ProblemType();
-	
-	private Random random = new Random();
 	
 	/**
 	 * Default constructor
@@ -107,18 +102,12 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 
     private void reproduce(BasicChromosome a, BasicChromosome b) {
         BasicChromosome c = a.crossover(b);
-        c.setRandom(random);
         c.mutate(mutationRate);
         allocator.append(c);
     }
 
     public void initialize() {
 		dataManipulator.setHandler(handler);
-		
-		setRandomGenerator(selector);
-		setRandomGenerator(allocator);
-		setRandomGenerator(factory);
-		setRandomGenerator(population);
 		
 		factory.initialize();
 		
@@ -146,10 +135,6 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 	
 	private void setProblemType(ProblemTypeComponent component) {
 		component.setProblemType(problemType);
-	}
-	
-	private void setRandomGenerator(RandomComponent component) {
-		component.setRandom(random);
 	}
 	
 	private void setPopulationManipulator(PopulationManipulator manipulator) {
@@ -196,14 +181,6 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
 		this.stopCondition = stopCondition;
 	}
 
-	public Random getRandom() {
-		return random;
-	}
-
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-	
 	public void setExceptionHandler(ExceptionHandler handler) {
 		this.handler = handler;
 	}

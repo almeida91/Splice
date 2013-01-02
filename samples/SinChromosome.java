@@ -9,6 +9,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 
 public class SinChromosome extends BasicChromosome {
@@ -26,12 +27,12 @@ public class SinChromosome extends BasicChromosome {
 
 	@Override
 	protected void mutate() {
-		if (getRandom().nextBoolean())
-			if (getRandom().nextBoolean())
+		if (RandomUtil.getRandom().nextBoolean())
+			if (RandomUtil.getRandom().nextBoolean())
 				y -= 0.1;
 			else
 				y += 0.1;
-		else if (getRandom().nextBoolean())
+		else if (RandomUtil.getRandom().nextBoolean())
 			x -= 0.1;
 		else
 			x += 0.1;

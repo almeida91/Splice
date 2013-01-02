@@ -2,7 +2,6 @@ package splice.ga;
 
 import org.junit.Before;
 import org.junit.Test;
-import splice.RandomComponentTest;
 import util.MockBasicChromosomeFactory;
 import util.MockCrossover;
 import util.MockMutator;
@@ -29,11 +28,6 @@ public class ChromosomeFactoryTest {
     @Test
     public void testInitialize() throws Exception {
         fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetRandom() throws Exception {
-        RandomComponentTest.doTest(factory);
     }
 
     @Test

@@ -17,7 +17,7 @@ import splice.ga.stopConditions.Generations;
 
 public class RunNQueens {
 	public static void main(String[] args) {
-		GeneticAlgorithm ga = new GeneticAlgorithm(new NQueensChromosomeFactory(8), new ElitismAllocator(0.3), new TournamentSelector(5));
+		GeneticAlgorithm ga = new GeneticAlgorithm(new NQueensChromosomeFactory(8), new ElitismAllocator(0.3), new TournamentSelector(3));
 		ga.setStopCondition(new Generations(1000));
 		ga.execute();
 		

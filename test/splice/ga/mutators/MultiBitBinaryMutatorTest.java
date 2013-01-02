@@ -32,7 +32,6 @@ public class MultiBitBinaryMutatorTest {
         random = new Random();
 
         mutator = new MultiBitBinaryMutator(NUM_BITS);
-        mutator.setRandom(random);
     }
 
     @Test

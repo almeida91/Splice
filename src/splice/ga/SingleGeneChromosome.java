@@ -75,12 +75,6 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	}
 	
 	@Override
-	public void setRandom(Random random) {
-		super.setRandom(random);
-		gene.setRandom(random);
-	}
-	
-	@Override
 	@SuppressWarnings("unchecked")
 	public boolean equals(Object obj) {
         if (!(obj instanceof SingleGeneChromosome))

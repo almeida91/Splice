@@ -9,7 +9,6 @@ import java.util.Random;
  * @author igor
  */
 public class MockMutator implements Mutator<BinaryGene> {
-    private Random random;
     private boolean called = false;
     private int timesCalled = 0;
 
@@ -17,16 +16,6 @@ public class MockMutator implements Mutator<BinaryGene> {
     public void mutate(BinaryGene gene) {
         called = true;
         timesCalled++;
-    }
-
-    @Override
-    public Random getRandom() {
-        return random;
-    }
-
-    @Override
-    public void setRandom(Random random) {
-        this.random = random;
     }
 
     public boolean isCalled() {

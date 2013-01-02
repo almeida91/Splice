@@ -10,8 +10,6 @@
 
 package splice.ga;
 
-import splice.RandomComponent;
-
 /**
  * Defines how to mutate a Gene
  * @author igor
@@ -19,6 +17,6 @@ import splice.RandomComponent;
  * @param <T> the Gene type that can be mutated
  */
 @SuppressWarnings("rawtypes")
-public interface Mutator<T extends Gene> extends RandomComponent { 
+public interface Mutator<T extends Gene> {
 	public void mutate(T gene);
 }

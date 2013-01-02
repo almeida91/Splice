@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import splice.RandomComponentTest;
 import splice.ga.genes.BinaryGene;
 
 import util.MockChromosome;
@@ -78,14 +77,6 @@ public class ChromosomeTest {
         s += "]";
 
         assertEquals(s, chromosome.toString());
-    }
-
-    @Test
-    public void testSetRandom() {
-        RandomComponentTest.doTest(chromosome);
-
-        for (Gene<?> g : genes)
-            RandomComponentTest.doTest(g);
     }
 
     @Test

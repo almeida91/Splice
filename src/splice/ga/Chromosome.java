@@ -10,8 +10,6 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 @SuppressWarnings("rawtypes")
 public abstract class Chromosome<T extends Gene> extends BasicChromosome implements GeneContainer<T> {
 	private T[] genes;
@@ -65,13 +63,6 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 		return newChromosome;
 	}
 
-	@Override
-	public void setRandom(Random random) {
-		super.setRandom(random);
-		for (Gene g : genes)
-			g.setRandom(random);
-	}
-	
 	@Override
 	public String toString() {
 		String s = "[";

@@ -10,6 +10,7 @@
 
 package nqueens;
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 
 /**
@@ -60,8 +61,8 @@ public class NQueensChromosome extends BasicChromosome {
 
 	@Override
 	protected void mutate() {
-		queens[getRandom().nextInt(n)][getRandom()
-				.nextInt(2)] = getRandom().nextInt(n);
+		queens[RandomUtil.getRandom().nextInt(n)][RandomUtil.getRandom()
+				.nextInt(2)] = RandomUtil.getRandom().nextInt(n);
 	}
 
 	@Override

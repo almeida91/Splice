@@ -32,7 +32,6 @@ public class BasicChromosomeTest {
     public void setUp() {
         chromosome = new MockBasicChromosome(FITNESS);
         random = new Random();
-        chromosome.setRandom(random);
     }
 
     @Test

@@ -10,10 +10,7 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 import splice.InitializeComponent;
-import splice.RandomComponent;
 
 /**
  * This class defines the structure for the factories that produces
@@ -23,8 +20,7 @@ import splice.RandomComponent;
  * 
  */
 @SuppressWarnings("rawtypes")
-public abstract class ChromosomeFactory<T extends Gene> implements RandomComponent, InitializeComponent {
-	private Random random;
+public abstract class ChromosomeFactory<T extends Gene> implements InitializeComponent {
 	private ChromosomeType type;
 	private Mutator<T> mutator;
 	private Crossover<T> crossover;
@@ -63,27 +59,22 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 			GeneContainer<T> c = (GeneContainer<T>)chromosome;
 			c.setCrossover(crossover);
 			c.setMutator(mutator);
-		}
 
-        if (type == ChromosomeType.SINGLE) {
-            Gene<?> gene = generateGene();
-            gene.setRandom(getRandom());
-            gene.initialize();
-            ((SingleGeneChromosome)chromosome).setGene(gene);
-        }
+            if (type == ChromosomeType.SINGLE) {
+                Gene<?> gene = generateGene();
+                gene.initialize();
+                ((SingleGeneChromosome)chromosome).setGene(gene);
+            } else if (type == ChromosomeType.NORMAL) {
+                Gene<?>[] genes = new Gene<?>[size];
 
+                for (int i = 0; i < size; i++) {
+                    genes[i] = generateGene();
+                    genes[i].initialize();
+                }
 
-        if (type== ChromosomeType.NORMAL) {
-            Gene<?>[] genes = new Gene<?>[size];
-
-            for (int i = 0; i < size; i++) {
-                genes[i] = generateGene();
-                genes[i].setRandom(getRandom());
-                genes[i].initialize();
+                ((Chromosome)chromosome).setGenes(genes);
             }
-
-            ((Chromosome)chromosome).setGenes(genes);
-        }
+		}
 
 		return chromosome;
 	}
@@ -100,17 +91,7 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
         return g;
     }
 
-    public void initialize() {
-        return;
-    }
-
-	public Random getRandom() {
-		return random;
-	}
-
-	public void setRandom(Random random) {
-		this.random = random;
-	}
+    public void initialize() { }
 
 	public Mutator<T> getMutator() {
 		return mutator;
@@ -118,7 +99,6 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 
 	public void setMutator(Mutator<T> mutator) {
 		this.mutator = mutator;
-		this.mutator.setRandom(random);
 	}
 
 	public Crossover<T> getCrossover() {

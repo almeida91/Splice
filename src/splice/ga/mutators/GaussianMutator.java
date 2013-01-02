@@ -10,15 +10,14 @@
 
 package splice.ga.mutators;
 
-import java.util.Random;
 
+import splice.RandomUtil;
 import splice.ga.Mutator;
 import splice.ga.genes.ListGene;
 
 
 @SuppressWarnings("rawtypes")
 public class GaussianMutator implements Mutator<ListGene> { 
-	private Random random;
 	private double x,y;
 	
 	public GaussianMutator(double max) {
@@ -30,20 +29,10 @@ public class GaussianMutator implements Mutator<ListGene> {
 		this.y = max;
 	}
 
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public void mutate(ListGene gene) {
-		gene.set(random.nextInt(gene.getSize()), ((random.nextGaussian() * (y - x)) + x));
+		gene.set(RandomUtil.getRandom().nextInt(gene.getSize()), ((RandomUtil.getRandom().nextGaussian() * (y - x)) + x));
 	}
 
 }

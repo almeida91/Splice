@@ -13,14 +13,14 @@ package splice.ga;
 import java.util.*;
 
 import splice.InitializeComponent;
-import splice.RandomComponent;
+import splice.RandomUtil;
 
 /**
  * The chromosome's collection
  * @author igor
  *
  */
-public class Population implements RandomComponent, InitializeComponent {
+public class Population implements InitializeComponent {
 	/**
 	 * this contains all the chromosomes
 	 */
@@ -41,7 +41,6 @@ public class Population implements RandomComponent, InitializeComponent {
 	 * the factory to fill the initial population
 	 */
 	private ChromosomeFactory<?> factory;
-	private Random random;
 
 	/**
 	 * Calculates the chromosome's fitness as well their averages
@@ -62,7 +61,6 @@ public class Population implements RandomComponent, InitializeComponent {
 
 		for (int i = 0; i < size; i++) {
 			chromosome = factory.generateChromosome();
-			chromosome.setRandom(random);
 			chromosomes.add(chromosome);
 		}
 	}
@@ -140,15 +138,7 @@ public class Population implements RandomComponent, InitializeComponent {
 	}
 	
 	public BasicChromosome getRandomChromosome() {
-		return this.get(getRandom().nextInt(getSize()));
-	}
-	
-	public Random getRandom() {
-		return random;
-	}
-	
-	public void setRandom(Random random) {
-		this.random = random;
+		return this.get(RandomUtil.getRandom().nextInt(getSize()));
 	}
 	
 	public void setSize(int size) {

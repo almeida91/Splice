@@ -15,8 +15,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import splice.RandomComponentTest;
-
 import util.MockGene;
 
 
@@ -43,11 +41,6 @@ public class GeneTest {
         assertTrue(gene.equals(new MockGene<Integer>(42)));
         assertFalse(gene.equals(new MockGene<Integer>(77)));
         assertFalse(gene.equals(new Object()));
-    }
-
-    @Test
-    public void testRandom() {
-        RandomComponentTest.doTest(gene);
     }
 
     @Test

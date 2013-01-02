@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ProblemTypeTest;
-import splice.RandomComponentTest;
 
 import util.MockSelector;
 
@@ -27,11 +26,6 @@ public class SelectorTest {
     @Before
     public void setUp() {
         selector = new MockSelector();
-    }
-
-    @Test
-    public void testRandom() {
-        RandomComponentTest.doTest(selector);
     }
 
     @Test

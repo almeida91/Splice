@@ -10,6 +10,7 @@
 
 package splice.ga.selectors;
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 import splice.ga.Selector;
 
@@ -24,7 +25,7 @@ public class RouletteSelector extends Selector {
 	public BasicChromosome getChromosome() {
 		int i;
 		double aux = 0;
-		double limit = getRandom().nextGaussian() * getPopulation().getFitnessSum();
+		double limit = RandomUtil.getRandom().nextGaussian() * getPopulation().getFitnessSum();
 
 		for (i = 0; i < getPopulation().getSize() & aux < limit; ++i) {
 			aux += getPopulation().get(i).getFitness();

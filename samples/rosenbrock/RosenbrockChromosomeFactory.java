@@ -14,13 +14,13 @@ import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 import splice.ga.crossovers.MultiPointBinaryCrossover;
 import splice.ga.genes.BinaryGene;
-import splice.ga.mutators.SingleBitBinaryMutator;
+import splice.ga.mutators.MultiBitBinaryMutator;
 
 public class RosenbrockChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 
 	@Override
 	public void initialize() {
-		setMutator(new SingleBitBinaryMutator());
+		setMutator(new MultiBitBinaryMutator(5));
 		setCrossover(new MultiPointBinaryCrossover(2));
         setSize(2);
         setGene(new BinaryGene(0));

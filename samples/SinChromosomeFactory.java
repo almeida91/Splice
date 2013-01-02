@@ -9,6 +9,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 
@@ -17,7 +18,7 @@ public class SinChromosomeFactory extends ChromosomeFactory {
 
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		return new SinChromosome(getRandom().nextDouble(), getRandom().nextDouble());
+		return new SinChromosome(RandomUtil.getRandom().nextDouble(), RandomUtil.getRandom().nextDouble());
 	}
 
 }

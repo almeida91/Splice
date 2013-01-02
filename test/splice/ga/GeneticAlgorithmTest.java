@@ -51,11 +51,6 @@ public class GeneticAlgorithmTest {
 	public void testInitialize() {
 		ga.initialize();
 
-        assertNotNull(allocator.getRandom());
-        assertNotNull(selector.getRandom());
-        assertNotNull(factory.getRandom());
-        assertNotNull(ga.getPopulation().getRandom());
-
         assertTrue(factory.isInitialized());
 
         assertNotNull(allocator.getPopulation());

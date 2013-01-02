@@ -20,7 +20,6 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import splice.RandomComponentTest;
 import util.MockBasicChromosome;
 import util.MockBasicChromosomeFactory;
 
@@ -36,7 +35,6 @@ public class PopulationTest {
 		population.setSize(CHROMOSOMES);
 		population.setFactory(new MockBasicChromosomeFactory(FITNESS));
 		random = new Random();
-		population.setRandom(random);
 	}
 
 	@Test
@@ -120,10 +118,5 @@ public class PopulationTest {
         Set<BasicChromosome> set = population.getChromosomesSet();
 
         assertEquals(1, set.size());
-    }
-
-    @Test
-    public void testRandom() {
-        RandomComponentTest.doTest(population);
     }
 }

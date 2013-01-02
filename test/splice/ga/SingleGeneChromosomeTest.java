@@ -2,7 +2,6 @@ package splice.ga;
 
 import org.junit.Before;
 import org.junit.Test;
-import splice.RandomComponentTest;
 import splice.ga.genes.BinaryGene;
 import util.MockCrossover;
 import util.MockMutator;
@@ -57,12 +56,6 @@ public class SingleGeneChromosomeTest {
     @Test
     public void testToString() throws Exception {
         assertEquals(gene.toString(), chromosome.toString());
-    }
-
-    @Test
-    public void testSetRandom() throws Exception {
-        RandomComponentTest.doTest(chromosome);
-        RandomComponentTest.doTest(gene);
     }
 
     @Test

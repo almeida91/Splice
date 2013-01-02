@@ -11,10 +11,9 @@
 package splice.ga;
 
 import java.util.Comparator;
-import java.util.Random;
 
 import splice.InitializeComponent;
-import splice.RandomComponent;
+import splice.RandomUtil;
 
 /**
  * Base class for chromosomes, it doesn't support the mutator/crossover
@@ -28,9 +27,8 @@ import splice.RandomComponent;
  * @author Igor Almeida
  * 
  */
-public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent, InitializeComponent, Cloneable {
+public abstract class BasicChromosome implements Comparable<BasicChromosome>, InitializeComponent, Cloneable {
 	private double fitness;
-	private Random random;
 
 	/**
 	 * Implementation of the fitness function
@@ -66,9 +64,7 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	}
 	
 	@Override
-	public void initialize() {
-        return;
-    }
+	public void initialize() { }
 
 	@Override
 	public int compareTo(BasicChromosome o) {
@@ -88,18 +84,7 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	 * @param chance the probability of mutation
 	 */
 	public void mutate(double chance) {
-		if (getRandom().nextDouble() < chance)
+		if (RandomUtil.getRandom().nextDouble() < chance)
 			mutate();
 	}
-
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-
 }

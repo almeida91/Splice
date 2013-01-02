@@ -10,6 +10,7 @@
 
 package nqueens;
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 
@@ -25,8 +26,8 @@ public class NQueensChromosomeFactory extends ChromosomeFactory {
 		int[][] queens = new int[n][2];
 
 		for (int i = 0; i < n; i++) {
-			queens[i][0] = getRandom().nextInt(n);
-			queens[i][1] = getRandom().nextInt(n);
+			queens[i][0] = RandomUtil.getRandom().nextInt(n);
+			queens[i][1] = RandomUtil.getRandom().nextInt(n);
 		}
 
 		return new NQueensChromosome(n, queens);
