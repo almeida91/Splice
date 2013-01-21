@@ -21,14 +21,16 @@ public class MockAllocator extends PopulationAllocator {
     boolean initialized = false;
 
 	@Override
-	public void initialize() { }
+	public void initialize() {
+        initialized = true;
+    }
 
 	@Override
 	public void allocate() { }
 
 	@Override
 	public boolean complete() {
-		return false;
+		return getNewPopulation().size() >= getPopulation().getSize();
 	}
 
     public boolean isInitialized() {

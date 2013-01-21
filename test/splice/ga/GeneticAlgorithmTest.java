@@ -38,13 +38,11 @@ public class GeneticAlgorithmTest {
 	}
 
 	@Test
-	public void testExecute() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testDoGeneration() {
-		fail("Not yet implemented");
+        allocator.setPopulation(new MockPopulation(0.5,10));
+        allocator.reset();
+		ga.doGeneration(0);
+        assertEquals(10, allocator.getNewPopulation().size());
 	}
 
 	@Test
@@ -62,12 +60,12 @@ public class GeneticAlgorithmTest {
         assertTrue(allocator.isInitialized());
         assertTrue(selector.isInitialized());
 
+        assertNotNull(allocator.getProblemType());
+        assertNotNull(stopCondition.getProblemType());
+        assertNotNull(selector.getProblemType());
 
+        assertTrue(allocator.getProblemType().isMaximization());
+        assertTrue(stopCondition.getProblemType().isMaximization());
+        assertTrue(selector.getProblemType().isMaximization());
 	}
-
-    @Test
-    public void testSetInitPopulation() throws Exception {
-
-
-    }
 }
