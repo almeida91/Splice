@@ -28,8 +28,11 @@ public abstract class Selector extends PopulationManipulator implements ProblemT
 	 * @return a chromosome for crossover
 	 */
 	public abstract BasicChromosome getChromosome();
+
+    /**
+     * Holds any logic to be called before the generation parents selection
+     */
 	public abstract void beforeGeneration();
-	
 
 	public ProblemType getProblemType() {
 		return problemType;

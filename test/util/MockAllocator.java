@@ -18,6 +18,7 @@ import splice.ga.PopulationAllocator;
  *
  */
 public class MockAllocator extends PopulationAllocator {
+    boolean initialized = false;
 
 	@Override
 	public void initialize() { }
@@ -30,4 +31,7 @@ public class MockAllocator extends PopulationAllocator {
 		return false;
 	}
 
+    public boolean isInitialized() {
+        return initialized;
+    }
 }

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  * @author igor
  */
 public class SingleGeneChromosomeTest {
-    private SingleGeneChromosome chromosome;
+    private MockSingleGeneChromosome chromosome;
     private BinaryGene gene;
     private MockCrossover crossover;
     private MockMutator mutator;

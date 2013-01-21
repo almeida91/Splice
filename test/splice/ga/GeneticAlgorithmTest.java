@@ -18,8 +18,8 @@ import util.*;
 
 public class GeneticAlgorithmTest {
 	GeneticAlgorithm ga;
-    PopulationAllocator allocator;
-    Selector selector;
+    MockAllocator allocator;
+    MockSelector selector;
     MockBasicChromosomeFactory factory;
     DataManipulator manipulator;
     StopCondition stopCondition;
@@ -59,6 +59,10 @@ public class GeneticAlgorithmTest {
         assertNotNull(allocator.getPopulation());
 
         assertTrue(factory.isInitialized());
+        assertTrue(allocator.isInitialized());
+        assertTrue(selector.isInitialized());
+
+
 	}
 
     @Test

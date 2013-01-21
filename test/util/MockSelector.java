@@ -17,6 +17,8 @@ import splice.ga.Selector;
  * @author igor
  */
 public class MockSelector extends Selector {
+    boolean initialized = false;
+
     @Override
     public BasicChromosome getChromosome() {
         return null;
@@ -27,4 +29,8 @@ public class MockSelector extends Selector {
 
     @Override
     public void initialize() { }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
 }

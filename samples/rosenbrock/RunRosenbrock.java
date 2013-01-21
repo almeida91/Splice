@@ -22,5 +22,6 @@ public class RunRosenbrock {
 		ga.execute();
 
         System.out.println(ga.getPopulation().getMinimum());
-	}
+        System.out.println(ga.getLastTime());
+    }
 }
