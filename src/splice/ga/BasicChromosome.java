@@ -28,7 +28,7 @@ import splice.RandomUtil;
  * 
  */
 public abstract class BasicChromosome implements Comparable<BasicChromosome>, InitializeComponent, Cloneable {
-	private double fitness;
+	private double fitness = Double.MIN_NORMAL;
 
 	/**
 	 * Implementation of the fitness function
@@ -55,7 +55,8 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	 * @return fitness value as calculated by #fitness()
 	 */
 	public final double calculateFitness() {
-		fitness = fitness();
+		if (fitness == Double.MIN_NORMAL)
+            fitness = fitness();
 		return fitness;
 	}
 
