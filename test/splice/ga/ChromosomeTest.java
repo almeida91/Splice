@@ -63,7 +63,7 @@ public class ChromosomeTest {
         assertEquals(LENGTH, crossover.getTimesCalled());
 
         for (int i = 0; i < LENGTH; i++) {
-            assertEquals(genes[i], chromosome.get(i));
+            assertEquals(genes[i], n.get(i));
         }
     }
 
@@ -94,10 +94,5 @@ public class ChromosomeTest {
 
         assertTrue(mutator.isCalled());
         assertEquals(LENGTH, mutator.getTimesCalled());
-    }
-
-    @Test
-    public void testGetGenes() throws Exception {
-        assertArrayEquals(genes, chromosome.getGenes());
     }
 }

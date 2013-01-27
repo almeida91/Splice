@@ -33,14 +33,12 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 	 */
 	public abstract BasicChromosome getRandomChromosome();
 
-
-
     /**
      * Finds which kind of chromosome will be generated
      * @param chromosome a chromosome with random values, it usually comes from #{getRandomChromosome}
      */
 	private void checkType(BasicChromosome chromosome) {
-		if (type != null)
+        if (type != null)
 			return;
 		if (chromosome instanceof Chromosome)
 			type = ChromosomeType.NORMAL;
@@ -49,7 +47,11 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 		else
 			type = ChromosomeType.BASIC;
 	}
-	
+
+    /**
+     *
+     * @return a new chromosome filled with the required values for execution
+     */
 	@SuppressWarnings("unchecked")
 	public BasicChromosome generateChromosome() {
 		BasicChromosome chromosome = getRandomChromosome();
@@ -61,11 +63,11 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 			c.setMutator(mutator);
 
             if (type == ChromosomeType.SINGLE) {
-                Gene<?> gene = generateGene();
+                T gene = generateGene();
                 gene.initialize();
                 ((SingleGeneChromosome)chromosome).setGene(gene);
             } else if (type == ChromosomeType.NORMAL) {
-                Gene<?>[] genes = new Gene<?>[size];
+                T[] genes = (T[])(new Gene<?>[size]);
 
                 for (int i = 0; i < size; i++) {
                     genes[i] = generateGene();
@@ -79,11 +81,15 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 		return chromosome;
 	}
 
-    private Gene<?> generateGene() {
-        Gene<?> g = null;
+    /**
+     * Clones the given gene into a new instance, after this the value should be initialized
+     * @return a clone of the given gene
+     */
+    public T generateGene() {
+        T g = null;
 
         try {
-            g = gene.clone();
+            g = (T)gene.clone();
         } catch(Exception ex) {
             ex.printStackTrace();
         }

@@ -27,14 +27,10 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	public void setMutator(Mutator<T> mutator) {
 		this.mutator = mutator;
 	}
-	
+
 	public void setGenes(T[] genes) {
 		this.genes = genes;
 	}
-
-    public T[] getGenes() {
-        return genes;
-    }
 
     @Override
 	protected void mutate() {
