@@ -39,6 +39,12 @@ public class UniformBinaryCrossover extends MaskBinaryCrossover {
 
     @Override
     public BinaryGene doCrossover(BinaryGene a, BinaryGene b) {
+        /*
+         * this logic defines when reset the crossover mask
+         * if length is set to zero, then it is the first chromosome of the pair
+         * else it is the second, so no mask needs to be generated and the length is again set to zero for the next
+         * chromosome pair
+         */
         if (length == 0) {
             length = a.getLength();
             generateMasks();
