@@ -12,6 +12,7 @@ import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 import splice.ga.crossovers.SinglePointBinaryCrossover;
 import splice.ga.genes.BinaryGene;
+import splice.ga.genes.BinaryGeneType;
 import splice.ga.mutators.SingleBitBinaryMutator;
 
 
@@ -26,7 +27,7 @@ public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	public void initialize() {
 		setMutator(new SingleBitBinaryMutator());
 		setCrossover(new SinglePointBinaryCrossover());
-        setGene(new BinaryGene(0));
+        setGene(new BinaryGene(BinaryGeneType.INTEGER));
 	}
 	
 	@Override
