@@ -88,4 +88,8 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 		if (RandomUtil.getRandom().nextDouble() < chance)
 			mutate();
 	}
+
+    public String toString() {
+        return Double.toString(fitness());
+    }
 }
