@@ -68,7 +68,7 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	public BinaryGene(float value) {
 		this(new BigInteger(getBytes(Float.floatToIntBits(value))));
-		length = 64;
+		length = 32;
 	}
 
     public BinaryGene(BinaryGeneType type) {
