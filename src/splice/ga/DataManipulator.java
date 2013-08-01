@@ -10,16 +10,12 @@
 
 package splice.ga;
 
-import splice.ExceptionHandler;
-
 /**
  * Base class for the generation data log/manipulation logic
  * @author igor
  *
  */
 public abstract class DataManipulator extends PopulationManipulator {
-	private ExceptionHandler handler;
-	
 	/**
 	 * Appends a new generation to the execution data
 	 * @param generation current generation to save data
@@ -32,24 +28,13 @@ public abstract class DataManipulator extends PopulationManipulator {
 	 */
 	public abstract void saveData() throws Exception;
 	
-	public void setHandler(ExceptionHandler handler) {
-		this.handler = handler;
-	}
-	
-	public ExceptionHandler getHandler() {
-		return handler;
-	}
 
     /**
      * Appends a information to the manipulator, it should be noted that when an exception is thrown by #{engineAppendData}
      * it will no stop the genetic algorithm's execution, but will log it using the provided handler
      * @param generation current generation
      */
-	public void appendData(int generation) {
-		try {
-			engineAppendData(generation);
-		} catch (Exception e) {
-			handler.handle(e);
-		}
+	public void appendData(int generation) throws Exception {
+		engineAppendData(generation);
 	}
 }

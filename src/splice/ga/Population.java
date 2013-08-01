@@ -56,12 +56,10 @@ public class Population implements InitializeComponent {
 	}
 
 	public void initialize() {
-		BasicChromosome chromosome;
 		chromosomes = new ArrayList<BasicChromosome>(size);
 
 		for (int i = 0; i < size; i++) {
-			chromosome = factory.generateChromosome();
-			chromosomes.add(chromosome);
+			chromosomes.add(factory.generateChromosome());
 		}
 	}
 	

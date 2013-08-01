@@ -15,7 +15,7 @@ import splice.ga.stopConditions.Convergence;
 import splice.ga.stopConditions.Generations;
 
 public class RunOneZero {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		GeneticAlgorithm ga = new GeneticAlgorithm(new OneZeroChromosomeFactory(255), new ElitismAllocator(0.3), new MinimizeTournamentSelector());
 		ga.setStopCondition(new Generations(100));
 		ga.execute();
