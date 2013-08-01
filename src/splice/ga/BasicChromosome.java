@@ -29,6 +29,7 @@ import splice.RandomUtil;
  */
 public abstract class BasicChromosome implements Comparable<BasicChromosome>, InitializeComponent, Cloneable {
 	private double fitness = Double.MIN_VALUE;
+    private long fitnessBits;
 
 	/**
 	 * Implementation of the fitness function
@@ -57,12 +58,17 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	public final double calculateFitness() {
 		if (fitness == Double.MIN_VALUE)
             fitness = fitness();
+        fitnessBits = Double.doubleToLongBits(fitness);
 		return fitness;
 	}
 
 	public double getFitness() {
 		return fitness;
 	}
+
+    public long getFitnessBits() {
+        return fitnessBits;
+    }
 	
 	@Override
 	public void initialize() { }
