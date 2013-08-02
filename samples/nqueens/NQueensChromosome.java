@@ -10,90 +10,48 @@
 
 package nqueens;
 
-import splice.RandomUtil;
-import splice.ga.BasicChromosome;
+import splice.ga.SingleGeneChromosome;
+import splice.ga.genes.IntegerListGene;
 
 /**
  * This is just a test needs heavy refactory
  * @author igor
  *
  */
-public class NQueensChromosome extends BasicChromosome {
-	int n;
-	int[][] queens;
-
-	public NQueensChromosome(int n, int[][] queens) {
-		this.n = n;
-		this.queens = queens;
+public class NQueensChromosome extends SingleGeneChromosome<IntegerListGene> {
+	public boolean line(int ax, int ay, int bx, int by) {
+		return ax == bx;
 	}
 
-	public boolean line(int a[], int b[]) {
-		return a[0] == b[0];
+	public boolean column(int ax, int ay, int bx, int by) {
+		return ay == by;
 	}
 
-	public boolean column(int a[], int b[]) {
-		return a[1] == b[1];
+	public boolean diagonal(int ax, int ay, int bx, int by) {
+		return ax - bx == ay - by | ax + ay == bx + by;
 	}
 
-	public boolean diagonal(int a[], int b[]) {
-		return a[0] - b[0] == a[1] - b[1] | a[0] + a[1] == b[0] + b[1];
-	}
 
-	@Override
-	protected double fitness() {
-		double f = 0.0;
+    @Override
+    protected double fitness() {
+        double f = 0;
 
-		for (int i = 0; i < queens.length; i++) {
-			for (int j = 0; j < queens.length; j++) {
-				if (i == j)
-					continue;
-				if (!line(queens[i], queens[j]))
-					f += 1;
-				if (!column(queens[i], queens[j]))
-					f += 1;
-				if (!diagonal(queens[i], queens[j]))
-                    f += 1;
-			}
-		}
+        for (int i = 0; i < getGene().getSize(); i++) {
+            for (int j = 0; j < getGene().getSize(); j++) {
+                if (i != j) {
+                    if (line(i, getGene().get(i), j, getGene().get(j))) {
+                        f += 1;
+                    }
+                    if (column(i, getGene().get(i), j, getGene().get(j))) {
+                        f += 1;
+                    }
+                    if (diagonal(i, getGene().get(i), j, getGene().get(j))) {
+                        f += 1;
+                    }
+                }
+            }
+        }
 
-		return f;
-	}
-
-	@Override
-	protected void mutate() {
-		queens[RandomUtil.getRandom().nextInt(n)][RandomUtil.getRandom()
-				.nextInt(2)] = RandomUtil.getRandom().nextInt(n);
-	}
-
-	@Override
-	public BasicChromosome crossover(BasicChromosome chromosome) {
-		NQueensChromosome newChromosome = new NQueensChromosome(n, new int[n][2]);
-		NQueensChromosome other = (NQueensChromosome) chromosome;
-
-		int pointOfCut = n / 2;
-
-		int i;
-
-		for (i = 0; i < pointOfCut; i++) {
-			newChromosome.queens[i][0] = queens[i][0];
-			newChromosome.queens[i][1] = queens[i][1];
-		}
-
-		for (; i < n; i++) {
-			newChromosome.queens[i][0] = other.queens[i][0];
-			newChromosome.queens[i][1] = other.queens[i][1];
-		}
-
-		return newChromosome;
-	}
-
-	@Override
-	public String toString() {
-		String str = "";
-		for (int i = 0; i < n; i++) {
-			str += "(" + queens[i][0] + "," + queens[i][1] + ") ";
-		}
-
-		return str;
-	}
+        return f;
+    }
 }

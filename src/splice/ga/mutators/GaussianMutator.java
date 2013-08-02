@@ -13,11 +13,10 @@ package splice.ga.mutators;
 
 import splice.RandomUtil;
 import splice.ga.Mutator;
-import splice.ga.genes.ListGene;
+import splice.ga.genes.DoubleListGene;
 
 
-@SuppressWarnings("rawtypes")
-public class GaussianMutator implements Mutator<ListGene> { 
+public class GaussianMutator implements Mutator<DoubleListGene> {
 	private double x,y;
 	
 	public GaussianMutator(double max) {
@@ -29,10 +28,8 @@ public class GaussianMutator implements Mutator<ListGene> {
 		this.y = max;
 	}
 
-	@SuppressWarnings({ "unchecked" })
-	@Override
-	public void mutate(ListGene gene) {
-		gene.set(RandomUtil.getRandom().nextInt(gene.getSize()), ((RandomUtil.getRandom().nextGaussian() * (y - x)) + x));
-	}
-
+    @Override
+    public void mutate(DoubleListGene gene) {
+        gene.set(RandomUtil.getRandom().nextInt(gene.getSize()), ((RandomUtil.getRandom().nextGaussian() * (y - x)) + x));
+    }
 }
