@@ -150,4 +150,9 @@ public class Population implements InitializeComponent {
 	public ChromosomeFactory<?> getFactory() {
 		return factory;
 	}
+
+    public void printChromosomes() {
+        for (BasicChromosome c : chromosomes)
+            System.out.println(c.toString());
+    }
 }
