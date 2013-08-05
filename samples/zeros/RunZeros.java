@@ -10,6 +10,19 @@
 
 package zeros;
 
-public class RunZeros {
+import splice.ga.BasicChromosome;
+import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ReplaceAllocator;
+import splice.ga.selectors.TournamentSelector;
 
+public class RunZeros {
+    public static void main(String[] args) throws Exception {
+        GeneticAlgorithm ga = new GeneticAlgorithm(
+            new ZerosChromosomeFactory(10, 10),
+            new ReplaceAllocator(),
+            new TournamentSelector(3)
+        );
+
+        ga.execute();
+    }
 }
