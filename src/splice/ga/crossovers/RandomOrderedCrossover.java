@@ -8,25 +8,21 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-apply plugin: 'java'
+package splice.ga.crossovers;
 
-sourceSets {
-    main {
-        java {
-            srcDir 'src/'
-        }
+import splice.RandomUtil;
+import splice.ga.genes.ListGene;
+
+public class RandomOrderedCrossover<T> extends OrderedCrossover<T> {
+    public RandomOrderedCrossover() {
+        super(0, 0);
     }
-    test {
-        java {
-            srcDir 'test/'
-        }
+
+    @Override
+    public ListGene<T> doCrossover(ListGene<T> a, ListGene<T> b) {
+        setBegin(RandomUtil.getRandom().nextInt(a.getSize()));
+        setEnd(getBegin() + RandomUtil.getRandom().nextInt(a.getSize() - getBegin()));
+
+        return super.doCrossover(a, b);
     }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.+'
 }
