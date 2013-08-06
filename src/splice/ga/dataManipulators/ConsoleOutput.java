@@ -12,14 +12,14 @@ package splice.ga.dataManipulators;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import splice.ga.DataManipulator;
+import splice.ga.GeneticAlgorithmDataManipulator;
 
 /**
  * Prints each generation data into the default output stream
  * @author igor
  *
  */
-public class ConsoleOutput extends DataManipulator {
+public class ConsoleOutput extends GeneticAlgorithmDataManipulator {
     private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 	
 	@Override

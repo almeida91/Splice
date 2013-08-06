@@ -69,6 +69,10 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
     public long getFitnessBits() {
         return fitnessBits;
     }
+
+    public void resetFitness() {
+        fitness = Double.MIN_VALUE;
+    }
 	
 	@Override
 	public void initialize() { }

@@ -15,14 +15,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import splice.ga.DataManipulator;
+import splice.ga.GeneticAlgorithmDataManipulator;
 
 /**
  * Saves the generation data into a ASCII file
  * @author igor
  *
  */
-public class GenerationDataFileOutput extends DataManipulator {
+public class GenerationDataFileOutput extends GeneticAlgorithmDataManipulator {
 	protected BufferedWriter writer;
 
 	public GenerationDataFileOutput(String path) throws IOException {

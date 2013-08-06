@@ -8,19 +8,21 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga.stopConditions;
+package util;
 
-import splice.ga.GeneticAlgorithmStopCondition;
+import splice.ga.GeneticAlgorithmDataManipulator;
 
-public class MinimumAverageFitness extends GeneticAlgorithmStopCondition {
-	private double minimum;
+/**
+ * @author igor
+ */
+public class MockGeneticAlgorithmDataManipulator extends GeneticAlgorithmDataManipulator {
+    @Override
+    protected void engineAppendData(int generation) throws Exception {
 
-	public MinimumAverageFitness(double minimum) {
-		this.minimum = minimum;
-	}
+    }
 
-	@Override
-	public boolean stop(int generation) {
-		return getPopulation().getFitnessAverage() >= minimum;
-	}
+    @Override
+    public void saveData() throws Exception {
+
+    }
 }

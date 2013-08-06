@@ -7,22 +7,16 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-package util;
-
-import splice.ga.DataManipulator;
+package splice;
 
 /**
- * @author igor
+ * Created with IntelliJ IDEA.
+ * User: igor
+ * Date: 06/08/13
+ * Time: 03:06
+ * To change this template use File | Settings | File Templates.
  */
-public class MockDataManipulator extends DataManipulator {
-    @Override
-    protected void engineAppendData(int generation) throws Exception {
-
-    }
-
-    @Override
-    public void saveData() throws Exception {
-
-    }
+public interface Algorithm {
+    public void execute() throws Exception;
+    public double getLastTime();
 }

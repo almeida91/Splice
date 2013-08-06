@@ -10,24 +10,26 @@
 
 package splice.ga;
 
+import splice.DataManipulator;
+
 /**
  * Base class for the generation data log/manipulation logic
  * @author igor
  *
  */
-public abstract class DataManipulator extends PopulationManipulator {
+public abstract class GeneticAlgorithmDataManipulator extends PopulationManipulator implements DataManipulator {
 	/**
 	 * Appends a new generation to the execution data
 	 * @param generation current generation to save data
 	 * @throws Exception mainly IO exceptions due to the manipulations that might be done inside the class
 	 */
 	protected abstract void engineAppendData(int generation) throws Exception;
-	/**
+
+    /**
 	 * Saves the input
 	 * @throws Exception may throw an exception
 	 */
 	public abstract void saveData() throws Exception;
-	
 
     /**
      * Appends a information to the manipulator, it should be noted that when an exception is thrown by #{engineAppendData}

@@ -7,20 +7,21 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+package splice.cga;
 
-package splice.ga.stopConditions;
+import splice.StopCondition;
+import splice.exceptions.DataNotSetException;
 
-import splice.ga.GeneticAlgorithmStopCondition;
+public abstract class CgaStopCondition extends ContextManipulator implements StopCondition {
+    protected abstract boolean engineStop(int iteration);
 
-public class MinimumAverageFitness extends GeneticAlgorithmStopCondition {
-	private double minimum;
+    @Override
+    public boolean stop(int iteration) {
+        if (!isDataSet())
+            throw new DataNotSetException();
+        else
+            reset();
 
-	public MinimumAverageFitness(double minimum) {
-		this.minimum = minimum;
-	}
-
-	@Override
-	public boolean stop(int generation) {
-		return getPopulation().getFitnessAverage() >= minimum;
-	}
+        return engineStop(iteration);
+    }
 }

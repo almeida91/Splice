@@ -33,8 +33,8 @@ public class GeneticAlgorithm implements InitializeComponent {
     private Selector selector;
     private PopulationAllocator allocator;
     private ChromosomeFactory<?> factory;
-    private DataManipulator dataManipulator = new ConsoleOutput();
-    private StopCondition stopCondition = new Generations(2000);
+    private GeneticAlgorithmDataManipulator dataManipulator = new ConsoleOutput();
+    private GeneticAlgorithmStopCondition stopCondition = new Generations(2000);
     private ProblemType problemType = new ProblemType();
 
     /**
@@ -163,15 +163,15 @@ public class GeneticAlgorithm implements InitializeComponent {
         mutationRate = rate;
     }
 
-    public void setDataManipulator(DataManipulator dataManipulator) {
+    public void setDataManipulator(GeneticAlgorithmDataManipulator dataManipulator) {
         this.dataManipulator = dataManipulator;
     }
 
-    public StopCondition getStopCondition() {
+    public GeneticAlgorithmStopCondition getStopCondition() {
         return stopCondition;
     }
 
-    public void setStopCondition(StopCondition stopCondition) {
+    public void setStopCondition(GeneticAlgorithmStopCondition stopCondition) {
         this.stopCondition = stopCondition;
     }
 

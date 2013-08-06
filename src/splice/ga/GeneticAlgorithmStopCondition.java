@@ -13,13 +13,14 @@ package splice.ga;
 import splice.InitializeComponent;
 import splice.ProblemType;
 import splice.ProblemTypeComponent;
+import splice.StopCondition;
 
 /**
  * defines how the genetic algorithm should stop
  * @author igor
  *
  */
-public abstract class StopCondition extends PopulationManipulator implements ProblemTypeComponent, InitializeComponent {
+public abstract class GeneticAlgorithmStopCondition extends PopulationManipulator implements ProblemTypeComponent, InitializeComponent, StopCondition {
 	private ProblemType problemType;
 	
 	/**

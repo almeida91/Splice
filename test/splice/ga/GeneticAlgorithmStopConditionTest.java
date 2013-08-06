@@ -8,19 +8,18 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga.stopConditions;
+package splice.ga;
 
-import splice.ga.GeneticAlgorithmStopCondition;
+import org.junit.Test;
+import splice.ProblemTypeTest;
+import util.MockGeneticAlgorithmStopCondition;
 
-public class MinimumAverageFitness extends GeneticAlgorithmStopCondition {
-	private double minimum;
-
-	public MinimumAverageFitness(double minimum) {
-		this.minimum = minimum;
-	}
-
-	@Override
-	public boolean stop(int generation) {
-		return getPopulation().getFitnessAverage() >= minimum;
-	}
+/**
+ * @author igor
+ */
+public class GeneticAlgorithmStopConditionTest {
+    @Test
+    public void testRandom() {
+        ProblemTypeTest.doTest(new MockGeneticAlgorithmStopCondition(false));
+    }
 }

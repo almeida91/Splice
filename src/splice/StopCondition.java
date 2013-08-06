@@ -7,23 +7,9 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+package splice;
 
-package util;
 
-import splice.ga.StopCondition;
-
-/**
- * @author igor
- */
-public class MockStopCondition extends StopCondition {
-    private final boolean willStop;
-
-    public MockStopCondition(boolean willStop) {
-        this.willStop = willStop;
-    }
-
-    @Override
-    public boolean stop(int generation) {
-        return willStop;
-    }
+public interface StopCondition {
+    public boolean stop(int iteration);
 }
