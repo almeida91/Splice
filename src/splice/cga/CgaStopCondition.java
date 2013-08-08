@@ -12,7 +12,15 @@ package splice.cga;
 import splice.StopCondition;
 import splice.exceptions.DataNotSetException;
 
+/**
+ * Compact Genetic Algorithm {@link StopCondition} implementation
+ */
 public abstract class CgaStopCondition extends ContextManipulator implements StopCondition {
+    /**
+     * Implemente this to define your own stop condition
+     * @param iteration iteration number
+     * @return true if the condition has been reached
+     */
     protected abstract boolean engineStop(int iteration);
 
     @Override
