@@ -12,9 +12,16 @@ package splice.cga.stopConditions;
 
 import splice.cga.CgaStopCondition;
 
+/**
+ * Stops after a number of generations has been executed like {@link splice.ga.stopConditions.Generations}
+ */
 public class GenerationsStopCondition extends CgaStopCondition {
     private int stop;
 
+    /**
+     * Default constructor
+     * @param stop the number of generations to run
+     */
     public GenerationsStopCondition(int stop) {
         this.stop = stop;
     }

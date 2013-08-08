@@ -9,11 +9,15 @@
  */
 package splice;
 
+/**
+ * Components that require some kind of logic that are required to be called before
+ * other process, but can't be called in the constructor.
+ */
 public interface InitializeComponent {
 	/**
 	 * Holds any logic to be done before the algorithm's execution.
-	 * It should be noted that when this is called there's a Random
-	 * instance set while this is not true in the constructor
+	 * If the object has some kind of reference that can't be provided
+     * by the constructor you can call the logic here after the references has been set.
 	 */
 	public void initialize();
 }

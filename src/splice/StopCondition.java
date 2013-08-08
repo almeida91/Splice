@@ -9,7 +9,17 @@
  */
 package splice;
 
-
+/**
+ * Defines when an algorithm will stop.
+ * Like {@link DataManipulator} it may have conditions that makes required to every algorithm implement its
+ * own.
+ */
 public interface StopCondition {
+    /**
+     * The condition's implementation.
+     *
+     * @param iteration the current execution iteration.
+     * @return true if the algorithm has reached its condition.
+     */
     public boolean stop(int iteration);
 }

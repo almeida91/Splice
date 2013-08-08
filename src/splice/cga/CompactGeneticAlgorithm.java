@@ -22,6 +22,7 @@ import splice.ga.genes.BinaryGene;
  * This class implements the Compact GA described in "The Compact Genetic Algorithm" article by Harik et al
  */
 public class CompactGeneticAlgorithm implements Algorithm, InitializeComponent, ProblemTypeComponent {
+    // TODO: run with multiple vars
     private double lastTime = 0;
     private ProbabilityVector vector;
     private SingleGeneChromosome<BinaryGene> a, b, best;
@@ -38,6 +39,7 @@ public class CompactGeneticAlgorithm implements Algorithm, InitializeComponent, 
         b.resetFitness();
     }
 
+    // FIXME: to be compatible with Chromosome<BinaryGene>
     private void setBest(SingleGeneChromosome<BinaryGene> chromosome) {
         boolean val = chromosome.getFitness() > best.getFitness();
 
@@ -77,6 +79,26 @@ public class CompactGeneticAlgorithm implements Algorithm, InitializeComponent, 
         this.solutionSize = solutionSize;
     }
 
+    protected void doGeneration() {
+        generate();
+
+        a.calculateFitness();
+        b.calculateFitness();
+
+        if (compete()) {
+            // a is the winner
+            vector.update(a.getGene(), b.getGene());
+            setBest(a);
+            setData(best, a, b);
+        }
+        else {
+            // b is the winner
+            vector.update(b.getGene(), a.getGene());
+            setBest(b);
+            setData(best, b, a);
+        }
+    }
+
     @Override
     public void execute() throws Exception {
         initialize();
@@ -85,23 +107,7 @@ public class CompactGeneticAlgorithm implements Algorithm, InitializeComponent, 
 
         int generation = -1;
         do {
-            generate();
-
-            a.calculateFitness();
-            b.calculateFitness();
-
-            if (compete()) {
-                // a is the winner
-                vector.update(a.getGene(), b.getGene());
-                setBest(a);
-                setData(best, a, b);
-            }
-            else {
-                // b is the winner
-                vector.update(b.getGene(), a.getGene());
-                setBest(b);
-                setData(best, b, a);
-            }
+            doGeneration();
 
             generation++;
 

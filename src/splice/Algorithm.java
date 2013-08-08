@@ -10,13 +10,21 @@
 package splice;
 
 /**
- * Created with IntelliJ IDEA.
- * User: igor
- * Date: 06/08/13
- * Time: 03:06
- * To change this template use File | Settings | File Templates.
+ * Defines a new Algorithm compatible with Splice's API
  */
 public interface Algorithm {
+    /**
+     * Start the main optimization logic.
+     * It usually contains the main loop which iterates through the steps.
+     *
+     * @throws Exception sometimes the algorithm may contain some kind of error handling, like the data manipulators
+     */
     public void execute() throws Exception;
+
+    /**
+     * Returns the time required by the last time the logic in {@link #execute()} method required
+     *
+     * @return the time in milliseconds
+     */
     public double getLastTime();
 }
