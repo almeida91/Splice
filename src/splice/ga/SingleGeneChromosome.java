@@ -53,9 +53,7 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
 		SingleGeneChromosome<T> other = (SingleGeneChromosome<T>)chromosome;
-        SingleGeneChromosome<T> newChromosome = null;
-
-        newChromosome = (SingleGeneChromosome)clone();
+        SingleGeneChromosome<T> newChromosome = (SingleGeneChromosome)clone();
 
         newChromosome.gene = crossover.doCrossover(gene, other.gene);
 
@@ -79,16 +77,11 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	}
 
     @Override
-    public Object clone() {
-        try {
-            SingleGeneChromosome<T> c = (SingleGeneChromosome<T>)(super.clone());
-            c.setMutator(this.mutator);
-            c.setCrossover(this.crossover);
-            c.resetFitness();
-            return c;
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public BasicChromosome clone() {
+        SingleGeneChromosome<T> c = (SingleGeneChromosome<T>)(super.clone());
+        c.setMutator(this.mutator);
+        c.setCrossover(this.crossover);
+        c.resetFitness();
+        return c;
     }
 }

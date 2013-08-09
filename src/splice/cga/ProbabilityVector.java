@@ -18,25 +18,42 @@ import java.math.BigInteger;
  * Holds the probability for each bit in the chromosome
  */
 public class ProbabilityVector {
-    private double[] vector;
+    private double[][] vectors;
     private int popSize;
-    private int size;
+    private int[] sizes;
 
     /**
-     * Default constructor
+     * Creates a default probability vector
+     *
+     * @param size the array size
+     * @return an array that all values are 0.5
+     */
+    private double[] fillProbabilities(int size) {
+        double v[] = new double[size];
+
+        for (int i = 0; i < size; i++) {
+            v[i] = 0.5f;
+        }
+
+        return v;
+    }
+
+    public ProbabilityVector(int[] sizes, int populationSize) {
+        this.sizes = sizes;
+        this.vectors = new double[sizes.length][];
+        this.popSize = populationSize;
+        for (int i = 0; i < sizes.length; i++) {
+            vectors[i] = fillProbabilities(sizes[i]);
+        }
+    }
+
+    /**
      *
      * @param size the solution size in bits
      * @param populationSize the size of the population
      */
     public ProbabilityVector(int size, int populationSize) {
-        this.size = size;
-        this.vector = new double[size];
-
-        for (int i = 0; i < size; i++) {
-            this.vector[i] = 0.5f;
-        }
-
-        popSize = populationSize;
+        this(new int[]{size}, populationSize);
     }
 
     /**
@@ -44,36 +61,53 @@ public class ProbabilityVector {
      *
      * @param winner the chromosome that has the higher fitness in the pair
      * @param loser the lower fitness in the pair
+     * @param vectorPos which vector should be updated
      */
-    public void update(BinaryGene winner, BinaryGene loser) {
+    public void update(BinaryGene winner, BinaryGene loser, int vectorPos) {
         boolean w, l;
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < sizes[vectorPos]; i++) {
             w = winner.getValue().testBit(i);
             l = loser.getValue().testBit(i);
 
             if (w != l) {
                 if (w)
-                    vector[i] += 1.0 / popSize;
+                    vectors[vectorPos][i] += 1.0 / popSize;
                 else
-                    vector[i] -= 1.0 / popSize;
+                    vectors[vectorPos][i] -= 1.0 / popSize;
             }
+        }
+    }
+
+    public void update(BinaryGene[] winner, BinaryGene[] loser) {
+        for (int i = 0; i < winner.length; i++) {
+            update(winner[i], loser[i], i);
         }
     }
 
     /**
      * Generates a gene based on the current probabilities
      *
-     * @return
+     * @return a gene where each bit is chosen random by the given probability
      */
-    public BinaryGene generateGene() {
-        BigInteger bigInt = new BigInteger(size, RandomUtil.getRandom());
+    public BinaryGene generateGene(int vectorPos) {
+        BigInteger bigInt = new BigInteger(sizes[vectorPos], RandomUtil.getRandom());
 
-        for (int i = 0; i < size; i++) {
-            if (RandomUtil.getRandom().nextDouble() < vector[i])
-                bigInt.setBit(i);
+        for (int i = 0; i < sizes[vectorPos]; i++) {
+            if (RandomUtil.getRandom().nextDouble() < vectors[vectorPos][i])
+                bigInt = bigInt.setBit(i);
         }
 
         return new BinaryGene(bigInt);
+    }
+
+    public BinaryGene[] generateGenes() {
+        BinaryGene[] g = new BinaryGene[sizes.length];
+
+        for (int i = 0; i < sizes.length; i++) {
+            g[i] = generateGene(i);
+        }
+
+        return g;
     }
 }

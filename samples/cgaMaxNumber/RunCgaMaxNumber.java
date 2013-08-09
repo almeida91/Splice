@@ -1,7 +1,6 @@
 package cgaMaxNumber;
 
 import splice.cga.CompactGeneticAlgorithm;
-import splice.cga.ProbabilityVector;
 
 public class RunCgaMaxNumber {
     public static void main(String[] args) throws Exception {

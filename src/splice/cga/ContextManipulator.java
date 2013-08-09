@@ -9,8 +9,7 @@
  */
 package splice.cga;
 
-import splice.ga.SingleGeneChromosome;
-import splice.ga.genes.BinaryGene;
+import splice.ga.BasicChromosome;
 
 /**
  * The context means the state of the algorithm after the chromosomes has been generated
@@ -39,7 +38,7 @@ public abstract class ContextManipulator {
      * Same as {@link #setData(double, double, double)} but it extracts the fitness values from the given chromosomes.
      *
      */
-    public void setData(SingleGeneChromosome<BinaryGene> best, SingleGeneChromosome<BinaryGene> winner, SingleGeneChromosome<BinaryGene> loser) {
+    public void setData(BasicChromosome best, BasicChromosome winner, BasicChromosome loser) {
         setData(best.getFitness(), winner.getFitness(), loser.getFitness());
     }
 
