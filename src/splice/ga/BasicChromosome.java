@@ -51,6 +51,15 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	 */
 	public abstract BasicChromosome crossover(BasicChromosome chromosome);
 
+    public BasicChromosome clone() {
+        try {
+            return (BasicChromosome)super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 	/**
 	 * Calculate the chromosome's fitness
 	 * @return fitness value as calculated by #{fitness()}
@@ -68,6 +77,10 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 
     public long getFitnessBits() {
         return fitnessBits;
+    }
+
+    public void resetFitness() {
+        fitness = Double.MIN_VALUE;
     }
 	
 	@Override

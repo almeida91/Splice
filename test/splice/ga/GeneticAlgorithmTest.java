@@ -21,8 +21,8 @@ public class GeneticAlgorithmTest {
     MockAllocator allocator;
     MockSelector selector;
     MockBasicChromosomeFactory factory;
-    DataManipulator manipulator;
-    StopCondition stopCondition;
+    GeneticAlgorithmDataManipulator manipulator;
+    GeneticAlgorithmStopCondition stopCondition;
 
 
 	@Before
@@ -30,8 +30,8 @@ public class GeneticAlgorithmTest {
         allocator = new MockAllocator();
         selector = new MockSelector();
         factory = new MockBasicChromosomeFactory(0);
-        manipulator = new MockDataManipulator();
-        stopCondition = new MockStopCondition(false);
+        manipulator = new MockGeneticAlgorithmDataManipulator();
+        stopCondition = new MockGeneticAlgorithmStopCondition(false);
 
         ga = new GeneticAlgorithm(factory, allocator, selector);
         ga.setStopCondition(stopCondition);

@@ -19,31 +19,56 @@ public class ProblemType {
         maximization = minimization = false;
     }
 
+    /**
+     * Assures that once defined you can't change the type, so you won't have both
+     * variables set to true.
+     */
     private void verify() {
         if (maximization || minimization)
             throw new RuntimeException("Problem type already defined");
     }
 
+    /**
+     * Makes the problem a maximization one.
+     */
 	public void setMaximization() {
         verify();
 		maximization = true;
 		minimization = false;
 	}
-	
+
+    /**
+     * Sets the problem to minimization.
+     */
 	public void setMinimization() {
         verify();
 		maximization = false;
 		minimization = true;
 	}
 
+    /**
+     * If the optimization aims to maximize the objective function.
+     *
+     * @return true if it is a maximization
+     */
 	public boolean isMaximization() {
 		return maximization;
 	}
 
+    /**
+     * Like {@link #isMaximization()} but for minimization.
+     *
+     * @return true if it is a minimization
+     */
 	public boolean isMinimization() {
 		return minimization;
 	}
 
+    /**
+     * Verifies if the problem type has been set.
+     *
+     * @return true if no optimization type has been set
+     */
     public boolean isUnset() {
         return !(maximization || minimization);
     }

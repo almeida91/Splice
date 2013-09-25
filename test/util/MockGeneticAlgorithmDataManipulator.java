@@ -10,20 +10,19 @@
 
 package util;
 
-import splice.ga.StopCondition;
+import splice.ga.GeneticAlgorithmDataManipulator;
 
 /**
  * @author igor
  */
-public class MockStopCondition extends StopCondition {
-    private final boolean willStop;
+public class MockGeneticAlgorithmDataManipulator extends GeneticAlgorithmDataManipulator {
+    @Override
+    protected void engineAppendData(int generation) throws Exception {
 
-    public MockStopCondition(boolean willStop) {
-        this.willStop = willStop;
     }
 
     @Override
-    public boolean stop(int generation) {
-        return willStop;
+    public void saveData() throws Exception {
+
     }
 }

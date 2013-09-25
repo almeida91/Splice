@@ -10,14 +10,14 @@
 
 package splice.ga.stopConditions;
 
-import splice.ga.StopCondition;
+import splice.ga.GeneticAlgorithmStopCondition;
 
 /**
  * Stops the execution when a number of generations is achieved
  * @author igor
  *
  */
-public class Generations extends StopCondition {
+public class Generations extends GeneticAlgorithmStopCondition {
 	private int generations;
 
 	public Generations(int generations) {

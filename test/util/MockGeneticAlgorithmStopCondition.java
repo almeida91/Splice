@@ -8,18 +8,22 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga;
+package util;
 
-import org.junit.Test;
-import splice.ProblemTypeTest;
-import util.MockStopCondition;
+import splice.ga.GeneticAlgorithmStopCondition;
 
 /**
  * @author igor
  */
-public class StopConditionTest {
-    @Test
-    public void testRandom() {
-        ProblemTypeTest.doTest(new MockStopCondition(false));
+public class MockGeneticAlgorithmStopCondition extends GeneticAlgorithmStopCondition {
+    private final boolean willStop;
+
+    public MockGeneticAlgorithmStopCondition(boolean willStop) {
+        this.willStop = willStop;
+    }
+
+    @Override
+    public boolean stop(int generation) {
+        return willStop;
     }
 }

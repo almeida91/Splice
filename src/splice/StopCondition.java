@@ -7,22 +7,19 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-package util;
-
-import splice.ga.DataManipulator;
+package splice;
 
 /**
- * @author igor
+ * Defines when an algorithm will stop.
+ * Like {@link DataManipulator} it may have conditions that makes required to every algorithm implement its
+ * own.
  */
-public class MockDataManipulator extends DataManipulator {
-    @Override
-    protected void engineAppendData(int generation) throws Exception {
-
-    }
-
-    @Override
-    public void saveData() throws Exception {
-
-    }
+public interface StopCondition {
+    /**
+     * The condition's implementation.
+     *
+     * @param iteration the current execution iteration.
+     * @return true if the algorithm has reached its condition.
+     */
+    public boolean stop(int iteration);
 }
