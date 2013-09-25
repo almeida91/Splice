@@ -15,11 +15,6 @@ import splice.ga.genes.BinaryGene;
 
 public class RosenbrockChromosome extends Chromosome<BinaryGene> {
 	@Override
-	protected Chromosome getNew() {
-		return new RosenbrockChromosome();
-	}
-
-	@Override
 	protected double fitness() {
 		double x = get(0).toFloat();
 		double y = get(1).toFloat();
@@ -29,6 +24,6 @@ public class RosenbrockChromosome extends Chromosome<BinaryGene> {
 
     @Override
     public String toString() {
-        return  "f(" + get(0).toDouble() + ", " + get(1).toDouble() + ") = " + getFitness();
+        return  "f(" + get(0).toFloat() + ", " + get(1).toFloat() + ") = " + getFitness();
     }
 }

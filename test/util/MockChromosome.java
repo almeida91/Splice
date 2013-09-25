@@ -18,20 +18,12 @@ import splice.ga.genes.BinaryGene;
  */
 public class MockChromosome extends Chromosome<BinaryGene> {
     @Override
-    protected Chromosome getNew() {
-        return new MockChromosome();
-    }
-
-    @Override
     protected double fitness() {
-        double sum = 0;
-
-        for (BinaryGene gene : getGenes()) {
-            sum += gene.toDouble();
-        }
-
-        return sum;
+//        double sum = 0;
+//        for (BinaryGene gene : getGenes()) {
+//            sum += gene.toDouble();
+//        }
+//        return sum;
+        return 0;
     }
-
-
 }

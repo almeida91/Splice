@@ -10,8 +10,6 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 /**
  * This class contains a single gene, it is useful when you want to store
  * just a single information. You could also use the Chromosome class
@@ -22,12 +20,10 @@ import java.util.Random;
  * @param <T>
  */
 @SuppressWarnings("rawtypes")
-public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromosome implements SingleGeneContainer<T> {
+public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromosome implements SingleGeneContainer<T>, Cloneable {
 	private T gene;
 	private Crossover<T> crossover;
 	private Mutator<T> mutator;
-	
-	protected abstract SingleGeneChromosome<T> getNew();
 	
 	@Override
 	public void setGene(T gene) {
@@ -57,24 +53,16 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
 		SingleGeneChromosome<T> other = (SingleGeneChromosome<T>)chromosome;
-		SingleGeneChromosome<T> newChromosome = getNew();
-		newChromosome.gene = crossover.doCrossover(gene, other.gene);
-		
-		newChromosome.mutator = mutator;
-		newChromosome.crossover = crossover;
-		
+        SingleGeneChromosome<T> newChromosome = (SingleGeneChromosome)clone();
+
+        newChromosome.gene = crossover.doCrossover(gene, other.gene);
+
 		return newChromosome;
 	}
 
 	@Override
 	public String toString() {
 		return gene.toString();
-	}
-	
-	@Override
-	public void setRandom(Random random) {
-		super.setRandom(random);
-		gene.setRandom(random);
 	}
 	
 	@Override
@@ -87,4 +75,13 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
 
 		return o.gene.equals(gene);
 	}
+
+    @Override
+    public BasicChromosome clone() {
+        SingleGeneChromosome<T> c = (SingleGeneChromosome<T>)(super.clone());
+        c.setMutator(this.mutator);
+        c.setCrossover(this.crossover);
+        c.resetFitness();
+        return c;
+    }
 }

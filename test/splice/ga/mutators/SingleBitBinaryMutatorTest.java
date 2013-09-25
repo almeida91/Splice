@@ -18,7 +18,6 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-import splice.RandomComponentTest;
 import splice.ga.genes.BinaryGene;
 
 public class SingleBitBinaryMutatorTest {
@@ -30,7 +29,6 @@ public class SingleBitBinaryMutatorTest {
 		random = new Random();
 		
 		mutator = new SingleBitBinaryMutator();
-		mutator.setRandom(random);
 	}
 
 	@Test
@@ -44,9 +42,4 @@ public class SingleBitBinaryMutatorTest {
 		// verifies that the hamming distance is just one bit
 		assertEquals(1, gene.getValue().xor(originalValue).bitCount());
 	}
-
-    @Test
-    public void testRandom() {
-        RandomComponentTest.doTest(mutator);
-    }
 }

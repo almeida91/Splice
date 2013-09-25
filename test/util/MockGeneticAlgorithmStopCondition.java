@@ -8,28 +8,22 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga.parallel;
+package util;
 
-class AtomicDouble {
-	private volatile double value;
-	
-	public AtomicDouble(double value) {
-		this.value = value;
-	}
+import splice.ga.GeneticAlgorithmStopCondition;
 
-    public AtomicDouble() {
-        this(0);
+/**
+ * @author igor
+ */
+public class MockGeneticAlgorithmStopCondition extends GeneticAlgorithmStopCondition {
+    private final boolean willStop;
+
+    public MockGeneticAlgorithmStopCondition(boolean willStop) {
+        this.willStop = willStop;
     }
-	
-	public void increment() {
-		value++;
-	}
-	
-	public void add(double value) {
-		this.value += value;
-	}
-	
-	public double getValue() {
-		return value;
-	}
+
+    @Override
+    public boolean stop(int generation) {
+        return willStop;
+    }
 }

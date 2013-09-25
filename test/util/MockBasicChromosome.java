@@ -37,7 +37,7 @@ public class MockBasicChromosome extends BasicChromosome {
 
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
-		return null;
+		return new MockBasicChromosome(value);
 	}
 
     public boolean isMutated() {

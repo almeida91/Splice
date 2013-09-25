@@ -32,12 +32,11 @@ public class BasicChromosomeTest {
     public void setUp() {
         chromosome = new MockBasicChromosome(FITNESS);
         random = new Random();
-        chromosome.setRandom(random);
     }
 
     @Test
     public void testCalculateFitness() {
-        assertEquals(0, chromosome.getFitness(), 0);
+        assertEquals(Double.MIN_VALUE, chromosome.getFitness(), 0);
         assertEquals(FITNESS, chromosome.calculateFitness(), 0);
         assertEquals(FITNESS, chromosome.getFitness(), 0);
     }
@@ -64,8 +63,8 @@ public class BasicChromosomeTest {
 
     @Test
     public void testInitialize() throws Exception {
-        assertEquals(0, chromosome.getFitness(), 0);
+        assertEquals(Double.MIN_VALUE, chromosome.getFitness(), 0);
         chromosome.initialize();
-        assertEquals(0, chromosome.getFitness(), 0);
+        assertEquals(Double.MIN_VALUE, chromosome.getFitness(), 0);
     }
 }

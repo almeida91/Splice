@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import splice.RandomComponentTest;
 import splice.ga.genes.BinaryGene;
 
 import util.MockChromosome;
@@ -64,7 +63,7 @@ public class ChromosomeTest {
         assertEquals(LENGTH, crossover.getTimesCalled());
 
         for (int i = 0; i < LENGTH; i++) {
-            assertEquals(genes[i], chromosome.get(i));
+            assertEquals(genes[i], n.get(i));
         }
     }
 
@@ -78,14 +77,6 @@ public class ChromosomeTest {
         s += "]";
 
         assertEquals(s, chromosome.toString());
-    }
-
-    @Test
-    public void testSetRandom() {
-        RandomComponentTest.doTest(chromosome);
-
-        for (Gene<?> g : genes)
-            RandomComponentTest.doTest(g);
     }
 
     @Test
@@ -103,10 +94,5 @@ public class ChromosomeTest {
 
         assertTrue(mutator.isCalled());
         assertEquals(LENGTH, mutator.getTimesCalled());
-    }
-
-    @Test
-    public void testGetGenes() throws Exception {
-        assertArrayEquals(genes, chromosome.getGenes());
     }
 }

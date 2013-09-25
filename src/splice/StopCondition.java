@@ -7,33 +7,19 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-package splice.ga.exceptionHandlers;
-
-import java.io.PrintStream;
-
-import splice.ExceptionHandler;
+package splice;
 
 /**
- * 
- * @author igor
- *
+ * Defines when an algorithm will stop.
+ * Like {@link DataManipulator} it may have conditions that makes required to every algorithm implement its
+ * own.
  */
-public class ErrorStream implements ExceptionHandler {
-	private PrintStream stream;
-	
-	public ErrorStream(PrintStream stream) {
-		this.stream = stream;
-	}
-	
-	public ErrorStream() {
-		this(System.err);
-	}
-
-	@Override
-	public void handle(Exception ex) {
-		stream.println("Some errors have occurred that prevented the execution");
-		ex.printStackTrace(stream);
-	}
-
+public interface StopCondition {
+    /**
+     * The condition's implementation.
+     *
+     * @param iteration the current execution iteration.
+     * @return true if the algorithm has reached its condition.
+     */
+    public boolean stop(int iteration);
 }

@@ -8,17 +8,28 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package util;
+package splice.ga.mutators;
 
-import splice.ga.StopCondition;
+import splice.RandomUtil;
+import splice.ga.Mutator;
+import splice.ga.genes.IntegerListGene;
 
 /**
  * @author igor
  */
-public class MockStopCondition extends StopCondition {
+public class RandomIntegerMutator implements Mutator<IntegerListGene> {
+    private int max;
+
+    public RandomIntegerMutator(int max) {
+        this.max = max;
+    }
+
+    public RandomIntegerMutator() {
+        max = Integer.MAX_VALUE;
+    }
 
     @Override
-    public boolean stop(int generation) {
-        return false;
+    public void mutate(IntegerListGene gene) {
+        gene.set(RandomUtil.getRandom().nextInt(gene.getSize()), RandomUtil.getRandom().nextInt(max));
     }
 }

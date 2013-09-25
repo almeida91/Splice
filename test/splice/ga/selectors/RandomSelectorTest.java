@@ -34,11 +34,9 @@ public class RandomSelectorTest {
 		population = new Population();
 		population.setSize(300);
 		population.setFactory(new MockBasicChromosomeFactory(FITNESS));
-		population.setRandom(random);
 		population.initialize();
 		
 		selector = new RandomSelector();
-		selector.setRandom(random);
 		selector.setPopulation(population);
 	}
 

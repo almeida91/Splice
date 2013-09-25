@@ -14,9 +14,11 @@ import splice.ga.Population;
 
 public class MockPopulation extends Population {
 	double average;
+    int size;
 	
 	public MockPopulation(double average, int size) {
 		this.average = average;
+        this.size = size;
 		setSize(size);
 	}
 	
@@ -36,4 +38,9 @@ public class MockPopulation extends Population {
 		
 		super.initialize();
 	}
+
+    @Override
+    public int getSize() {
+        return size;
+    }
 }

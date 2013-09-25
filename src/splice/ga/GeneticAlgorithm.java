@@ -10,203 +10,170 @@
 
 package splice.ga;
 
-import java.util.Random;
-
-import splice.ExceptionHandler;
 import splice.InitializeComponent;
 import splice.ProblemType;
 import splice.ProblemTypeComponent;
-import splice.RandomComponent;
 
 import splice.ga.dataManipulators.ConsoleOutput;
-import splice.ga.exceptionHandlers.ErrorStream;
 import splice.ga.stopConditions.Generations;
 
 /**
  * Base class for a genetic algorithm
- * @author igor
  *
+ * @author igor
  */
-public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
-	private int populationSize = 100;
-	private double mutationRate = 0.2;
+public class GeneticAlgorithm implements InitializeComponent {
+    private int populationSize = 100;
+    private double mutationRate = 0.2;
     private double lastTime = 0;
-	private boolean initPopulation = true;
+    private boolean initPopulation = true;
 
-	private Population population = new Population();
+    private Population population = new Population();
 
-	private Selector selector;
-	private PopulationAllocator allocator;
-	private ChromosomeFactory<?> factory;
-	private DataManipulator dataManipulator = new ConsoleOutput();
-	private StopCondition stopCondition = new Generations(2000);
-	private ExceptionHandler handler = new ErrorStream();
-	private ProblemType problemType = new ProblemType();
-	
-	private Random random = new Random();
-	
-	/**
-	 * Default constructor
-	 * @param factory the factory from the initial chromosomes will come
-	 * @param allocator the new population allocator
-	 * @param selector the crossover candidates selector
-	 */
-	public GeneticAlgorithm(ChromosomeFactory<?> factory,
-			PopulationAllocator allocator, Selector selector) {
-		this.allocator = allocator;
-		this.selector = selector;
-		this.factory = factory;
-		
-		problemType.setMaximization();
-	}
+    private Selector selector;
+    private PopulationAllocator allocator;
+    private ChromosomeFactory<?> factory;
+    private GeneticAlgorithmDataManipulator dataManipulator = new ConsoleOutput();
+    private GeneticAlgorithmStopCondition stopCondition = new Generations(2000);
+    private ProblemType problemType = new ProblemType();
 
-	/**
-	 * executes the genetic algorithm
-	 */
-	public void execute() {
-		initialize();
-		
-		double begin = System.currentTimeMillis();
-		
-		try {
-			int i = 1;
-			do {
-				population.calculateFitnessSum();
-				dataManipulator.appendData(i);
-				
-				allocator.reset();
-				selector.beforeGeneration();
-				doGeneration(i);
-				allocator.allocate();
-				
-				i++;
-			} while (!stopCondition.stop(i));
-			dataManipulator.saveData();
-			population.calculateFitnessSum();
-		} catch (Exception ex) {
-			handler.handle(ex);
-		}
-		
-		double end = System.currentTimeMillis();
-		
-		lastTime = end - begin;
-	}
-	
-	/**
-	 * runs the generation's logic, can be overloaded in case of some need
+    /**
+     * Default constructor
+     *
+     * @param factory   the factory from the initial chromosomes will come
+     * @param allocator the new population allocator
+     * @param selector  the crossover candidates selector
+     */
+    public GeneticAlgorithm(ChromosomeFactory<?> factory, PopulationAllocator allocator, Selector selector) {
+        this.allocator = allocator;
+        this.selector = selector;
+        this.factory = factory;
+    }
+
+    /**
+     * executes the genetic algorithm
+     */
+    public void execute() throws Exception {
+        initialize();
+
+        double begin = System.currentTimeMillis();
+
+        int i = 1;
+        do {
+            population.calculateFitnessSum();
+            dataManipulator.appendData(i);
+
+            allocator.reset();
+            selector.beforeGeneration();
+            doGeneration(i);
+            allocator.allocate();
+
+            i++;
+        } while (!stopCondition.stop(i));
+
+        dataManipulator.saveData();
+        population.calculateFitnessSum();
+
+        double end = System.currentTimeMillis();
+
+        lastTime = end - begin;
+    }
+
+    /**
+     * runs the generation's logic, can be overloaded in case of some need
+     *
      * @param generation current generation, it may be used for some algorithms that do some task at every n-generations
      */
-	protected void doGeneration(int generation) {
-		BasicChromosome a, b;
+    protected void doGeneration(int generation) {
+        BasicChromosome a, b;
 
-		while (!allocator.complete()) {
-			a = getChromosome();
-			b = getChromosome();
+        while (!allocator.complete()) {
+            a = getChromosome();
+            b = getChromosome();
 
             reproduce(a, b);
             reproduce(b, a);
-		}
-	}
+        }
+    }
 
     private void reproduce(BasicChromosome a, BasicChromosome b) {
         BasicChromosome c = a.crossover(b);
-        c.setRandom(random);
         c.mutate(mutationRate);
         allocator.append(c);
     }
 
     public void initialize() {
-		dataManipulator.setHandler(handler);
-		
-		setRandomGenerator(selector);
-		setRandomGenerator(allocator);
-		setRandomGenerator(factory);
-		setRandomGenerator(population);
-		
-		factory.initialize();
-		
-		if (initPopulation) {
-			population.setSize(populationSize);
-			population.setFactory(factory);
-			population.initialize();
-		}
+        factory.initialize();
 
-		setPopulationManipulator(allocator);
-		setPopulationManipulator(selector);
-		setPopulationManipulator(stopCondition);
-		setPopulationManipulator(dataManipulator);
-		
-		setProblemType(allocator);
-		setProblemType(stopCondition);
-		setProblemType(selector);
-		
-		allocator.initialize();
-		selector.initialize();
-	}
-	
-	private void setProblemType(ProblemTypeComponent component) {
-		component.setProblemType(problemType);
-	}
-	
-	private void setRandomGenerator(RandomComponent component) {
-		component.setRandom(random);
-	}
-	
-	private void setPopulationManipulator(PopulationManipulator manipulator) {
-		manipulator.setPopulation(population);
-	}
+        if (initPopulation) {
+            population.setSize(populationSize);
+            population.setFactory(factory);
+            population.initialize();
+        }
 
-	public int getPopulationSize() {
-		return populationSize;
-	}
+        setPopulationManipulator(allocator);
+        setPopulationManipulator(selector);
+        setPopulationManipulator(stopCondition);
+        setPopulationManipulator(dataManipulator);
 
-	public double getMutationRate() {
-		return mutationRate;
-	}
+        setProblemType(allocator);
+        setProblemType(stopCondition);
+        setProblemType(selector);
+
+        allocator.initialize();
+        selector.initialize();
+
+        if (problemType.isUnset())
+            problemType.setMaximization();
+    }
+
+    private void setProblemType(ProblemTypeComponent component) {
+        component.setProblemType(problemType);
+    }
+
+    private void setPopulationManipulator(PopulationManipulator manipulator) {
+        manipulator.setPopulation(population);
+    }
+
+    public int getPopulationSize() {
+        return populationSize;
+    }
+
+    public double getMutationRate() {
+        return mutationRate;
+    }
 
     public Population getPopulation() {
-		return population;
-	}
+        return population;
+    }
 
-	public void setPopulation(Population population) {
-		this.population = population;
-	}
+    public void setPopulation(Population population) {
+        this.population = population;
+    }
 
-	protected BasicChromosome getChromosome() {
-		return selector.getChromosome();
-	}
+    protected BasicChromosome getChromosome() {
+        return selector.getChromosome();
+    }
 
-	public void setPopulationSize(int size) {
-		populationSize = size;
-	}
+    public void setPopulationSize(int size) {
+        populationSize = size;
+    }
 
-	public void setMutationRate(double rate) {
-		mutationRate = rate;
-	}
+    public void setMutationRate(double rate) {
+        mutationRate = rate;
+    }
 
-	public void setDataManipulator(DataManipulator dataManipulator) {
-		this.dataManipulator = dataManipulator;
-	}
+    public void setDataManipulator(GeneticAlgorithmDataManipulator dataManipulator) {
+        this.dataManipulator = dataManipulator;
+    }
 
-	public StopCondition getStopCondition() {
-		return stopCondition;
-	}
+    public GeneticAlgorithmStopCondition getStopCondition() {
+        return stopCondition;
+    }
 
-	public void setStopCondition(StopCondition stopCondition) {
-		this.stopCondition = stopCondition;
-	}
-
-	public Random getRandom() {
-		return random;
-	}
-
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-	
-	public void setExceptionHandler(ExceptionHandler handler) {
-		this.handler = handler;
-	}
+    public void setStopCondition(GeneticAlgorithmStopCondition stopCondition) {
+        this.stopCondition = stopCondition;
+    }
 
     protected PopulationAllocator getAllocator() {
         return allocator;
@@ -217,18 +184,19 @@ public class GeneticAlgorithm implements RandomComponent, InitializeComponent {
     }
 
     /**
-	 * With this you can use a predefined chromosome set,
-	 * just remember to call this before execute
-	 * @param initPopulation initial set for the population
-	 */
-	public void setInitPopulation(boolean initPopulation) {
-		this.initPopulation = initPopulation;
-	}
-
-	/**
-	 * @return the last execution time in milliseconds
+     * With this you can use a predefined chromosome set,
+     * just remember to call this before execute
+     *
+     * @param initPopulation initial set for the population
      */
-	public double getLastTime() {
-		return this.lastTime;
-	}
+    public void setInitPopulation(boolean initPopulation) {
+        this.initPopulation = initPopulation;
+    }
+
+    /**
+     * @return the last execution time in milliseconds
+     */
+    public double getLastTime() {
+        return this.lastTime;
+    }
 }

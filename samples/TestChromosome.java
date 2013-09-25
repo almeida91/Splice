@@ -9,6 +9,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 
 public class TestChromosome extends BasicChromosome {
@@ -59,12 +60,12 @@ public class TestChromosome extends BasicChromosome {
 
 	@Override
 	public void mutate() {
-		if (getRandom().nextBoolean())
-			if (getRandom().nextBoolean())
+		if (RandomUtil.getRandom().nextBoolean())
+			if (RandomUtil.getRandom().nextBoolean())
 				a += 1;
 			else
 				a -= 1;
-		else if (getRandom().nextBoolean())
+		else if (RandomUtil.getRandom().nextBoolean())
 			b += 1;
 		else
 			b -= 1;

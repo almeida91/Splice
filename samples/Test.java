@@ -17,7 +17,7 @@ import splice.ga.stopConditions.Generations;
 
 
 public class Test {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		GeneticAlgorithm ga = new GeneticAlgorithm(
 				new TestChromosomeFactory(),
 				new ElitismAllocator(0.3),

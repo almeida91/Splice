@@ -10,10 +10,7 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 import splice.InitializeComponent;
-import splice.RandomComponent;
 
 /**
  * Base class for a single chromosome information
@@ -21,13 +18,10 @@ import splice.RandomComponent;
  *
  * @param <T> the type of information value
  */
-public abstract class Gene<T> implements RandomComponent, InitializeComponent {
+public abstract class Gene<T> implements InitializeComponent, Cloneable {
 	private T value;
-	private Random random;
-	
-	public void initialize() {
-        return;
-    }
+
+	public void initialize() { }
 	
 	public Gene(T value) {
 		this.value = value;
@@ -41,14 +35,6 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
 		this.value = value;
 	}
 
-	public Random getRandom() {
-		return random;
-	}
-
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
@@ -61,5 +47,14 @@ public abstract class Gene<T> implements RandomComponent, InitializeComponent {
     @Override
     public String toString() {
         return value.toString();
+    }
+
+    public Gene<T> clone() {
+        try {
+            return (Gene<T>) (super.clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

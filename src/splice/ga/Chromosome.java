@@ -10,15 +10,11 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 @SuppressWarnings("rawtypes")
 public abstract class Chromosome<T extends Gene> extends BasicChromosome implements GeneContainer<T> {
 	private T[] genes;
 	private Crossover<T> crossover;
 	private Mutator<T> mutator;
-	
-	protected abstract Chromosome getNew();
 	
 	public T get(int i) {
 		return genes[i];
@@ -31,7 +27,7 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	public void setMutator(Mutator<T> mutator) {
 		this.mutator = mutator;
 	}
-	
+
 	public void setGenes(T[] genes) {
 		this.genes = genes;
 	}
@@ -50,11 +46,9 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public BasicChromosome crossover(BasicChromosome chromosome) {
-		Chromosome newChromosome = getNew();
-		Chromosome other = (Chromosome)chromosome;
+        Chromosome newChromosome = (Chromosome<T>)(this.clone());
+        Chromosome other = (Chromosome)chromosome;
 		
-		newChromosome.crossover = crossover;
-		newChromosome.mutator = mutator;
 		newChromosome.genes = new Gene[genes.length];
 		
 		for (int i = 0; i < genes.length; i++) {
@@ -64,13 +58,6 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 		return newChromosome;
 	}
 
-	@Override
-	public void setRandom(Random random) {
-		super.setRandom(random);
-		for (Gene g : genes)
-			g.setRandom(random);
-	}
-	
 	@Override
 	public String toString() {
 		String s = "[";
@@ -95,4 +82,13 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
 		
 		return true;
 	}
+
+    @Override
+    public BasicChromosome clone() {
+        Chromosome<T> c = (Chromosome<T>)(super.clone());
+        c.setMutator(this.mutator);
+        c.setCrossover(this.crossover);
+        c.resetFitness();
+        return c;
+    }
 }

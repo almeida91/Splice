@@ -10,9 +10,9 @@
 
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
-import splice.ga.SingleGeneChromosome;
 import splice.ga.crossovers.SinglePointBinaryCrossover;
 import splice.ga.genes.BinaryGene;
+import splice.ga.genes.BinaryGeneType;
 import splice.ga.mutators.SingleBitBinaryMutator;
 
 
@@ -27,12 +27,11 @@ public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	public void initialize() {
 		setMutator(new SingleBitBinaryMutator());
 		setCrossover(new SinglePointBinaryCrossover());
+        setGene(new BinaryGene(BinaryGeneType.INTEGER));
 	}
 	
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		SingleGeneChromosome<BinaryGene> c = new OneZeroChromosome();
-		c.setGene(new BinaryGene(getRandom().nextInt(limit)));
-		return c;
+		return new OneZeroChromosome();
 	}
 }

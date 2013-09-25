@@ -8,17 +8,18 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga.parallel;
+package splice.ga;
 
-import splice.ga.DataManipulator;
+import org.junit.Test;
+import splice.ProblemTypeTest;
+import util.MockGeneticAlgorithmStopCondition;
 
-public abstract class AsyncDataManipulator extends DataManipulator {
-	synchronized void write(int g) throws Exception {
-		engineAppendData(g);
-	}
-	
-	public void appendData(int generation) {
-		Thread worker = new AppendDataWorker(generation, getHandler(), this);
-		worker.start();
-	}
+/**
+ * @author igor
+ */
+public class GeneticAlgorithmStopConditionTest {
+    @Test
+    public void testRandom() {
+        ProblemTypeTest.doTest(new MockGeneticAlgorithmStopCondition(false));
+    }
 }

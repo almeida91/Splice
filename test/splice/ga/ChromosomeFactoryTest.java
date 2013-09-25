@@ -1,9 +1,8 @@
 package splice.ga;
 
-import org.junit.Before;
 import org.junit.Test;
-import splice.RandomComponentTest;
-import util.MockBasicChromosomeFactory;
+import splice.ga.genes.BinaryGene;
+import util.*;
 
 import static org.junit.Assert.*;
 
@@ -11,36 +10,27 @@ import static org.junit.Assert.*;
  * @author igor
  */
 public class ChromosomeFactoryTest {
-    private MockBasicChromosomeFactory factory;
-    private Mutator mutator;
+    final int GENES_SIZE = 4;
 
-    @Before
-    public void setUp() throws Exception {
-        factory = new MockBasicChromosomeFactory(0.5);
+    @Test
+    public void testWithBasicChromosome() throws Exception {
+        MockBasicChromosomeFactory factory = new MockBasicChromosomeFactory(0.5);
+        assertNotNull(factory.generateChromosome());
+        assertEquals(ChromosomeType.BASIC, factory.getChromosomeType());
     }
 
     @Test
-    public void testGenerateChromosome() throws Exception {
-        fail("Not yet implemented");
-    }
+    public void testWithChromosome() throws Exception {
+        MockChromosomeFactory factory = new MockChromosomeFactory();
 
-    @Test
-    public void testInitialize() throws Exception {
-        fail("Not yet implemented");
-    }
+        factory.setGene(new BinaryGene(0));
+        factory.setSize(GENES_SIZE);
+        factory.setMutator(new MockMutator());
+        factory.setCrossover(new MockCrossover());
 
-    @Test
-    public void testSetRandom() throws Exception {
-        RandomComponentTest.doTest(factory);
-    }
+        MockChromosome chromosome = (MockChromosome)factory.generateChromosome();
 
-    @Test
-    public void testSetMutator() throws Exception {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testSetCrossover() throws Exception {
-        fail("Not yet implemented");
+        assertEquals(ChromosomeType.NORMAL, factory.getChromosomeType());
+        assertNotNull(chromosome);
     }
 }

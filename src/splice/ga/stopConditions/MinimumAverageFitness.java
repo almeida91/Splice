@@ -10,9 +10,9 @@
 
 package splice.ga.stopConditions;
 
-import splice.ga.StopCondition;
+import splice.ga.GeneticAlgorithmStopCondition;
 
-public class MinimumAverageFitness extends StopCondition {
+public class MinimumAverageFitness extends GeneticAlgorithmStopCondition {
 	private double minimum;
 
 	public MinimumAverageFitness(double minimum) {

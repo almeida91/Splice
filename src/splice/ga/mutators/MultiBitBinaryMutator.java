@@ -10,16 +10,14 @@
 
 package splice.ga.mutators;
 
-import java.util.Random;
-
+import splice.RandomUtil;
 import splice.ga.Mutator;
 import splice.ga.genes.BinaryGene;
 
 
 public class MultiBitBinaryMutator implements Mutator<BinaryGene> {
 	private int nBits;
-	private Random random;
-	
+
 	public MultiBitBinaryMutator(int numBits) {
 		nBits = numBits;
 	}
@@ -27,17 +25,7 @@ public class MultiBitBinaryMutator implements Mutator<BinaryGene> {
 	@Override
 	public void mutate(BinaryGene gene) {
 		for (int i = 0; i < nBits; i++) {
-			gene.setValue(gene.getValue().flipBit(getRandom().nextInt(gene.getLength())));
+			gene.setValue(gene.getValue().flipBit(RandomUtil.getRandom().nextInt(gene.getLength())));
 		}
-	}
-
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
 	}
 }

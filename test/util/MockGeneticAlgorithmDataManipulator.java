@@ -8,18 +8,21 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga;
+package util;
 
-import org.junit.Test;
-import splice.ProblemTypeTest;
-import util.MockStopCondition;
+import splice.ga.GeneticAlgorithmDataManipulator;
 
 /**
  * @author igor
  */
-public class StopConditionTest {
-    @Test
-    public void testRandom() {
-        ProblemTypeTest.doTest(new MockStopCondition());
+public class MockGeneticAlgorithmDataManipulator extends GeneticAlgorithmDataManipulator {
+    @Override
+    protected void engineAppendData(int generation) throws Exception {
+
+    }
+
+    @Override
+    public void saveData() throws Exception {
+
     }
 }

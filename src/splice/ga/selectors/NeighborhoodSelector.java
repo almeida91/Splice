@@ -10,6 +10,7 @@
 
 package splice.ga.selectors;
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 import splice.ga.Selector;
 
@@ -35,17 +36,17 @@ public class NeighborhoodSelector extends Selector {
 		BasicChromosome c;
 		
 		if (pivot == -1) {
-			pivot = getRandom().nextInt(getPopulation().getSize());
+			pivot = RandomUtil.getRandom().nextInt(getPopulation().getSize());
 			c = getPopulation().get(pivot);
 		}
 		else {
 			// if true will select a lesser value
-			if (getRandom().nextBoolean()) {
-				 pivot -= getRandom().nextInt(maxSearchDistance);
+			if (RandomUtil.getRandom().nextBoolean()) {
+				 pivot -= RandomUtil.getRandom().nextInt(maxSearchDistance);
 				 pivot = (getPopulation().getSize() - pivot) % getPopulation().getSize();
 			}
 			else {
-				pivot += getRandom().nextInt(maxSearchDistance);
+				pivot += RandomUtil.getRandom().nextInt(maxSearchDistance);
 				pivot = pivot % getPopulation().getSize();
 			}
 			c = getPopulation().get(pivot);

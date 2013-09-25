@@ -12,12 +12,10 @@ package splice.ga;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 import splice.InitializeComponent;
 import splice.ProblemType;
 import splice.ProblemTypeComponent;
-import splice.RandomComponent;
 
 /**
  * Allocates a new population set to the current population
@@ -25,16 +23,16 @@ import splice.RandomComponent;
  * @author igor
  * 
  */
-public abstract class PopulationAllocator extends PopulationManipulator implements RandomComponent, InitializeComponent, ProblemTypeComponent {
+public abstract class PopulationAllocator extends PopulationManipulator implements InitializeComponent, ProblemTypeComponent {
 	private ArrayList<BasicChromosome> newPopulation;
 	private Population population;
-	private Random random;
 	private ProblemType problemType;
 
     /**
      * This method replaces the current population with other chromosomes,
      * but keeps the reference to the old population object
-     * @param population
+     *
+     * @param population a list containing new chromosomes to be allocated
      */
 	public void setPopulation(ArrayList<BasicChromosome> population) {
         this.population.setChromosomes(population);
@@ -50,16 +48,6 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	
 	public Population getPopulation() {
 		return this.population;
-	}
-	
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
 	}
 	
 	/**
@@ -78,7 +66,6 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	 * @param chromosome one chromosome
 	 */
 	public void append(BasicChromosome chromosome) {
-		chromosome.setRandom(getRandom());
 		newPopulation.add(chromosome);
 	}
 
@@ -92,7 +79,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	/**
 	 * Resets the buffer, you don't want the population to grow till your memory overflows
 	 */
-	public void reset() { //TODO: should call this at initialization
+	public void reset() { // TODO: should call this at initialization
 		newPopulation = new ArrayList<BasicChromosome>(population.getSize());
 	}
 	
