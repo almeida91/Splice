@@ -36,5 +36,9 @@ public class ListGene<T> extends Gene<List<T>> {
 	public int getSize() {
 		return getValue().size();
 	}
-	
+
+    @Override
+    public String toString() {
+        return getValue().toString();
+    }
 }

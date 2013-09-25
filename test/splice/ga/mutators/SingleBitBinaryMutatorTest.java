@@ -29,7 +29,6 @@ public class SingleBitBinaryMutatorTest {
 		random = new Random();
 		
 		mutator = new SingleBitBinaryMutator();
-		mutator.setRandom(random);
 	}
 
 	@Test

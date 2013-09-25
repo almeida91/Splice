@@ -10,7 +10,7 @@
 
 package splice.ga.stopConditions;
 
-import splice.ga.StopCondition;
+import splice.ga.GeneticAlgorithmStopCondition;
 
 /**
  * Stops the genetic algorithm when after n-generations no evolution is achieved
@@ -21,7 +21,7 @@ import splice.ga.StopCondition;
  * @author igor
  * 
  */
-public class Convergence extends StopCondition {
+public class Convergence extends GeneticAlgorithmStopCondition {
 	private int maxGenerations;
 	private double refFitness = 0;
 

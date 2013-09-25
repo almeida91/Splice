@@ -10,6 +10,7 @@
 
 package splice.ga.mutators;
 
+import splice.RandomUtil;
 import splice.ga.genes.BinaryGene;
 
 public class SingleBitBinaryMutator extends MultiBitBinaryMutator {
@@ -20,6 +21,6 @@ public class SingleBitBinaryMutator extends MultiBitBinaryMutator {
 	@Override
 	public void mutate(BinaryGene g) {
 		int i = g.getLength() > 0 ? g.getLength() : 1;
-		g.setValue(g.getValue().flipBit(getRandom().nextInt(i)));
+		g.setValue(g.getValue().flipBit(RandomUtil.getRandom().nextInt(i)));
 	}
 }

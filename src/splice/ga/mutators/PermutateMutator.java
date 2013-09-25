@@ -10,32 +10,19 @@
 
 package splice.ga.mutators;
 
-import java.util.Random;
-
+import splice.RandomUtil;
 import splice.ga.Mutator;
 import splice.ga.genes.ListGene;
 
 
 public class PermutateMutator<T> implements Mutator<ListGene<T>> {
-	private Random random;
-	
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-
 	@Override
 	public void mutate(ListGene<T> gene) {
 		T temp;
 		int i,j;
 		
-		i = random.nextInt(gene.getSize());
-		j = random.nextInt(gene.getSize());
+		i = RandomUtil.getRandom().nextInt(gene.getSize());
+		j = RandomUtil.getRandom().nextInt(gene.getSize());
 		
 		temp = gene.get(i);
 		gene.set(i, gene.get(j));

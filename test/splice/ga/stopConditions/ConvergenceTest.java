@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.BasicChromosome;
-import util.TestBasicChromosome;
+import util.MockBasicChromosome;
 
 public class ConvergenceTest { // TODO: unimplemented
 	Convergence condition;
@@ -28,8 +28,8 @@ public class ConvergenceTest { // TODO: unimplemented
 	
 	@Before
 	public void setUp() {
-		bestContinue = new TestBasicChromosome(MINIMUM_FITNESS - STEP);
-		bestStop = new TestBasicChromosome(MINIMUM_FITNESS + STEP);
+		bestContinue = new MockBasicChromosome(MINIMUM_FITNESS - STEP);
+		bestStop = new MockBasicChromosome(MINIMUM_FITNESS + STEP);
 	}
 
 	@Test

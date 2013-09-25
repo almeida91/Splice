@@ -10,10 +10,7 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 import splice.InitializeComponent;
-import splice.RandomComponent;
 
 /**
  * This class defines the structure for the factories that produces
@@ -23,11 +20,12 @@ import splice.RandomComponent;
  * 
  */
 @SuppressWarnings("rawtypes")
-public abstract class ChromosomeFactory<T extends Gene> implements RandomComponent, InitializeComponent {
-	private Random random;
+public abstract class ChromosomeFactory<T extends Gene> implements InitializeComponent {
 	private ChromosomeType type;
 	private Mutator<T> mutator;
 	private Crossover<T> crossover;
+    private Gene<?> gene;
+    private int size;
 	
 	/**
 	 * This method is used to fill the population with new individuals.
@@ -40,7 +38,7 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
      * @param chromosome a chromosome with random values, it usually comes from #{getRandomChromosome}
      */
 	private void checkType(BasicChromosome chromosome) {
-		if (type != null)
+        if (type != null)
 			return;
 		if (chromosome instanceof Chromosome)
 			type = ChromosomeType.NORMAL;
@@ -49,7 +47,11 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 		else
 			type = ChromosomeType.BASIC;
 	}
-	
+
+    /**
+     *
+     * @return a new chromosome filled with the required values for execution
+     */
 	@SuppressWarnings("unchecked")
 	public BasicChromosome generateChromosome() {
 		BasicChromosome chromosome = getRandomChromosome();
@@ -59,20 +61,43 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 			GeneContainer<T> c = (GeneContainer<T>)chromosome;
 			c.setCrossover(crossover);
 			c.setMutator(mutator);
-		}			
-		
+
+            if (type == ChromosomeType.SINGLE) {
+                T gene = generateGene();
+                gene.initialize();
+                ((SingleGeneChromosome)chromosome).setGene(gene);
+            } else if (type == ChromosomeType.NORMAL) {
+                T[] genes = (T[])(new Gene<?>[size]);
+
+                for (int i = 0; i < size; i++) {
+                    genes[i] = generateGene();
+                    genes[i].initialize();
+                }
+
+                ((Chromosome)chromosome).setGenes(genes);
+            }
+		}
+
 		return chromosome;
 	}
 
-	public void initialize() { }
+    /**
+     * Clones the given gene into a new instance, after this the value should be initialized
+     * @return a clone of the given gene
+     */
+    public T generateGene() {
+        T g = null;
 
-	public Random getRandom() {
-		return random;
-	}
+        try {
+            g = (T)gene.clone();
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
 
-	public void setRandom(Random random) {
-		this.random = random;
-	}
+        return g;
+    }
+
+    public void initialize() { }
 
 	public Mutator<T> getMutator() {
 		return mutator;
@@ -80,7 +105,6 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 
 	public void setMutator(Mutator<T> mutator) {
 		this.mutator = mutator;
-		this.mutator.setRandom(random);
 	}
 
 	public Crossover<T> getCrossover() {
@@ -90,4 +114,20 @@ public abstract class ChromosomeFactory<T extends Gene> implements RandomCompone
 	public void setCrossover(Crossover<T> crossover) {
 		this.crossover = crossover;
 	}
+
+    public ChromosomeType getChromosomeType() {
+        return type;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public void setGene(Gene<?> gene) {
+        this.gene = gene;
+    }
 }

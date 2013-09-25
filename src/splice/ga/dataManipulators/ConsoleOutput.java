@@ -10,24 +10,35 @@
 
 package splice.ga.dataManipulators;
 
-import splice.ga.DataManipulator;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import splice.ga.GeneticAlgorithmDataManipulator;
 
 /**
  * Prints each generation data into the default output stream
  * @author igor
  *
  */
-public class ConsoleOutput extends DataManipulator {
+public class ConsoleOutput extends GeneticAlgorithmDataManipulator {
+    private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
 	
 	@Override
 	public void engineAppendData(int generation) throws Exception {
-		System.out.println("Generation #" + generation + " fitness: "
-				+ getPopulation().getFitnessAverage() + " max: "
-				+ getPopulation().getMaximum().getFitness() + " min: "
-				+ getPopulation().getMinimum().getFitness() + " pop size: "
-				+ getPopulation().getSize());
+        writer.append("Generation #")
+        .append(Integer.toString(generation))
+        .append(" fitness: ")
+        .append(Double.toString(getPopulation().getFitnessAverage()))
+        .append(" max: ")
+        .append(Double.toString(getPopulation().getMaximum().getFitness()))
+        .append(" min: ")
+        .append(Double.toString(getPopulation().getMinimum().getFitness()))
+        .append(" pop size: ")
+        .append(Integer.toString(getPopulation().getSize()))
+        .append("\n");
 	}
 
 	@Override
-	public void saveData() { }
+	public void saveData() throws Exception {
+        writer.flush();
+    }
 }

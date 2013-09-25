@@ -16,8 +16,8 @@ import org.junit.Before;
 import org.junit.Test;
 import splice.ga.BasicChromosome;
 import splice.ga.Population;
-import util.TestBasicChromosome;
-import util.TestPopulation;
+import util.MockBasicChromosome;
+import util.MockPopulation;
 
 public class ReplaceAllocatorTest {
     ReplaceAllocator allocator;
@@ -27,7 +27,7 @@ public class ReplaceAllocatorTest {
 	@Before
 	public void setUp() {
 	    allocator = new ReplaceAllocator();
-        population = new TestPopulation(0.0, POPULATION_SIZE);
+        population = new MockPopulation(0.0, POPULATION_SIZE);
         population.initialize();
         allocator.setPopulation(population);
         allocator.reset();
@@ -36,7 +36,7 @@ public class ReplaceAllocatorTest {
 	@Test
 	public void testAllocate() {
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            allocator.append(new TestBasicChromosome(1));
+            allocator.append(new MockBasicChromosome(1));
         }
 
         allocator.allocate();
@@ -49,7 +49,7 @@ public class ReplaceAllocatorTest {
 	@Test
 	public void testComplete() {
         for (int i = 0; i < POPULATION_SIZE; i++) {
-            allocator.append(new TestBasicChromosome(1));
+            allocator.append(new MockBasicChromosome(1));
             if (i < POPULATION_SIZE - 1)
                 assertFalse(allocator.complete());
         }

@@ -1,3 +1,13 @@
+/*
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
 package zeros;
 
 import java.util.ArrayList;
@@ -7,8 +17,12 @@ import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 import splice.ga.Crossover;
 import splice.ga.Mutator;
+import splice.ga.crossovers.SinglePointBinaryCrossover;
+import splice.ga.crossovers.SinglePointCrossover;
+import splice.ga.genes.IntegerListGene;
 import splice.ga.genes.ListGene;
 import splice.ga.mutators.GaussianMutator;
+import splice.ga.mutators.RandomIntegerMutator;
 
 
 @SuppressWarnings("rawtypes")
@@ -20,26 +34,17 @@ public class ZerosChromosomeFactory extends ChromosomeFactory {
 		this.size = size;
 		this.maxValue = maxValue;
 	}
+
+    public void initialize() {
+        setMutator(new RandomIntegerMutator(maxValue));
+        setCrossover(new SinglePointCrossover<Integer>());
+        setGene(new IntegerListGene(size, maxValue));
+    }
 	
 
-	@SuppressWarnings({ "unchecked" })
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		ZerosChromosome c = new ZerosChromosome();
-		List<Integer> numbers = new ArrayList<Integer>();
-		
-		Mutator mutator = new GaussianMutator(100);
-		Crossover crossover = null;
-		
-		for (int i = 0; i < size; i++) {
-			numbers.add(getRandom().nextInt(maxValue));
-		}
-		
-		c.setGene(new ListGene<Integer>(numbers));
-		c.setMutator(mutator);
-		c.setCrossover(crossover);
-		
-		return c;
+		return new ZerosChromosome();
 	}
 
 }

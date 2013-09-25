@@ -28,7 +28,7 @@ public class ReplaceAllocator extends PopulationAllocator {
 	public boolean complete() {
 		return bufferSize() >= getPopulation().getSize();
 	}
-	
+
 	@Override
 	public void initialize() { }
 }

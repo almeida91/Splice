@@ -17,62 +17,65 @@ import splice.ga.genes.BinaryGene;
 
 
 
-public class MultiPointBinaryCrossover implements Crossover<BinaryGene> {
-	private int points;
+public class MultiPointBinaryCrossover extends MaskBinaryCrossover {
+	private int parts;
 	private int length = 0;
-	private BigInteger aMask, bMask;
-	
+
 	public MultiPointBinaryCrossover(int points) {
-		this.points = points + 1;
+        super(null);
+
+		parts = points + 1;
+
+        if (parts == 0)
+            parts = 1;
 	}
 	
-	private void generateMasks() {
-		// FIXME: this was a quick fix, maybe a better method? It raises a bug on some occasions
-		// FIXME: does it still raises the bug from above?
-		StringBuilder ones = new StringBuilder(length);
-		String one = "1";
+	public void generateMasks() {
+        if (length == 0) {
+            aMask = BigInteger.ZERO;
+            bMask = new BigInteger("2");
+            return;
+        }
+
+		StringBuilder o1 = new StringBuilder(length),
+                      o2 = new StringBuilder(length);
+
+        final char one = '1',
+                   zero = '0';
+
+        char c1 = zero,
+             c2 = one;
+
 		for (int i = 0; i < length; i++) {
-			ones.append(one);
+            if ((i % (length / parts)) == 0) {
+                if (c1 == one) {
+                    c1 = zero;
+                    c2 = one;
+                }
+                else {
+                    c1 = one;
+                    c2 = zero;
+                }
+            }
+
+            o1.append(c1);
+            o2.append(c2);
 		}
-		
-		if (length == 0) {
-			aMask = BigInteger.ZERO;
-			bMask = new BigInteger("2");
-			return;
-		}
 
-		aMask = new BigInteger(ones.toString(), 2);
-		
-		
-		byte[] m = aMask.toByteArray();
-
-		boolean zero = true;
-
-		for (int i = 0, j = 0; i < m.length; i++, j = (j + 1)
-				% (m.length / points + 1)) {
-			if (j == 0)
-				zero = !zero;
-
-			if (zero) {
-				m[i] = 0;
-			}
-		}
-		aMask = new BigInteger(m);
-		bMask = aMask.negate();
+        aMask = new BigInteger(o1.toString(), 2);
+        bMask = new BigInteger(o2.toString(), 2);
 	}
-	
+
+
+
 	@Override
 	public BinaryGene doCrossover(BinaryGene a, BinaryGene b) {
-		if (a.getLength() != length) {
-			length = a.getLength();
-			generateMasks();
-		}
-		
-		BigInteger value = a.getValue().and(aMask).xor(b.getValue().and(bMask));
-		BinaryGene g = new BinaryGene(value);
-		g.setLength(a.getLength());
-		
-		return g;
+        if (a.getLength() != length) {
+            length = a.getLength();
+            generateMasks();
+        }
+
+		return super.doCrossover(a,b);
 	}
 
 }

@@ -12,6 +12,7 @@ package splice.ga.genes;
 
 import java.math.BigInteger;
 
+import splice.RandomUtil;
 import splice.ga.Gene;
 
 /**
@@ -25,30 +26,29 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	private static byte[] getBytes(long x) {
 		byte[] b = new byte[8];
-		b[0] = (byte) (x);
-		b[1] = (byte) (x >> 8);
-		b[2] = (byte) (x >> 16);
-		b[3] = (byte) (x >> 24);
-		b[4] = (byte) (x >> 32);
-		b[5] = (byte) (x >> 40);
-		b[6] = (byte) (x >> 48);
-		b[7] = (byte) (x >> 56);
+		b[0] = (byte) (x >> 56);
+		b[1] = (byte) (x >> 48);
+		b[2] = (byte) (x >> 40);
+		b[3] = (byte) (x >> 32);
+		b[4] = (byte) (x >> 24);
+		b[5] = (byte) (x >> 16);
+		b[6] = (byte) (x >> 8);
+		b[7] = (byte) (x);
 		return b;
 	}
 
 	private static byte[] getBytes(int x) {
 		byte[] b = new byte[4];
-		b[0] = (byte) (x);
-		b[1] = (byte) (x >> 8);
-		b[2] = (byte) (x >> 16);
-		b[3] = (byte) (x >> 24);
+		b[0] = (byte) (x >> 24);
+		b[1] = (byte) (x >> 16);
+		b[2] = (byte) (x >> 8);
+		b[3] = (byte) (x);
 		return b;
 	}
 
 	public BinaryGene(BigInteger value) {
 		super(value);
-		if (value != null)
-			length = value.bitLength();
+	    length = value.bitLength();
 	}
 
 	public BinaryGene(int value) {
@@ -68,15 +68,25 @@ public class BinaryGene extends Gene<BigInteger> {
 
 	public BinaryGene(float value) {
 		this(new BigInteger(getBytes(Float.floatToIntBits(value))));
-		length = 64;
+		length = 32;
 	}
+
+    public BinaryGene(BinaryGeneType type) {
+        this(BigInteger.ZERO);
+        if (type == BinaryGeneType.DOUBLE || type == BinaryGeneType.LONG)
+            length = 64;
+        else if (type == BinaryGeneType.FLOAT || type == BinaryGeneType.INTEGER)
+            length = 32;
+        else if (type == BinaryGeneType.SHORT)
+            length = 16;
+    }
 
 	@Override
 	public void initialize() {
-		if (getValue() != null)
-			return;
 		if (length == 0)
 			throw new RuntimeException("BinaryGene must have length set");
+        if (getValue().longValue() != 0)
+            setValue(new BigInteger(length, RandomUtil.getRandom()));
 	}
 
 	public int getLength() {

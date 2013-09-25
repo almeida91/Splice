@@ -11,10 +11,9 @@
 package splice.ga;
 
 import java.util.Comparator;
-import java.util.Random;
 
 import splice.InitializeComponent;
-import splice.RandomComponent;
+import splice.RandomUtil;
 
 /**
  * Base class for chromosomes, it doesn't support the mutator/crossover
@@ -28,9 +27,9 @@ import splice.RandomComponent;
  * @author Igor Almeida
  * 
  */
-public abstract class BasicChromosome implements Comparable<BasicChromosome>, RandomComponent, InitializeComponent {
-	private double fitness;
-	private Random random;
+public abstract class BasicChromosome implements Comparable<BasicChromosome>, InitializeComponent, Cloneable {
+	private double fitness = Double.MIN_VALUE;
+    private long fitnessBits;
 
 	/**
 	 * Implementation of the fitness function
@@ -52,18 +51,37 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	 */
 	public abstract BasicChromosome crossover(BasicChromosome chromosome);
 
+    public BasicChromosome clone() {
+        try {
+            return (BasicChromosome)super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 	/**
 	 * Calculate the chromosome's fitness
-	 * @return fitness value as calculated by #fitness()
+	 * @return fitness value as calculated by #{fitness()}
 	 */
 	public final double calculateFitness() {
-		fitness = fitness();
+		if (fitness == Double.MIN_VALUE)
+            fitness = fitness();
+        fitnessBits = Double.doubleToLongBits(fitness);
 		return fitness;
 	}
 
 	public double getFitness() {
 		return fitness;
 	}
+
+    public long getFitnessBits() {
+        return fitnessBits;
+    }
+
+    public void resetFitness() {
+        fitness = Double.MIN_VALUE;
+    }
 	
 	@Override
 	public void initialize() { }
@@ -86,18 +104,11 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, Ra
 	 * @param chance the probability of mutation
 	 */
 	public void mutate(double chance) {
-		if (getRandom().nextDouble() < chance)
+		if (RandomUtil.getRandom().nextDouble() < chance)
 			mutate();
 	}
 
-	@Override
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-
-	@Override
-	public Random getRandom() {
-		return random;
-	}
-
+    public String toString() {
+        return Double.toString(fitness());
+    }
 }

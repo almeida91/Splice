@@ -1,4 +1,15 @@
 
+/*
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
+
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 
 public class TestChromosome extends BasicChromosome {
@@ -49,12 +60,12 @@ public class TestChromosome extends BasicChromosome {
 
 	@Override
 	public void mutate() {
-		if (getRandom().nextBoolean())
-			if (getRandom().nextBoolean())
+		if (RandomUtil.getRandom().nextBoolean())
+			if (RandomUtil.getRandom().nextBoolean())
 				a += 1;
 			else
 				a -= 1;
-		else if (getRandom().nextBoolean())
+		else if (RandomUtil.getRandom().nextBoolean())
 			b += 1;
 		else
 			b -= 1;

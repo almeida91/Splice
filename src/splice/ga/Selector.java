@@ -10,21 +10,17 @@
 
 package splice.ga;
 
-import java.util.Random;
-
 import splice.InitializeComponent;
 import splice.ProblemType;
 import splice.ProblemTypeComponent;
-import splice.RandomComponent;
 
 /**
- * Selects chromossome's candidates for crossover
+ * Selects chromosome's candidates for crossover
  * 
  * @author igor
  * 
  */
-public abstract class Selector extends PopulationManipulator implements RandomComponent, ProblemTypeComponent, InitializeComponent {
-	private Random random;
+public abstract class Selector extends PopulationManipulator implements ProblemTypeComponent, InitializeComponent {
 	private ProblemType problemType;
 	
 	/**
@@ -32,16 +28,12 @@ public abstract class Selector extends PopulationManipulator implements RandomCo
 	 * @return a chromosome for crossover
 	 */
 	public abstract BasicChromosome getChromosome();
+
+    /**
+     * Holds any logic to be called before the generation parents selection
+     */
 	public abstract void beforeGeneration();
-	
-	public Random getRandom() {
-		return random;
-	}
-	
-	public void setRandom(Random random) {
-		this.random = random;
-	}
-	
+
 	public ProblemType getProblemType() {
 		return problemType;
 	}

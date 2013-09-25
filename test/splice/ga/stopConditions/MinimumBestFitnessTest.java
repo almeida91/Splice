@@ -15,7 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import splice.ga.BasicChromosome;
-import util.TestBasicChromosome;
+import util.MockBasicChromosome;
 
 public class MinimumBestFitnessTest {
 	BasicChromosome bestStop, bestContinue;
@@ -26,8 +26,8 @@ public class MinimumBestFitnessTest {
 	@Before
 	public void setUp() throws Exception {
 		condition = new MinimumBestFitness(MINIMUM_FITNESS);
-		bestStop = new TestBasicChromosome(MINIMUM_FITNESS + STEP);
-		bestContinue = new TestBasicChromosome(MINIMUM_FITNESS - STEP);
+		bestStop = new MockBasicChromosome(MINIMUM_FITNESS + STEP);
+		bestContinue = new MockBasicChromosome(MINIMUM_FITNESS - STEP);
 		bestStop.calculateFitness();
 		bestContinue.calculateFitness();
 	}

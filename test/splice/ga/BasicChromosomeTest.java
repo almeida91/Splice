@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import util.TestBasicChromosome;
+import util.MockBasicChromosome;
 
 import java.util.Random;
 
@@ -22,23 +22,23 @@ import java.util.Random;
  * @author igor
  */
 public class BasicChromosomeTest {
-    TestBasicChromosome chromosome;
+    MockBasicChromosome chromosome;
     final int MUTATION_UNIVERSE = 100;
     final double MUTATION_PROBABILITY = 0.1;
+    final double FITNESS = 1;
     Random random;
 
     @Before
     public void setUp() {
-        chromosome = new TestBasicChromosome(1);
+        chromosome = new MockBasicChromosome(FITNESS);
         random = new Random();
-        chromosome.setRandom(random);
     }
 
     @Test
     public void testCalculateFitness() {
-        assertEquals(0, chromosome.getFitness(), 0);
-        assertEquals(1, chromosome.calculateFitness(), 0);
-        assertEquals(1, chromosome.getFitness(), 0);
+        assertEquals(Double.MIN_VALUE, chromosome.getFitness(), 0);
+        assertEquals(FITNESS, chromosome.calculateFitness(), 0);
+        assertEquals(FITNESS, chromosome.getFitness(), 0);
     }
 
     @Test
@@ -59,5 +59,12 @@ public class BasicChromosomeTest {
     public void testGetComparator() throws Exception {
         double value = chromosome.calculateFitness();
         ChromosomeComparatorTest.doTest(chromosome.getComparator(), chromosome.getFitness());
+    }
+
+    @Test
+    public void testInitialize() throws Exception {
+        assertEquals(Double.MIN_VALUE, chromosome.getFitness(), 0);
+        chromosome.initialize();
+        assertEquals(Double.MIN_VALUE, chromosome.getFitness(), 0);
     }
 }

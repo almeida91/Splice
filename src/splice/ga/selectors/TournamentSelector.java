@@ -33,7 +33,7 @@ public class TournamentSelector extends Selector {
 		BasicChromosome chromosome = getPopulation().getRandomChromosome(), temp;
 		double fitness = chromosome.getFitness();
 
-		for (int i = 0; i < k; i++) {
+		for (int i = 0; i < k - 1; i++) {
 			temp = getPopulation().getRandomChromosome();
 			if (temp.getFitness() > fitness)
 				chromosome = temp;
