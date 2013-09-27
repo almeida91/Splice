@@ -30,9 +30,14 @@ Look for samples/ folder to see how to build simple genetic algorithms.
 
 Samples included:
 
-* samples/nqueens/
- it solves the N-Queens problem
-* samples/zeros/
- evolves a list of integers until its values are all zeros
-* samples/rosenbrock
- minimization of bidimensional rosenbrock function
+* samples/nqueens/: it solves the N-Queens problem
+* samples/zeros/: evolves a list of integers until its values are all zeros
+* samples/rosenbrock: minimization of bi-dimensional rosenbrock function
+
+Contributing
+==================
+You are free to fork and make pull requests for any feature that you may think it is worth in the library.
+
+License
+==================
+The MIT license is included along with this file.
