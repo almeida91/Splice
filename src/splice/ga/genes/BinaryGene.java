@@ -73,20 +73,25 @@ public class BinaryGene extends Gene<BigInteger> {
 
     public BinaryGene(BinaryGeneType type) {
         this(BigInteger.ZERO);
-        if (type == BinaryGeneType.DOUBLE || type == BinaryGeneType.LONG)
+        if (type == BinaryGeneType.DOUBLE || type == BinaryGeneType.LONG) {
             length = 64;
-        else if (type == BinaryGeneType.FLOAT || type == BinaryGeneType.INTEGER)
+        }
+        else if (type == BinaryGeneType.FLOAT || type == BinaryGeneType.INTEGER) {
             length = 32;
-        else if (type == BinaryGeneType.SHORT)
+        }
+        else if (type == BinaryGeneType.SHORT) {
             length = 16;
+        }
     }
 
 	@Override
 	public void initialize() {
-		if (length == 0)
+		if (length == 0) {
 			throw new RuntimeException("BinaryGene must have length set");
-        if (getValue().longValue() != 0)
+        }
+        if (getValue().longValue() == 0) {
             setValue(new BigInteger(length, RandomUtil.getRandom()));
+        }
 	}
 
 	public int getLength() {
