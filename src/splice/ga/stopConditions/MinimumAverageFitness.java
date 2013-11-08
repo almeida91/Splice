@@ -23,4 +23,9 @@ public class MinimumAverageFitness extends GeneticAlgorithmStopCondition {
 	public boolean stop(int generation) {
 		return getPopulation().getFitnessAverage() >= minimum;
 	}
+
+    @Override
+    public boolean isCommonUsage() {
+        return false;
+    }
 }

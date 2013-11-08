@@ -7,33 +7,27 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.cga;
+package splice.stopCondition;
 
 import splice.ProblemType;
 import splice.StopCondition;
-import splice.exceptions.DataNotSetException;
 
-/**
- * Compact Genetic Algorithm {@link StopCondition} implementation
- */
-public abstract class CgaStopCondition extends ContextManipulator implements StopCondition {
+public class Iterations implements StopCondition {
+    private int iterations;
     private ProblemType problemType;
 
-    /**
-     * Implement this to define your own stop condition
-     * @param iteration iteration number
-     * @return true if the condition has been reached
-     */
-    protected abstract boolean engineStop(int iteration);
+    public Iterations(int iterations) {
+        this.iterations = iterations;
+    }
 
     @Override
     public boolean stop(int iteration) {
-        if (!isDataSet())
-            throw new DataNotSetException();
-        else
-            reset();
+        return iteration > iterations;
+    }
 
-        return engineStop(iteration);
+    @Override
+    public boolean isCommonUsage() {
+        return true;
     }
 
     public ProblemType getProblemType() {

@@ -51,24 +51,9 @@ public class BinaryGene extends Gene<BigInteger> {
 	    length = value.bitLength();
 	}
 
-	public BinaryGene(int value) {
-		this(new BigInteger(getBytes(value)));
-		length = 32;
-	}
-
-	public BinaryGene(long value) {
-		this(new BigInteger(getBytes(value)));
-		length = 64;
-	}
-
-	public BinaryGene(double value) {
-		this(new BigInteger(getBytes(Double.doubleToLongBits(value))));
-		length = 64;
-	}
-
-	public BinaryGene(float value) {
-		this(new BigInteger(getBytes(Float.floatToIntBits(value))));
-		length = 32;
+	public BinaryGene(int length) {
+		this(BigInteger.ZERO);
+		this.length = length;
 	}
 
     public BinaryGene(BinaryGeneType type) {

@@ -11,18 +11,18 @@
 
 
 import splice.ga.GeneticAlgorithm;
-import splice.ga.allocators.ElitismAllocator;
+import splice.ga.allocators.ElitistAllocator;
 import splice.ga.selectors.TournamentSelector;
-import splice.ga.stopConditions.Generations;
+import splice.stopCondition.Iterations;
 
 
 public class Test {
 	public static void main(String[] args) throws Exception {
 		GeneticAlgorithm ga = new GeneticAlgorithm(
 				new TestChromosomeFactory(),
-				new ElitismAllocator(0.3),
+				new ElitistAllocator(0.3),
 				new TournamentSelector(3));
-		ga.setStopCondition(new Generations(10000));
+		ga.setStopCondition(new Iterations(10000));
 		ga.execute();
 
 		System.out.println(ga.getPopulation().getMaximum());

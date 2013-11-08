@@ -7,29 +7,17 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
-package splice.ga.stopConditions;
-
-import splice.ga.GeneticAlgorithmStopCondition;
+package splice.dataManipulators;
 
 /**
- * Stops the execution when a number of generations is achieved
- * @author igor
- *
+ * Created with IntelliJ IDEA.
+ * User: igor
+ * Date: 06/11/13
+ * Time: 00:53
+ * To change this template use File | Settings | File Templates.
  */
-public class Generations extends GeneticAlgorithmStopCondition {
-	private int generations;
-
-	public Generations(int generations) {
-		this.generations = generations;
-	}
-
-	@Override
-	public boolean stop(int generation) {
-		return generation >= generations;
-	}
-
-	public int getGenerations() {
-		return generations;
-	}
+public class TerminalDataManipulator extends StreamDataManipulator {
+    public TerminalDataManipulator() {
+        super(System.out, true);
+    }
 }

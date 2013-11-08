@@ -7,22 +7,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+package splice.exceptions;
 
-package util;
-
-import splice.ga.GeneticAlgorithmDataManipulator;
-
-/**
- * @author igor
- */
-public class MockGeneticAlgorithmDataManipulator extends GeneticAlgorithmDataManipulator {
-    @Override
-    protected void engineAppendData(int generation) throws Exception {
-
-    }
-
-    @Override
-    public void saveData() throws Exception {
-
-    }
+public class IncompatibleComponentException extends Exception {
 }

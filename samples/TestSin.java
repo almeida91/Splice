@@ -1,4 +1,3 @@
-
 /*
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
  * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -10,26 +9,28 @@
  */
 
 import splice.ga.GeneticAlgorithm;
-import splice.ga.allocators.ElitismAllocator;
-import splice.ga.dataManipulators.GenerationPopulationOutput;
-import splice.ga.selectors.NeighborhoodSelector;
+import splice.ga.allocators.ElitistAllocator;
 import splice.ga.selectors.TournamentSelector;
-import splice.ga.stopConditions.Generations;
+import splice.stopCondition.Iterations;
 
 public class TestSin {
 	public static void main(String[] args) throws Exception {
 		GeneticAlgorithm ga = new GeneticAlgorithm(
 				new SinChromosomeFactory(),
-				new ElitismAllocator(0.3),
+				new ElitistAllocator(0.3),
 				new TournamentSelector(3)
-				//new NeighborhoodSelector(5)
 		);
-		ga.setStopCondition(new Generations(1000));
-		//ga.setDataManipulator(new GenerationPopulationOutput("/Users/igor/test"));
-		
+		ga.setStopCondition(new Iterations(100000));
+
+
+        double begin = System.currentTimeMillis();
 		ga.execute();
+        double end = System.currentTimeMillis();
+
 		System.out.println(ga.getLastTime() / 1000 + " s");
-		System.out.println(ga.getPopulation().getMaximum());
+        System.out.println((end - begin) / 1000 + " s");
+
+		System.out.println(ga.getPopulation().getMaximum().calculateFitness());
 		System.out.println(ga.getPopulation().getChromosomesSet().size());
 	}
 }

@@ -21,20 +21,25 @@ public class IntegerListGene extends ListGene<Integer> {
         this.size = size;
     }
 
-    public IntegerListGene(int size, int max){
+    public IntegerListGene(int size, int max) {
         this(size);
         this.max = max;
     }
 
     @Override
     public void initialize() {
-        Random random = RandomUtil.getRandom();
-        ArrayList<Integer> value = new ArrayList<Integer>();
-
-        for (int i = 0; i < size; i++) {
-            value.add(random.nextInt(max));
+        if (hasSet()) {
+            super.initialize();
         }
+        else {
+            Random random = RandomUtil.getRandom();
+            ArrayList<Integer> value = new ArrayList<Integer>();
 
-        setValue(value);
+            for (int i = 0; i < size; i++) {
+                value.add(random.nextInt(max));
+            }
+
+            setValue(value);
+        }
     }
 }

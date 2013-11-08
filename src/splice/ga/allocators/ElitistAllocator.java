@@ -17,7 +17,7 @@ import splice.ga.PopulationAllocator;
  * @author igor
  *
  */
-public class ElitismAllocator extends PopulationAllocator {
+public class ElitistAllocator extends PopulationAllocator {
 	private double rate;
 	private int n;
 	
@@ -25,7 +25,7 @@ public class ElitismAllocator extends PopulationAllocator {
 	 * 
 	 * @param rate the percentage of the old population to be kept
 	 */
-	public ElitismAllocator(double rate) {
+	public ElitistAllocator(double rate) {
 		this.rate = rate;
 	}
 

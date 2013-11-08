@@ -19,7 +19,7 @@ public class RandomImmigrationGeneticAlgorithm extends GeneticAlgorithm {
     }
 
     @Override
-    public void initialize() {
+    public void initialize() throws Exception {
         super.initialize();
         mod = 0;
     }

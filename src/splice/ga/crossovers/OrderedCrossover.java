@@ -38,6 +38,8 @@ public class OrderedCrossover<T> implements Crossover<ListGene<T>> {
      * @see RandomOrderedCrossover
      */
     public OrderedCrossover(int begin, int end) {
+        assert begin < end;
+
         this.begin = begin;
         this.end = end;
     }

@@ -27,7 +27,6 @@ public class NQueensChromosomeFactory extends ChromosomeFactory {
     public void initialize() {
         setMutator(new RandomIntegerMutator(8));
         setCrossover(new SinglePointCrossover<Integer>());
-        setSize(2);
         setGene(new IntegerListGene(8, 8));
     }
 

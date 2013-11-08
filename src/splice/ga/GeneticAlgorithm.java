@@ -10,22 +10,18 @@
 
 package splice.ga;
 
-import splice.InitializeComponent;
-import splice.ProblemType;
-import splice.ProblemTypeComponent;
-
-import splice.ga.dataManipulators.ConsoleOutput;
-import splice.ga.stopConditions.Generations;
+import splice.*;
+import splice.exceptions.IncompatibleComponentException;
+import splice.ga.dataFormatters.LabeledGeneration;
 
 /**
  * Base class for a genetic algorithm
  *
  * @author igor
  */
-public class GeneticAlgorithm implements InitializeComponent {
+public class GeneticAlgorithm extends Algorithm {
     private int populationSize = 100;
     private double mutationRate = 0.2;
-    private double lastTime = 0;
     private boolean initPopulation = true;
 
     private Population population = new Population();
@@ -33,9 +29,6 @@ public class GeneticAlgorithm implements InitializeComponent {
     private Selector selector;
     private PopulationAllocator allocator;
     private ChromosomeFactory<?> factory;
-    private GeneticAlgorithmDataManipulator dataManipulator = new ConsoleOutput();
-    private GeneticAlgorithmStopCondition stopCondition = new Generations(2000);
-    private ProblemType problemType = new ProblemType();
 
     /**
      * Default constructor
@@ -48,39 +41,25 @@ public class GeneticAlgorithm implements InitializeComponent {
         this.allocator = allocator;
         this.selector = selector;
         this.factory = factory;
+
+        setDefaultFormatter(new LabeledGeneration());
     }
 
-    /**
-     * executes the genetic algorithm
-     */
-    public void execute() throws Exception {
-        initialize();
+    public GeneticAlgorithm(BasicChromosome chromosome, PopulationAllocator allocator, Selector selector) {
+        this(new DefaultChromosomeFactory(chromosome), allocator, selector);
+    }
 
-        double begin = System.currentTimeMillis();
-
-        int i = 1;
-        do {
-            population.calculateFitnessSum();
-            dataManipulator.appendData(i);
-
-            allocator.reset();
-            selector.beforeGeneration();
-            doGeneration(i);
-            allocator.allocate();
-
-            i++;
-        } while (!stopCondition.stop(i));
-
-        dataManipulator.saveData();
+    protected void iteration(int i) throws Exception {
         population.calculateFitnessSum();
 
-        double end = System.currentTimeMillis();
-
-        lastTime = end - begin;
+        allocator.reset();
+        selector.beforeGeneration();
+        doGeneration(i);
+        allocator.allocate();
     }
 
     /**
-     * runs the generation's logic, can be overloaded in case of some need
+     * runs the generation's logic, can be overridden in case of some need
      *
      * @param generation current generation, it may be used for some algorithms that do some task at every n-generations
      */
@@ -102,7 +81,7 @@ public class GeneticAlgorithm implements InitializeComponent {
         allocator.append(c);
     }
 
-    public void initialize() {
+    public void initialize() throws Exception {
         factory.initialize();
 
         if (initPopulation) {
@@ -113,22 +92,28 @@ public class GeneticAlgorithm implements InitializeComponent {
 
         setPopulationManipulator(allocator);
         setPopulationManipulator(selector);
-        setPopulationManipulator(stopCondition);
-        setPopulationManipulator(dataManipulator);
+
+        if (!getStopCondition().isCommonUsage()) {
+            try {
+                setPopulationManipulator((GeneticAlgorithmStopCondition)getStopCondition());
+            }
+            catch (Exception ex) {
+                throw new IncompatibleComponentException();
+            }
+        }
+
+        try {
+            setPopulationManipulator((GeneticAlgorithmDataFormatter)getFormatter());
+        }
+        catch (Exception ex) {
+            throw new IncompatibleComponentException();
+        }
 
         setProblemType(allocator);
-        setProblemType(stopCondition);
         setProblemType(selector);
 
         allocator.initialize();
         selector.initialize();
-
-        if (problemType.isUnset())
-            problemType.setMaximization();
-    }
-
-    private void setProblemType(ProblemTypeComponent component) {
-        component.setProblemType(problemType);
     }
 
     private void setPopulationManipulator(PopulationManipulator manipulator) {
@@ -163,18 +148,6 @@ public class GeneticAlgorithm implements InitializeComponent {
         mutationRate = rate;
     }
 
-    public void setDataManipulator(GeneticAlgorithmDataManipulator dataManipulator) {
-        this.dataManipulator = dataManipulator;
-    }
-
-    public GeneticAlgorithmStopCondition getStopCondition() {
-        return stopCondition;
-    }
-
-    public void setStopCondition(GeneticAlgorithmStopCondition stopCondition) {
-        this.stopCondition = stopCondition;
-    }
-
     protected PopulationAllocator getAllocator() {
         return allocator;
     }
@@ -185,7 +158,7 @@ public class GeneticAlgorithm implements InitializeComponent {
 
     /**
      * With this you can use a predefined chromosome set,
-     * just remember to call this before execute
+     * just remember to call this before {@link #execute()}
      *
      * @param initPopulation initial set for the population
      */
@@ -193,10 +166,5 @@ public class GeneticAlgorithm implements InitializeComponent {
         this.initPopulation = initPopulation;
     }
 
-    /**
-     * @return the last execution time in milliseconds
-     */
-    public double getLastTime() {
-        return this.lastTime;
-    }
+
 }

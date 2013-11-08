@@ -63,4 +63,9 @@ public class Convergence extends GeneticAlgorithmStopCondition {
 						bestFitness <= refFitness
 				);
 	}
+
+    @Override
+    public boolean isCommonUsage() {
+        return false;
+    }
 }

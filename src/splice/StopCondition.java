@@ -14,7 +14,7 @@ package splice;
  * Like {@link DataManipulator} it may have conditions that makes required to every algorithm implement its
  * own.
  */
-public interface StopCondition {
+public interface StopCondition extends ProblemTypeComponent {
     /**
      * The condition's implementation.
      *
@@ -22,4 +22,10 @@ public interface StopCondition {
      * @return true if the algorithm has reached its condition.
      */
     public boolean stop(int iteration);
+
+    /**
+     *
+     * @return true if the stop condition can be used in any algorithm
+     */
+    public boolean isCommonUsage();
 }

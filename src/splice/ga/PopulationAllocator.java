@@ -24,7 +24,8 @@ import splice.ProblemTypeComponent;
  * 
  */
 public abstract class PopulationAllocator extends PopulationManipulator implements InitializeComponent, ProblemTypeComponent {
-	private ArrayList<BasicChromosome> newPopulation;
+    // TODO: must be thread-safe so we can make the reproduction parallel
+    private ArrayList<BasicChromosome> newPopulation;
 	private Population population;
 	private ProblemType problemType;
 

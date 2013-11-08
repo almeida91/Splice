@@ -8,24 +8,16 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package splice.ga.stopConditions;
+package splice.ga;
 
-import splice.ga.GeneticAlgorithmStopCondition;
+import splice.DataFormatter;
+import splice.DataManipulator;
 
-public class MinimumBestFitness extends GeneticAlgorithmStopCondition {
-	private double minimum;
+/**
+ * Base class for the generation data log/manipulation logic
+ * @author igor
+ *
+ */
+public abstract class GeneticAlgorithmDataFormatter extends PopulationManipulator implements DataFormatter {
 
-	public MinimumBestFitness(double minimum) {
-		this.minimum = minimum;
-	}
-	
-	@Override
-	public boolean stop(int generation) {
-		return getPopulation().getMaximum().getFitness() >= minimum;
-	}
-
-    @Override
-    public boolean isCommonUsage() {
-        return false;
-    }
 }

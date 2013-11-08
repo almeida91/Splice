@@ -11,16 +11,20 @@
 package nqueens;
 
 import splice.ga.GeneticAlgorithm;
-import splice.ga.allocators.ElitismAllocator;
+import splice.ga.allocators.ElitistAllocator;
+import splice.ga.parallel.ParallelPopulation;
 import splice.ga.selectors.MinimizeTournamentSelector;
-import splice.ga.stopConditions.Generations;
+import splice.stopCondition.Iterations;
 
 public class RunNQueens {
 	public static void main(String[] args) throws Exception {
-		GeneticAlgorithm ga = new GeneticAlgorithm(new NQueensChromosomeFactory(8), new ElitismAllocator(0.1), new MinimizeTournamentSelector( ));
-		ga.setStopCondition(new Generations(10000));
+		GeneticAlgorithm ga = new GeneticAlgorithm(new NQueensChromosomeFactory(8), new ElitistAllocator(0.1), new MinimizeTournamentSelector());
+        ga.setPopulation(new ParallelPopulation());
+		ga.setStopCondition(new Iterations(10000));
+        ga.setPopulationSize(100);
 		ga.execute();
 		
 		System.out.println(ga.getPopulation().getMaximum());
-	}
+        System.out.println(ga.getLastTime());
+    }
 }

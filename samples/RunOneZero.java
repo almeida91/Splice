@@ -9,15 +9,14 @@
  */
 
 import splice.ga.GeneticAlgorithm;
-import splice.ga.allocators.ElitismAllocator;
+import splice.ga.allocators.ElitistAllocator;
 import splice.ga.selectors.MinimizeTournamentSelector;
-import splice.ga.stopConditions.Convergence;
-import splice.ga.stopConditions.Generations;
+import splice.stopCondition.Iterations;
 
 public class RunOneZero {
 	public static void main(String[] args) throws Exception {
-		GeneticAlgorithm ga = new GeneticAlgorithm(new OneZeroChromosomeFactory(255), new ElitismAllocator(0.3), new MinimizeTournamentSelector());
-		ga.setStopCondition(new Generations(100));
+		GeneticAlgorithm ga = new GeneticAlgorithm(new OneZeroChromosomeFactory(255), new ElitistAllocator(0.3), new MinimizeTournamentSelector());
+		ga.setStopCondition(new Iterations(100));
 		ga.execute();
 		
 		System.out.println();

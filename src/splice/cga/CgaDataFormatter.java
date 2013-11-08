@@ -9,30 +9,22 @@
 */
 package splice.cga;
 
+import splice.DataFormatter;
 import splice.DataManipulator;
 import splice.exceptions.DataNotSetException;
 
 /**
  * CGA {@link DataManipulator} implementation
  */
-public abstract class CgaDataManipulator extends ContextManipulator implements DataManipulator {
-    @Override
-    public void appendData(int iteration) throws Exception {
+public abstract class CgaDataFormatter extends ContextManipulator implements DataFormatter {
+    public String format(int iteration) {
         if (!isDataSet())
             throw new DataNotSetException();
         else
             reset();
 
-        engineAppendData(iteration);
+        return doFormat(iteration);
     }
 
-    @Override
-    public abstract void saveData() throws Exception;
-
-    /**
-     * To be called inside {@link #appendData(int)}.
-     * @param iteration current iteration
-     * @throws Exception usually an IO exception
-     */
-    protected abstract void engineAppendData(int iteration) throws Exception;
+    public abstract String doFormat(int iteration);
 }

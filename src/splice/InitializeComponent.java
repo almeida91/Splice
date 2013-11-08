@@ -19,5 +19,5 @@ public interface InitializeComponent {
 	 * If the object has some kind of reference that can't be provided
      * by the constructor you can call the logic here after the references has been set.
 	 */
-	public void initialize();
+	public void initialize() throws Exception;
 }

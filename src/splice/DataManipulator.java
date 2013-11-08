@@ -9,26 +9,44 @@
  */
 package splice;
 
-/**
- * Defines how to save the algorithm execution data.
- * In an ideal world one should fit with every algorithm, unfortunately as every algorithm has its own format and
- * may not hold the same information we can't just pull from one algorithm to another.
- * Each class that follows this interface should also implement an internal buffer.
- */
-public interface DataManipulator {
-    /**
-     * How every iteration data will be appended to the internal buffer.
-     *
-     * @param iteration current iteration number the data comes from
-     * @throws Exception as it usually deals with IO exceptions are common
-     */
-    public void appendData(int iteration) throws Exception;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+public abstract class DataManipulator extends Thread {
+    private ConcurrentLinkedQueue<String> queue;
+    private boolean done = false;
 
     /**
-     * Saves the data that has been gathered through {@link #appendData(int)}.
-     * When implementing your own you should have some kind of buffer that register the information and save it using
-     * this method.
-     * @throws Exception
+     * Saves the input
+     * @throws Exception may throw an exception
      */
-    public void saveData() throws Exception;
+    protected abstract void saveData() throws Exception;
+
+    protected abstract void appendData(String data) throws Exception;
+
+    @Override
+    public void run() {
+        try {
+            while (!done || queue.size() > 0) {
+                if (queue.size() > 0)
+                    appendData(queue.poll());
+            }
+
+            saveData();
+        }
+        catch (Exception ex) {
+            // TODO: must manipulate those exceptions in some way
+        }
+    }
+
+    public void setDone() {
+        done = true;
+    }
+
+    public ConcurrentLinkedQueue<String> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(ConcurrentLinkedQueue<String> queue) {
+        this.queue = queue;
+    }
 }

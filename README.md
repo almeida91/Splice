@@ -36,7 +36,7 @@ Samples included:
 
 Contributing
 ==================
-You are free to fork and make pull requests for any feature that you may think it is worth in the library.
+You are free to fork and make pull requests for any feature that you may think is worth to be in the library.
 
 License
 ==================

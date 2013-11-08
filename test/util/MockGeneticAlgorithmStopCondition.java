@@ -26,4 +26,9 @@ public class MockGeneticAlgorithmStopCondition extends GeneticAlgorithmStopCondi
     public boolean stop(int generation) {
         return willStop;
     }
+
+    @Override
+    public boolean isCommonUsage() {
+        return false;
+    }
 }

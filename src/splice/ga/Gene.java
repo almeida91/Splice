@@ -57,4 +57,5 @@ public abstract class Gene<T> implements InitializeComponent, Cloneable {
         }
         return null;
     }
+
 }

@@ -7,25 +7,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+package splice.exceptions;
 
-package splice.ga.stopConditions;
-
-import splice.ga.GeneticAlgorithmStopCondition;
-
-public class MinimumBestFitness extends GeneticAlgorithmStopCondition {
-	private double minimum;
-
-	public MinimumBestFitness(double minimum) {
-		this.minimum = minimum;
-	}
-	
-	@Override
-	public boolean stop(int generation) {
-		return getPopulation().getMaximum().getFitness() >= minimum;
-	}
-
-    @Override
-    public boolean isCommonUsage() {
-        return false;
-    }
+public class NoStopConditionException extends RuntimeException {
 }

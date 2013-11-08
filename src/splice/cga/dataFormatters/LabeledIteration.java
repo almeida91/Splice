@@ -7,27 +7,18 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-package splice.cga.dataManipulator;
+package splice.cga.dataFormatters;
 
-import splice.cga.CgaDataManipulator;
-
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
+import splice.cga.CgaDataFormatter;
 
 /**
- * Similar to {@link splice.ga.dataManipulators.ConsoleOutput} but to {@link splice.cga.CompactGeneticAlgorithm}
+ * Similar to {@link splice.ga.dataFormatters.LabeledGeneration} but to {@link splice.cga.CompactGeneticAlgorithm}
  */
-public class ConsoleOutput extends CgaDataManipulator {
-    private BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+public class LabeledIteration extends CgaDataFormatter {
+    private StringBuilder builder = new StringBuilder();
 
-    @Override
-    public void saveData() throws Exception {
-        writer.flush();
-    }
-
-    @Override
-    protected void engineAppendData(int iteration) throws Exception {
-        writer.append("Generation #")
+    public String doFormat(int iteration) {
+        builder.append("Generation #")
         .append(Integer.toString(iteration))
         .append(" winner: ")
         .append(Double.toString(getWinnerFitness()))
@@ -36,5 +27,10 @@ public class ConsoleOutput extends CgaDataManipulator {
         .append(" best: ")
         .append(Double.toString(getBestFitness()))
         .append("\n");
+
+        String ret = builder.toString();
+        builder.delete(0, builder.length());
+
+        return ret;
     }
 }
