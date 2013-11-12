@@ -30,14 +30,15 @@ public class ListGene<T> extends Gene<List<T>> {
 		super(value);
 	}
 
-    public ListGene(Set<T> set, int itemsFromSet) {
+    public ListGene(Set<T> set, int itemsFromSet, boolean unique) {
         super(null);
         this.set = set;
         this.itemsFromSet = itemsFromSet;
+        this.unique = unique;
     }
 
     public ListGene(Set<T> set) {
-        this(set, set.size());
+        this(set, set.size(), true);
     }
 
     public T get(int i) {
@@ -73,17 +74,20 @@ public class ListGene<T> extends Gene<List<T>> {
                 Collections.shuffle(listFromSet, RandomUtil.getRandom());
                 setValue(listFromSet);
 
+                int remove = set.size() - itemsFromSet;
+
                 if (itemsFromSet < set.size()) {
-                    for (int i = 0; i < set.size() - itemsFromSet; i++) {
-                        getValue().remove(i);
+                    for (int i = 0; i < remove; i++) {
+                        getValue().remove(0);
                     }
                 }
             }
             else {
                 Random random = RandomUtil.getRandom();
+                setValue(new ArrayList<T>(itemsFromSet));
 
                 for (int i = 0; i < itemsFromSet; i++) {
-
+                    getValue().add(listFromSet.get(random.nextInt(set.size())));
                 }
             }
         }
