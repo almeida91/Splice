@@ -31,7 +31,7 @@ import splice.stopCondition.Iterations;
 public class RunRosenbrock {
 	public static void main(String[] args) throws Exception {
 		GeneticAlgorithm ga = new GeneticAlgorithm(new RosenbrockChromosomeFactory(), new ReplaceAllocator(), new MinimizeTournamentSelector());
-		ga.setStopCondition(new Iterations(100000));
+		ga.setStopCondition(new Iterations(1000));
         ga.setPopulationSize(100);
 		ga.execute();
 

@@ -69,7 +69,7 @@ public class Population implements InitializeComponent {
 	}
 
 	public void initialize() {
-		chromosomes = new ArrayList<BasicChromosome>(size);
+		chromosomes = new ArrayList<>(size);
 
 		for (int i = 0; i < size; i++) {
 			chromosomes.add(factory.generateChromosome());
@@ -80,7 +80,7 @@ public class Population implements InitializeComponent {
 	 * Sorts the population based on the chromosome's comparator
 	 */
 	public void sort() {
-		Collections.sort(chromosomes, new ChromosomeComparator(0));
+		Collections.sort(chromosomes, new ChromosomeFitnessComparator(0));
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class Population implements InitializeComponent {
     }
 	
 	public Set<BasicChromosome> getChromosomesSet() {
-		TreeSet<BasicChromosome> set = new TreeSet<BasicChromosome>();
+		TreeSet<BasicChromosome> set = new TreeSet<>();
 		set.addAll(chromosomes);
 		return set;
 	}

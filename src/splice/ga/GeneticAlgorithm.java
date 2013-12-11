@@ -27,6 +27,8 @@ import splice.*;
 import splice.exceptions.IncompatibleComponentException;
 import splice.ga.dataFormatters.LabeledGeneration;
 
+import java.util.Random;
+
 /**
  * Base class for a genetic algorithm
  *
@@ -35,6 +37,7 @@ import splice.ga.dataFormatters.LabeledGeneration;
 public class GeneticAlgorithm extends Algorithm {
     private int populationSize = 100;
     private double mutationRate = 0.2;
+    private double crossoverRate = 0.8;
     private boolean initPopulation = true;
 
     private Population population = new Population();
@@ -42,6 +45,8 @@ public class GeneticAlgorithm extends Algorithm {
     private Selector selector;
     private PopulationAllocator allocator;
     private ChromosomeFactory<?> factory;
+
+    private Random random;
 
     /**
      * Default constructor
@@ -67,6 +72,7 @@ public class GeneticAlgorithm extends Algorithm {
 
         allocator.reset();
         selector.beforeGeneration();
+
         doGeneration(i);
         allocator.allocate();
     }
@@ -89,12 +95,22 @@ public class GeneticAlgorithm extends Algorithm {
     }
 
     private void reproduce(BasicChromosome a, BasicChromosome b) {
-        BasicChromosome c = a.crossover(b);
+        BasicChromosome c;
+
+        if (random.nextDouble() < crossoverRate) {
+            c = a.crossover(b);
+        }
+        else {
+            c = a.clone();
+        }
+
         c.mutate(mutationRate);
         allocator.append(c);
     }
 
     public void initialize() throws Exception {
+        random = RandomUtil.getRandom();
+
         factory.initialize();
 
         if (initPopulation) {
@@ -167,6 +183,14 @@ public class GeneticAlgorithm extends Algorithm {
 
     protected ChromosomeFactory<?> getFactory() {
         return factory;
+    }
+
+    public double getCrossoverRate() {
+        return crossoverRate;
+    }
+
+    public void setCrossoverRate(double crossoverRate) {
+        this.crossoverRate = crossoverRate;
     }
 
     /**

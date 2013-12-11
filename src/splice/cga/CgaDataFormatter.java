@@ -31,7 +31,7 @@ import splice.exceptions.DataNotSetException;
  * CGA {@link DataManipulator} implementation
  */
 public abstract class CgaDataFormatter extends ContextManipulator implements DataFormatter {
-    public String format(int iteration) {
+    public String format(int iteration, long iterationTime) {
         if (!isDataSet())
             throw new DataNotSetException();
         else

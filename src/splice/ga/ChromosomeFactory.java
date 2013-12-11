@@ -39,7 +39,7 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 	private Crossover<T> crossover;
     private Gene<?> gene;
     private int size;
-	
+
 	/**
 	 * This method is used to fill the population with new individuals.
 	 * @return new random chromosome

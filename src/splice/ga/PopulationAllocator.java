@@ -94,7 +94,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	 * Resets the buffer, you don't want the population to grow till your memory overflows
 	 */
 	public void reset() { // TODO: should call this at initialization
-		newPopulation = new ArrayList<BasicChromosome>(population.getSize());
+		newPopulation = new ArrayList<>(population.getSize());
 	}
 	
 	public int bufferSize() {
@@ -105,7 +105,7 @@ public abstract class PopulationAllocator extends PopulationManipulator implemen
 	 * sorts the the new population buffer
 	 */
 	public void sortNewPopulation() {
-		Collections.sort(newPopulation, new ChromosomeComparator(0));
+		Collections.sort(newPopulation, new ChromosomeFitnessComparator(0));
 	}
 
 	public ProblemType getProblemType() {

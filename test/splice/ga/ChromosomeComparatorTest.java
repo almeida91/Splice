@@ -22,13 +22,13 @@ import static org.junit.Assert.*;
  * @author igor
  */
 public class ChromosomeComparatorTest {
-    ChromosomeComparator comparator;
+    ChromosomeFitnessComparator comparator;
     BasicChromosome t0, t1, t2;
     double value = 1;
 
     @Before
     public void setUp() {
-        comparator = new ChromosomeComparator(value);
+        comparator = new ChromosomeFitnessComparator(value);
 
         t0 = new MockBasicChromosome(value - 1);
         t1 = new MockBasicChromosome(value);
@@ -55,7 +55,7 @@ public class ChromosomeComparatorTest {
         ChromosomeComparatorTest test = new ChromosomeComparatorTest();
         test.value = value;
         test.setUp();
-        test.comparator = (ChromosomeComparator)comparator;
+        test.comparator = (ChromosomeFitnessComparator)comparator;
         test.testCompare();
         test.testEquals();
     }

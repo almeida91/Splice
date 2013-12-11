@@ -28,14 +28,7 @@ import splice.ga.genes.BinaryGene;
 import splice.ga.genes.BinaryGeneType;
 import splice.ga.mutators.SingleBitBinaryMutator;
 
-
 public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
-	private int limit;
-	
-	public OneZeroChromosomeFactory(int limit) {
-		this.limit = limit;
-	}
-	
 	@Override
 	public void initialize() {
 		setMutator(new SingleBitBinaryMutator());

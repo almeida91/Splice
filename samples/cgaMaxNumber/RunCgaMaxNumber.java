@@ -30,8 +30,10 @@ public class RunCgaMaxNumber {
     public static void main(String[] args) throws Exception {
         CompactGeneticAlgorithm cga = new CompactGeneticAlgorithm(new MaxNumberChromosome(), 16);
         cga.setPopulationSize(100);
-        cga.setStopCondition(new Iterations(1000));
+        cga.setStopCondition(new Iterations(10000));
         cga.getProblemType().setMaximization();
         cga.execute();
+
+        System.out.println(cga.getLastTime());
     }
 }

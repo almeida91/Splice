@@ -28,7 +28,7 @@ import splice.ga.Mutator;
 import splice.ga.genes.ListGene;
 
 
-public class PermutateMutator<T> implements Mutator<ListGene<T>> {
+public class SwapMutator<T> implements Mutator<ListGene<T>> {
 	@Override
 	public void mutate(ListGene<T> gene) {
 		T temp;

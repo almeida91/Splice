@@ -29,7 +29,7 @@ import splice.InitializeComponent;
  * Base class for a single chromosome information
  * @author igor
  *
- * @param <T> the type of information value
+ * @param <T> the type of the contained value
  */
 public abstract class Gene<T> implements InitializeComponent, Cloneable {
 	private T value;
@@ -71,4 +71,8 @@ public abstract class Gene<T> implements InitializeComponent, Cloneable {
         return null;
     }
 
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
 }

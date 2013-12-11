@@ -26,7 +26,10 @@ package splice.cga;
 import splice.Algorithm;
 import splice.cga.dataFormatters.LabeledIteration;
 import splice.exceptions.IncompatibleComponentException;
-import splice.ga.*;
+import splice.ga.BasicChromosome;
+import splice.ga.Chromosome;
+import splice.ga.ChromosomeType;
+import splice.ga.SingleGeneChromosome;
 import splice.ga.genes.BinaryGene;
 
 /**

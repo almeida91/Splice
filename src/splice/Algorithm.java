@@ -62,12 +62,17 @@ public abstract class Algorithm implements InitializeComponent, ProblemTypeCompo
         dataManipulator.setQueue(queue);
         dataManipulator.start();
 
+        long iterationBegin, iterationEnd;
+
         double begin = System.currentTimeMillis();
 
         int i = 1;
         do {
+            iterationBegin = System.nanoTime();
             iteration(i);
-            queue.add(formatter.format(i));
+            iterationEnd = System.nanoTime();
+
+            queue.add(formatter.format(i, iterationEnd - iterationBegin));
 
             i++;
         } while (!stopCondition.stop(i));

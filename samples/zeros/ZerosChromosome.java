@@ -25,7 +25,6 @@ package zeros;
 
 import splice.ga.SingleGeneChromosome;
 import splice.ga.genes.IntegerListGene;
-import splice.ga.genes.ListGene;
 
 public class ZerosChromosome extends SingleGeneChromosome<IntegerListGene> {
 	@Override

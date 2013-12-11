@@ -51,8 +51,8 @@ public class SinChromosome extends BasicChromosome {
 	}
 
 	@Override
-	public BasicChromosome crossover(BasicChromosome chromossome) {
-		return new SinChromosome(x, ((SinChromosome) chromossome).y);
+	public BasicChromosome crossover(BasicChromosome chromosome) {
+		return new SinChromosome(x, ((SinChromosome) chromosome).y);
 	}
 
 	@Override

@@ -25,10 +25,7 @@ package splice.ga.crossovers;
 
 import java.math.BigInteger;
 
-import splice.ga.Crossover;
 import splice.ga.genes.BinaryGene;
-
-
 
 public class MultiPointBinaryCrossover extends MaskBinaryCrossover {
 	private int parts;

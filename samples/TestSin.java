@@ -33,7 +33,7 @@ public class TestSin {
 				new ElitistAllocator(0.3),
 				new TournamentSelector(3)
 		);
-		ga.setStopCondition(new Iterations(100000));
+		ga.setStopCondition(new Iterations(10000));
 
 
         double begin = System.currentTimeMillis();

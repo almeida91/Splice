@@ -24,5 +24,11 @@
 package splice;
 
 public interface DataFormatter {
-    public String format(int iteration);
+    /**
+     *
+     * @param iteration current iteration that the data applies
+     * @param iterationTime how much time was spent in nano seconds
+     * @return a String containing information to be passed to the IO layer
+     */
+    public String format(int iteration, long iterationTime);
 }

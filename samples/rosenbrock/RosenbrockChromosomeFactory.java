@@ -25,7 +25,7 @@ package rosenbrock;
 
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
-import splice.ga.crossovers.MultiPointBinaryCrossover;
+import splice.ga.crossovers.SinglePointBinaryCrossover;
 import splice.ga.genes.BinaryGene;
 import splice.ga.genes.BinaryGeneType;
 import splice.ga.mutators.MultiBitBinaryMutator;
@@ -35,7 +35,7 @@ public class RosenbrockChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	@Override
 	public void initialize() {
 		setMutator(new MultiBitBinaryMutator(5));
-		setCrossover(new MultiPointBinaryCrossover(2));
+		setCrossover(new SinglePointBinaryCrossover());
         setSize(2);
         setGene(new BinaryGene(BinaryGeneType.FLOAT));
 	}

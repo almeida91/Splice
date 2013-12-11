@@ -29,10 +29,13 @@ import splice.ga.genes.BinaryGene;
 public class RosenbrockChromosome extends Chromosome<BinaryGene> {
 	@Override
 	protected double fitness() {
-		double x = get(0).toFloat();
-		double y = get(1).toFloat();
-		
-		return Math.pow(1 - x, 2) + 100 * Math.pow(y - Math.pow(x, 2), 2);
+		double sum = 0;
+
+        for (int i = 0; i < getSize() - 1; i++) {
+            sum += Math.pow(1 - get(i).toFloat(), 2) + 100 * Math.pow(get(i + 1).toFloat() - Math.pow(get(i).toFloat(), 2), 2);
+        }
+
+        return sum;
 	}
 
     @Override

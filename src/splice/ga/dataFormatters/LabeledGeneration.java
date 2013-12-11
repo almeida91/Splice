@@ -33,7 +33,7 @@ import splice.ga.GeneticAlgorithmDataFormatter;
 public class LabeledGeneration extends GeneticAlgorithmDataFormatter {
     private StringBuilder builder = new StringBuilder();
 	
-	public String format(int generation) {
+	public String format(int generation, long iterationTime) {
         builder.append("Generation #")
         .append(generation)
         .append(" fitness: ")

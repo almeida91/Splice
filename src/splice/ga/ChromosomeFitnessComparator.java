@@ -33,10 +33,10 @@ import java.util.Comparator;
  * @author igor
  *
  */
-public class ChromosomeComparator implements Comparator<BasicChromosome> {
+public class ChromosomeFitnessComparator implements Comparator<BasicChromosome> {
 	private double fitness;
 	
-	public ChromosomeComparator(double fitness) {
+	public ChromosomeFitnessComparator(double fitness) {
 		this.fitness = fitness;
 	}
 	

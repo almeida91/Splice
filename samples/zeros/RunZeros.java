@@ -23,7 +23,6 @@
 
 package zeros;
 
-import splice.ga.BasicChromosome;
 import splice.ga.GeneticAlgorithm;
 import splice.ga.allocators.ReplaceAllocator;
 import splice.ga.selectors.TournamentSelector;

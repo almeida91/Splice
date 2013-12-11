@@ -24,7 +24,6 @@
 package splice.ga;
 
 import splice.DataFormatter;
-import splice.DataManipulator;
 
 /**
  * Base class for the generation data log/manipulation logic
