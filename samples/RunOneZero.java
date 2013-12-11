@@ -28,7 +28,7 @@ import splice.stopCondition.Iterations;
 
 public class RunOneZero {
 	public static void main(String[] args) throws Exception {
-		GeneticAlgorithm ga = new GeneticAlgorithm(new OneZeroChromosomeFactory(255), new ElitistAllocator(0.3), new MinimizeTournamentSelector());
+		GeneticAlgorithm ga = new GeneticAlgorithm(new OneZeroChromosomeFactory(), new ElitistAllocator(0.3), new MinimizeTournamentSelector());
 		ga.setStopCondition(new Iterations(100));
 		ga.execute();
 		
