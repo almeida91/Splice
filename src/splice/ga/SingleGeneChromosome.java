@@ -97,4 +97,9 @@ public abstract class SingleGeneChromosome<T extends Gene> extends BasicChromoso
         c.resetFitness();
         return c;
     }
+
+    @Override
+    public int hashCode() {
+        return gene.hashCode();
+    }
 }

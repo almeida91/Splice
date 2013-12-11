@@ -78,9 +78,9 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	 * @return fitness value as calculated by #{fitness()}
 	 */
 	public final double calculateFitness() {
-		if (fitness == Double.MIN_VALUE)
-            fitness = fitness();
+        fitness = fitness();
         fitnessBits = Double.doubleToLongBits(fitness);
+
 		return fitness;
 	}
 
@@ -109,7 +109,7 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	}
 
 	public Comparator<BasicChromosome> getComparator() {
-		return new ChromosomeComparator(fitness);
+		return new ChromosomeFitnessComparator(fitness);
 	}
 
 	/**

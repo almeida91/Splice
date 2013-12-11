@@ -49,6 +49,10 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
         return genes;
     }
 
+    public int getSize() {
+        return genes.length;
+    }
+
     @Override
 	protected void mutate() {
         for (T gene : genes) {
@@ -103,5 +107,16 @@ public abstract class Chromosome<T extends Gene> extends BasicChromosome impleme
         c.setCrossover(this.crossover);
         c.resetFitness();
         return c;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = genes[0].hashCode();
+
+        for (int i = 1; i < getSize(); i++) {
+            hash ^= genes[i].hashCode();
+        }
+
+        return hash;
     }
 }
