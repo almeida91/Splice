@@ -34,6 +34,7 @@ import splice.ga.Selector;
  */
 public class TournamentSelector extends Selector {
 	private int k;
+
 	/**
 	 * @param size the tournament size
 	 */
@@ -44,12 +45,12 @@ public class TournamentSelector extends Selector {
 	@Override
 	public BasicChromosome getChromosome() {
 		BasicChromosome chromosome = getPopulation().getRandomChromosome(), temp;
-		double fitness = chromosome.getFitness();
 
 		for (int i = 0; i < k - 1; i++) {
 			temp = getPopulation().getRandomChromosome();
-			if (temp.getFitness() > fitness)
-				chromosome = temp;
+            if ((getProblemType().isMaximization() && temp.getFitness() > chromosome.getFitness()) ||
+                (getProblemType().isMinimization() && temp.getFitness() < chromosome.getFitness()))
+                chromosome = temp;
 		}
 
 		return chromosome;
@@ -60,6 +61,8 @@ public class TournamentSelector extends Selector {
 	
 	@Override
 	public void initialize() {
-		getProblemType().setMaximization();
+		if (getProblemType().isUnset()) {
+            getProblemType().setMaximization();
+        }
 	}
 }

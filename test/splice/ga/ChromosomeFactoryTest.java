@@ -23,7 +23,7 @@ public class ChromosomeFactoryTest {
     public void testWithChromosome() throws Exception {
         MockChromosomeFactory factory = new MockChromosomeFactory();
 
-        factory.setGene(new BinaryGene(0));
+        factory.setGene(new BinaryGene(8));
         factory.setSize(GENES_SIZE);
         factory.setMutator(new MockMutator());
         factory.setCrossover(new MockCrossover());
