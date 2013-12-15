@@ -53,8 +53,9 @@ public class ChromosomeTest {
     @Test
     public void testGet() throws Exception {
         for (int i = 0; i < LENGTH; i++) {
-            assertEquals(i, chromosome.get(i).toInt());
+            assertEquals(i, chromosome.get(i).getLength());
         }
+
     }
 
     @Test
