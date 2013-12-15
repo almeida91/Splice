@@ -37,7 +37,7 @@ public class LinearRankingSelector extends Selector {
 	public BasicChromosome getChromosome() {
         // Get population size.
 		int i =  getPopulation().getSize();
-        double limit = RandomUtil.getRandom().nextGaussian();
+        double limit = RandomUtil.getRandom().nextDouble();
         double prob = 0;
         // Assuming population to be sorted.
         for(BasicChromosome individual : getPopulation().getChromosomes())
