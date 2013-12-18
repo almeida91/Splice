@@ -33,7 +33,6 @@ public class RunNQueens {
 	public static void main(String[] args) throws Exception {
 		GeneticAlgorithm ga = new GeneticAlgorithm(new NQueensChromosomeFactory(8), new ElitistAllocator(0.1), new TournamentSelector(2));
         ga.getProblemType().setMinimization();
-        ga.setPopulation(new ParallelPopulation());
 		ga.setStopCondition(new Iterations(10000));
         ga.setPopulationSize(100);
 		ga.execute();
