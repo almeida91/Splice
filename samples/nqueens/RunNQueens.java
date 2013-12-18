@@ -25,7 +25,6 @@ package nqueens;
 
 import splice.ga.GeneticAlgorithm;
 import splice.ga.allocators.ElitistAllocator;
-import splice.ga.parallel.ParallelPopulation;
 import splice.ga.selectors.TournamentSelector;
 import splice.stopCondition.Iterations;
 
