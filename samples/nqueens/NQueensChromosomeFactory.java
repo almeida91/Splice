@@ -38,9 +38,9 @@ public class NQueensChromosomeFactory extends ChromosomeFactory {
 
     @Override
     public void initialize() {
-        setMutator(new RandomIntegerMutator(8));
+        setMutator(new RandomIntegerMutator(n));
         setCrossover(new SinglePointCrossover<Integer>());
-        setGene(new IntegerListGene(8, 8));
+        setGene(new IntegerListGene(n, n));
     }
 
 	@Override

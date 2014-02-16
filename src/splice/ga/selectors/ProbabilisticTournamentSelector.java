@@ -20,51 +20,53 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+package splice.ga.selectors;
 
-package nqueens;
+import splice.RandomUtil;
+import splice.ga.BasicChromosome;
+import splice.ga.Selector;
 
-import splice.ga.SingleGeneChromosome;
-import splice.ga.genes.IntegerListGene;
+import java.util.Arrays;
 
-/**
- * This is just a test needs heavy refactoring
- * @author igor
- *
- */
-public class NQueensChromosome extends SingleGeneChromosome<IntegerListGene> {
-	public boolean line(int ax, int bx) {
-		return ax == bx;
-	}
 
-	public boolean column(int ay, int by) {
-		return ay == by;
-	}
+public class ProbabilisticTournamentSelector extends Selector {
+    private BasicChromosome[] candidates;
+    private int size;
 
-	public boolean diagonal(int ax, int ay, int bx, int by) {
-		return ax - bx == ay - by | ax + ay == bx + by;
-	}
-
+    public ProbabilisticTournamentSelector(int size) {
+        this.size = size;
+    }
 
     @Override
-    protected double fitness() {
-        double f = 0;
+    public BasicChromosome getChromosome() {
+        double sum = 0;
+        candidates = new BasicChromosome[size];
 
-        for (int i = 0; i < getGene().getSize(); i++) {
-            for (int j = 0; j < getGene().getSize(); j++) {
-                if (i != j) {
-                    if (line(i, j)) {
-                        f += 1;
-                    }
-                    if (column(getGene().get(i), getGene().get(j))) {
-                        f += 1;
-                    }
-                    if (diagonal(i, getGene().get(i), j, getGene().get(j))) {
-                        f += 1;
-                    }
-                }
-            }
+        int i;
+        for (i = 0; i < size; i++) {
+            candidates[i] = getPopulation().getRandomChromosome();
+            sum += candidates[i].getFitness();
         }
 
-        return f;
+        Arrays.sort(candidates);
+
+        double aux = 0;
+        double limit = RandomUtil.getRandom().nextDouble() * sum;
+
+        for (i = 0; i < size & aux < limit; ++i) {
+            aux += candidates[i].getFitness();
+        }
+
+        return candidates[i == 0 ? i : i - 1];
+    }
+
+    @Override
+    public void beforeGeneration() {
+
+    }
+
+    @Override
+    public void initialize() throws Exception {
+        getProblemType().setMaximization();
     }
 }

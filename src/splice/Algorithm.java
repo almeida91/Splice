@@ -57,6 +57,8 @@ public abstract class Algorithm implements InitializeComponent, ProblemTypeCompo
         if (problemType.isUnset())
             problemType.setMaximization();
 
+        stopCondition.setProblemType(problemType);
+
         queue = new ConcurrentLinkedQueue<>();
 
         dataManipulator.setQueue(queue);

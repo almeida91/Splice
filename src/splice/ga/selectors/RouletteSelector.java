@@ -38,7 +38,7 @@ public class RouletteSelector extends Selector {
 	public BasicChromosome getChromosome() {
 		int i;
 		double aux = 0;
-		double limit = RandomUtil.getRandom().nextGaussian() * getPopulation().getFitnessSum();
+		double limit = RandomUtil.getRandom().nextDouble() * getPopulation().getFitnessSum();
 
 		for (i = 0; i < getPopulation().getSize() & aux < limit; ++i) {
 			aux += getPopulation().get(i).getFitness();
@@ -46,12 +46,12 @@ public class RouletteSelector extends Selector {
 
 		return getPopulation().get(i == 0 ? i : i - 1);
 	}
-	
+
 	@Override
-	public void beforeGeneration() { 
+	public void beforeGeneration() {
 		getPopulation().sort();
 	}
-	
+
 	@Override
 	public void initialize() {
 		getProblemType().setMaximization();
