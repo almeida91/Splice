@@ -46,7 +46,7 @@ public class ElitistAllocator extends PopulationAllocator {
 		getPopulation().sort();
 		
 		if (getProblemType().isMaximization()) {
-			for (int i = 1; i <= n; i++) {
+			for (int i = 1; i < n; i++) {
 				append(getPopulation().get(getPopulation().getSize() - i));
 			}
 		}
