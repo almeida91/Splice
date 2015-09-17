@@ -138,6 +138,7 @@ public class BinaryGene extends Gene<BigInteger> {
 	public double toDouble() {
 		long longValue = getValue().longValue();
 
+		// same as the toFloat() method, but with doubles
 		if ((longValue & 0x7ff0000000000000L) == 0x7ff0000000000000L)
 			longValue &= 0xffefffffffffffffL;
 
