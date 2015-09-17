@@ -71,15 +71,24 @@ public class BinaryGene extends Gene<BigInteger> {
 
     public BinaryGene(BinaryGeneType type) {
         this(BigInteger.ZERO);
-        if (type == BinaryGeneType.DOUBLE || type == BinaryGeneType.LONG) {
-            length = 64;
-        }
-        else if (type == BinaryGeneType.FLOAT || type == BinaryGeneType.INTEGER) {
-            length = 32;
-        }
-        else if (type == BinaryGeneType.SHORT) {
-            length = 16;
-        }
+
+		switch (type) {
+			case DOUBLE:
+				length = 63;
+				break;
+			case FLOAT:
+				length = 32;
+				break;
+			case INTEGER:
+				length = 32;
+				break;
+			case LONG:
+				length = 64;
+				break;
+			case SHORT:
+				length = 16;
+				break;
+		}
     }
 
 	@Override
@@ -111,7 +120,13 @@ public class BinaryGene extends Gene<BigInteger> {
 	 * @return the gene's float value
 	 */
 	public float toFloat() {
-		return Float.intBitsToFloat(getValue().intValue());
+		int intValue = getValue().intValue();
+
+		// if the bit-value will raise an NaN, so we decrease one bit from the exponent
+		if ((intValue & 0x7f000000) == 0x7f000000)
+			intValue &= 0xfeffffff;
+
+		return Float.intBitsToFloat(intValue);
 	}
 
 	/**
@@ -121,7 +136,12 @@ public class BinaryGene extends Gene<BigInteger> {
 	 * @return double value represented by the bit-string
 	 */
 	public double toDouble() {
-		return Double.longBitsToDouble(getValue().longValue());
+		long longValue = getValue().longValue();
+
+		if ((longValue & 0x7ff0000000000000L) == 0x7ff0000000000000L)
+			longValue &= 0xffefffffffffffffL;
+
+		return Double.longBitsToDouble(longValue);
 	}
 
 	/**
