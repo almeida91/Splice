@@ -79,6 +79,11 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	 */
 	public final double calculateFitness() {
         fitness = fitness();
+
+		// checks if is a NaN
+		if (fitness != fitness)
+			throw new NumberFormatException("The fitness can't be a NaN");
+
         fitnessBits = Double.doubleToLongBits(fitness);
 
 		return fitness;
