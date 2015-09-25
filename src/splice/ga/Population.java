@@ -72,7 +72,7 @@ public class Population implements InitializeComponent {
 		chromosomes = new ArrayList<>(size);
 
 		for (int i = 0; i < size; i++) {
-			chromosomes.add(factory.generateChromosome());
+			chromosomes.add(i, factory.generateChromosome());
 		}
 	}
 	

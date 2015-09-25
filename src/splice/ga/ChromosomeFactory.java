@@ -25,6 +25,9 @@ package splice.ga;
 
 import splice.InitializeComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class defines the structure for the factories that produces
  * chromosomes to fill the population
@@ -37,8 +40,9 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 	private ChromosomeType type;
 	private Mutator<T> mutator;
 	private Crossover<T> crossover;
-    private Gene<?> gene;
+    private T gene;
     private int size;
+    private List<T> genes;
 
 	/**
 	 * This method is used to fill the population with new individuals.
@@ -76,14 +80,14 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
 			c.setMutator(mutator);
 
             if (type == ChromosomeType.SINGLE) {
-                T gene = generateGene();
+                T gene = generateGene(0);
                 gene.initialize();
                 ((SingleGeneChromosome)chromosome).setGene(gene);
             } else if (type == ChromosomeType.NORMAL) {
                 T[] genes = (T[])(new Gene<?>[size]);
 
                 for (int i = 0; i < size; i++) {
-                    genes[i] = generateGene();
+                    genes[i] = generateGene(i);
                     genes[i].initialize();
                 }
 
@@ -98,12 +102,18 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
      * Clones the given gene into a new instance, after this the value should be initialized
      * @return a clone of the given gene
      */
-    public T generateGene() {
+    public T generateGene(int i) {
         T g = null;
 
         try {
-            g = (T)gene.clone();
+            if (genes == null) {
+                g = (T)gene.clone();
+            }
+            else {
+                g = (T)(genes.get(i).clone());
+            }
         } catch(Exception ex) {
+            // TODO: proper handling of this exception
             ex.printStackTrace();
         }
 
@@ -140,7 +150,14 @@ public abstract class ChromosomeFactory<T extends Gene> implements InitializeCom
         this.size = size;
     }
 
-    public void setGene(Gene<?> gene) {
+    public void setGene(T gene) {
         this.gene = gene;
+    }
+
+    public void setGene(int i, T gene) {
+        if (genes == null) {
+            genes = new ArrayList<>();
+        }
+        genes.add(i, gene);
     }
 }

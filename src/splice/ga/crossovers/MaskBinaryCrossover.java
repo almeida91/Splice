@@ -42,7 +42,8 @@ public class MaskBinaryCrossover implements Crossover<BinaryGene> {
     @Override
     public BinaryGene doCrossover(BinaryGene a, BinaryGene b) {
         BigInteger value = a.getValue().and(aMask).xor(b.getValue().and(bMask));
-        BinaryGene g = new BinaryGene(value);
+        BinaryGene g = (BinaryGene) a.clone();
+        g.setValue(value);
         g.setLength(a.getLength());
 
         return g;
