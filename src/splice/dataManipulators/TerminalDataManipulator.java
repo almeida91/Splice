@@ -24,11 +24,7 @@
 package splice.dataManipulators;
 
 /**
- * Created with IntelliJ IDEA.
- * User: igor
- * Date: 06/11/13
- * Time: 00:53
- * To change this template use File | Settings | File Templates.
+ * Output data direct to the {@link System.out} stream
  */
 public class TerminalDataManipulator extends StreamDataManipulator {
     public TerminalDataManipulator() {

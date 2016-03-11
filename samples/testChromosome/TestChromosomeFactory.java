@@ -1,4 +1,4 @@
-/*
+package testChromosome;/*
  * Copyright (C) 2012 Igor de Almeida
  *
  * Permission is hereby granted, free of charge, to any person
@@ -21,23 +21,14 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+import splice.RandomUtil;
 import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
-import splice.ga.crossovers.SinglePointBinaryCrossover;
-import splice.ga.genes.BinaryGene;
-import splice.ga.genes.BinaryGeneType;
-import splice.ga.mutators.SingleBitBinaryMutator;
 
-public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
-	@Override
-	public void initialize() {
-		setMutator(new SingleBitBinaryMutator());
-		setCrossover(new SinglePointBinaryCrossover());
-        setGene(new BinaryGene(BinaryGeneType.INTEGER));
-	}
-	
+
+public class TestChromosomeFactory extends ChromosomeFactory {
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		return new OneZeroChromosome();
+		return new TestChromosome(RandomUtil.getRandom().nextInt(100),RandomUtil.getRandom().nextInt(100));
 	}
 }

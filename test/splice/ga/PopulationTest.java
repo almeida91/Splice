@@ -35,6 +35,7 @@ public class PopulationTest {
 		population.setSize(CHROMOSOMES);
 		population.setFactory(new MockBasicChromosomeFactory(FITNESS));
 		random = new Random();
+        population.setRandom(random);
 	}
 
 	@Test
@@ -72,7 +73,7 @@ public class PopulationTest {
         population.initialize();
         population.getChromosomes().clear();
 
-        for (int i = 0; i < CHROMOSOMES; i++) {
+        for (int i = CHROMOSOMES - 1; i >= 0; i--) { // I did this way so we can
             population.getChromosomes().add(new MockBasicChromosome(i));
         }
 

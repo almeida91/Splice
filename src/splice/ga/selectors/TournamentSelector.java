@@ -29,40 +29,54 @@ import splice.ga.Selector;
 
 /**
  * Selects a chromosome using a k-sized deterministic tournament
- * @author igor
  *
+ * @author igor
  */
 public class TournamentSelector extends Selector {
-	private int k;
+    private int k;
 
-	/**
-	 * @param size the tournament size
-	 */
-	public TournamentSelector(int size) {
-		k = size;
-	}
+    /**
+     * @param size the tournament size
+     */
+    public TournamentSelector(int size) {
+        k = size;
+    }
 
-	@Override
-	public BasicChromosome getChromosome() {
-		BasicChromosome chromosome = getPopulation().getRandomChromosome(), temp;
+    @Override
+    public BasicChromosome getChromosome() {
+        BasicChromosome chromosome = getPopulation().getRandomChromosome(), temp;
 
-		for (int i = 0; i < k - 1; i++) {
-			temp = getPopulation().getRandomChromosome();
-            if ((getProblemType().isMaximization() && temp.getFitness() > chromosome.getFitness()) ||
-                (getProblemType().isMinimization() && temp.getFitness() < chromosome.getFitness()))
-                chromosome = temp;
-		}
+        if (getProblemType().isMaximization()) {
+            for (int i = 0; i < k - 1; i++) {
+                temp = getPopulation().getRandomChromosome();
 
-		return chromosome;
-	}
-	
-	@Override
-	public void beforeGeneration() { }
-	
-	@Override
-	public void initialize() {
-		if (getProblemType().isUnset()) {
+                if (temp.getFitness() > chromosome.getFitness()) {
+                    chromosome = temp;
+                }
+            }
+        }
+
+        if (getProblemType().isMinimization()) {
+            for (int i = 0; i < k - 1; i++) {
+                temp = getPopulation().getRandomChromosome();
+
+                if (temp.getFitness() < chromosome.getFitness()) {
+                    chromosome = temp;
+                }
+            }
+        }
+
+        return chromosome;
+    }
+
+    @Override
+    public void beforeGeneration() {
+    }
+
+    @Override
+    public void initialize() {
+        if (getProblemType().isUnset()) {
             getProblemType().setMaximization();
         }
-	}
+    }
 }

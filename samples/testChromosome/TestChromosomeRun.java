@@ -1,4 +1,4 @@
-/*
+package testChromosome;/*
  * Copyright (C) 2012 Igor de Almeida
  *
  * Permission is hereby granted, free of charge, to any person
@@ -21,16 +21,23 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-import splice.RandomUtil;
-import splice.ga.BasicChromosome;
-import splice.ga.ChromosomeFactory;
+
+import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ElitistAllocator;
+import splice.ga.selectors.TournamentSelector;
+import splice.stopCondition.Iterations;
 
 
-public class SinChromosomeFactory extends ChromosomeFactory {
+public class TestChromosomeRun {
+	public static void main(String[] args) throws Exception {
+		GeneticAlgorithm ga = new GeneticAlgorithm(
+				new TestChromosomeFactory(),
+				new ElitistAllocator(0.3),
+				new TournamentSelector(3));
+		ga.setStopCondition(new Iterations(10000));
+		ga.execute();
 
-	@Override
-	public BasicChromosome getRandomChromosome() {
-		return new SinChromosome(RandomUtil.getRandom().nextDouble(), RandomUtil.getRandom().nextDouble());
+		System.out.println(ga.getPopulation().getMaximum());
+        System.out.println(ga.getLastTime() / 1000);
 	}
-
 }

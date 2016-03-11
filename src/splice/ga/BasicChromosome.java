@@ -41,8 +41,9 @@ import splice.RandomUtil;
  * 
  */
 public abstract class BasicChromosome implements Comparable<BasicChromosome>, InitializeComponent, Cloneable {
-	private double fitness = Double.MIN_VALUE;
+	double fitness = Double.MIN_VALUE;
     private long fitnessBits;
+	private boolean calculated = false;
 
 	/**
 	 * Implementation of the fitness function
@@ -78,6 +79,9 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 	 * @return fitness value as calculated by #{fitness()}
 	 */
 	public final double calculateFitness() {
+		if (calculated)
+			return fitness;
+
         fitness = fitness();
 
 		// checks if is a NaN
@@ -85,6 +89,7 @@ public abstract class BasicChromosome implements Comparable<BasicChromosome>, In
 			throw new NumberFormatException("The fitness can't be a NaN");
 
         fitnessBits = Double.doubleToLongBits(fitness);
+		calculated = true;
 
 		return fitness;
 	}

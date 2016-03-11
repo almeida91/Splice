@@ -69,6 +69,7 @@ public class GeneticAlgorithm extends Algorithm {
 
     protected void iteration(int i) throws Exception {
         population.calculateFitnessSum();
+        population.setSorted(false);
 
         allocator.reset();
         selector.beforeGeneration();
@@ -117,6 +118,7 @@ public class GeneticAlgorithm extends Algorithm {
             population.setSize(populationSize);
             population.setFactory(factory);
             population.initialize();
+            population.setRandom(RandomUtil.getInternalRandom());
         }
 
         setPopulationManipulator(allocator);

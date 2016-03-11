@@ -1,4 +1,4 @@
-/*
+package oneZero;/*
  * Copyright (C) 2012 Igor de Almeida
  *
  * Permission is hereby granted, free of charge, to any person
@@ -21,43 +21,23 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-import splice.RandomUtil;
 import splice.ga.BasicChromosome;
+import splice.ga.ChromosomeFactory;
+import splice.ga.crossovers.SinglePointBinaryCrossover;
+import splice.ga.genes.BinaryGene;
+import splice.ga.genes.BinaryGeneType;
+import splice.ga.mutators.SingleBitBinaryMutator;
 
-public class SinChromosome extends BasicChromosome {
-	private double x, y;
-
-	public SinChromosome(double x, double y) {
-		this.x = x;
-		this.y = y;
-	}
-
+public class OneZeroChromosomeFactory extends ChromosomeFactory<BinaryGene> {
 	@Override
-	protected double fitness() {
-		return Math.sin(Math.toRadians(x + y));
+	public void initialize() {
+		setMutator(new SingleBitBinaryMutator());
+		setCrossover(new SinglePointBinaryCrossover());
+        setGene(new BinaryGene(BinaryGeneType.INTEGER));
 	}
-
+	
 	@Override
-	protected void mutate() {
-		if (RandomUtil.getRandom().nextBoolean())
-			if (RandomUtil.getRandom().nextBoolean())
-				y -= 0.1;
-			else
-				y += 0.1;
-		else if (RandomUtil.getRandom().nextBoolean())
-			x -= 0.1;
-		else
-			x += 0.1;
+	public BasicChromosome getRandomChromosome() {
+		return new OneZeroChromosome();
 	}
-
-	@Override
-	public BasicChromosome crossover(BasicChromosome chromosome) {
-		return new SinChromosome(x, ((SinChromosome) chromosome).y);
-	}
-
-	@Override
-	public String toString() {
-		return "value = " + (x + y);
-	}
-
 }

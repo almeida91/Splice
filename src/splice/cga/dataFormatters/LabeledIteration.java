@@ -26,21 +26,21 @@ package splice.cga.dataFormatters;
 import splice.cga.CgaDataFormatter;
 
 /**
- * Similar to {@link splice.ga.dataFormatters.LabeledGeneration} but to {@link splice.cga.CompactGeneticAlgorithm}
+ * Similar to {@link splice.ga.dataFormatters.LabeledGeneration} but to be used with {@link splice.cga.CompactGeneticAlgorithm}
  */
 public class LabeledIteration extends CgaDataFormatter {
     private StringBuilder builder = new StringBuilder();
 
     public String doFormat(int iteration) {
         builder.append("Generation #")
-        .append(Integer.toString(iteration))
-        .append(" winner: ")
-        .append(Double.toString(getWinnerFitness()))
-        .append(" loser: ")
-        .append(Double.toString(getLoserFitness()))
-        .append(" best: ")
-        .append(Double.toString(getBestFitness()))
-        .append("\n");
+                .append(Integer.toString(iteration))
+                .append(" winner: ")
+                .append(Double.toString(getWinnerFitness()))
+                .append(" loser: ")
+                .append(Double.toString(getLoserFitness()))
+                .append(" best: ")
+                .append(Double.toString(getBestFitness()))
+                .append("\n");
 
         String ret = builder.toString();
         builder.delete(0, builder.length());

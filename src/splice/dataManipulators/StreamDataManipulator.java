@@ -30,11 +30,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
 /**
- * Created with IntelliJ IDEA.
- * User: igor
- * Date: 06/11/13
- * Time: 00:54
- * To change this template use File | Settings | File Templates.
+ * Saves the algorithm data to a given stream
  */
 public class StreamDataManipulator extends DataManipulator {
     private BufferedWriter writer;

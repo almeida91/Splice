@@ -23,6 +23,10 @@
 
 package splice.ga;
 
+/**
+ * To be used when you dont't have/want to make your own chromosome creation
+ * @param <T> the gene type
+ */
 public class DefaultChromosomeFactory<T extends Gene> extends ChromosomeFactory<T> {
     private BasicChromosome chromosome;
 

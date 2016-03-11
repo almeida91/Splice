@@ -24,16 +24,17 @@
 package rosenbrock;
 
 import splice.ga.GeneticAlgorithm;
+import splice.ga.allocators.ElitistAllocator;
 import splice.ga.allocators.ReplaceAllocator;
 import splice.ga.selectors.TournamentSelector;
 import splice.stopCondition.Iterations;
 
 public class RunRosenbrock {
 	public static void main(String[] args) throws Exception {
-		GeneticAlgorithm ga = new GeneticAlgorithm(new RosenbrockChromosomeFactory(), new ReplaceAllocator(), new TournamentSelector(2));
+		GeneticAlgorithm ga = new GeneticAlgorithm(new RosenbrockChromosomeFactory(), new ElitistAllocator(0.3), new TournamentSelector(2));
         ga.getProblemType().setMinimization();
 		ga.setStopCondition(new Iterations(1000));
-        ga.setPopulationSize(100);
+        ga.setPopulationSize(10000);
 		ga.execute();
 
         System.out.println(ga.getPopulation().getMinimum());

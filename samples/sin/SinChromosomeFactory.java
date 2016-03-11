@@ -1,4 +1,4 @@
-/*
+package sin;/*
  * Copyright (C) 2012 Igor de Almeida
  *
  * Permission is hereby granted, free of charge, to any person
@@ -26,9 +26,11 @@ import splice.ga.BasicChromosome;
 import splice.ga.ChromosomeFactory;
 
 
-public class TestChromosomeFactory extends ChromosomeFactory {
+public class SinChromosomeFactory extends ChromosomeFactory {
+
 	@Override
 	public BasicChromosome getRandomChromosome() {
-		return new TestChromosome(RandomUtil.getRandom().nextInt(100),RandomUtil.getRandom().nextInt(100));
+		return new SinChromosome(RandomUtil.getRandom().nextDouble(), RandomUtil.getRandom().nextDouble());
 	}
+
 }

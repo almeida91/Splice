@@ -1,4 +1,4 @@
-/*
+package oneZero;/*
  * Copyright (C) 2012 Igor de Almeida
  *
  * Permission is hereby granted, free of charge, to any person
