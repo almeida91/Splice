@@ -68,7 +68,7 @@ public class Population implements InitializeComponent {
         calculateFitnessSum(true);
     }
     
-    public void calculateFitnessSum(boolean precise) throw Exception {
+    public void calculateFitnessSum(boolean precise) throws Exception {
         int size = precise ? chromosomes.size() : chromosomes.size() / 3;
         
         fitnessSum = 0;
