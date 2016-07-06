@@ -65,10 +65,21 @@ public class Population implements InitializeComponent {
      *                   so the exception will be propagated
      */
     public void calculateFitnessSum() throws Exception {
+        calculateFitnessSum(true);
+    }
+    
+    public void calculateFitnessSum(boolean precise) throw Exception {
+        int size = precise ? chromosomes.size() : chromosomes.size() / 3;
+        
         fitnessSum = 0;
-        for (BasicChromosome chromosome : chromosomes) {
-            fitnessSum += chromosome.calculateFitness();
+        for (int i = 0; i < size; i++) {
+            fitnessSum += chromosomes.get(i).calculateFitness();
         }
+        
+        if (!precise) {
+            fitnessSum *= 3;
+        }
+        
         fitnessAverage = fitnessSum / chromosomes.size();
     }
 
